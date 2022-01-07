@@ -20,6 +20,7 @@ else:
 
 _PYTHON_MAJOR_VERSION = int(platform.python_version_tuple()[0])
 ON_WINDOWS = platform.system() == 'Windows'
+HAVE_POLL = platform.system() == 'Linux'
 ON_RTD = os.environ.get('READTHEDOCS') == 'True'
 SYSTEM_LIBSSH = bool(os.environ.get('SYSTEM_LIBSSH', 0)) or \
                 ON_RTD or ON_WINDOWS
@@ -59,6 +60,7 @@ cython_args = {
     'cython_directives': cython_directives,
     'cython_compile_time_env': {
         'ON_WINDOWS': ON_WINDOWS,
+        'HAVE_POLL': HAVE_POLL,
     }} \
     if USING_CYTHON else {}
 
@@ -110,14 +112,14 @@ if ON_WINDOWS and _PYTHON_MAJOR_VERSION == 2:
     sys.stdout.write("Windows Python 2 build - %s extensions: %s" % (len(extensions), os.sep))
 
 setup(
-    name='ssh-python',
+    name='redlibssh',
     version=versioneer.get_version(),
     cmdclass=cmdclass,
-    url='https://github.com/ParallelSSH/ssh-python',
+    url='https://github.com/Red-M/Redlibssh',
     license='LGPLv2.1',
-    author='Panos Kittenis',
-    author_email='22e889d8@opayq.com',
-    description=('libssh C library bindings for Python.'),
+    author='Red_M',
+    author_email='redlibssh_pypi@red-m.net',
+    description=('Alternate bindings for libssh C library'),
     long_description=open('README.rst').read(),
     packages=find_packages(
         '.', exclude=('embedded_server', 'embedded_server.*',

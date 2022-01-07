@@ -23,3 +23,19 @@ cdef object to_str_len(const char *c_str, int length)
 cdef int handle_error_codes(int errcode, ssh_session) except -1
 cdef int handle_auth_error_codes(int errcode, ssh_session) except -1
 cdef bytes ssh_string_to_bytes(ssh_string _str)
+
+IF HAVE_POLL==1:
+    cdef extern from "poll.h" nogil:
+        ctypedef unsigned int nfds_t
+        enum:
+            POLLIN
+            POLLPRI
+            POLLOUT
+            POLLERR
+            POLLHUP
+            POLLNVAL
+        struct pollfd:
+            int fd
+            short events
+            short revents
+        int poll(pollfd *fds, nfds_t nfds, int timeout)

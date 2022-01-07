@@ -27,9 +27,12 @@ from exceptions import OtherError, \
     AuthenticationPartial, AuthenticationDenied, AuthenticationError, \
     SSHError, EOF
 
+IF HAVE_POLL==1:
+    from utils cimport POLLIN, POLLOUT
+    pollin=POLLIN
+    pollout=POLLOUT
 
 ENCODING='utf-8'
-
 
 cdef bytes to_bytes(_str):
     if isinstance(_str, bytes):

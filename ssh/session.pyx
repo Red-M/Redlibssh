@@ -14,6 +14,9 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-130
 
+import time
+import threading
+import select as pyselect
 from cpython cimport PyObject_AsFileDescriptor
 from libc.stdlib cimport malloc, free
 from libc.string cimport const_char
@@ -62,11 +65,70 @@ cdef class Session:
         self._session = c_ssh.ssh_new()
         if self._session is NULL:
             raise MemoryError
+        self._block_lock = threading.RLock()
+        IF HAVE_POLL==1:
+            self.c_poll_enabled = True
+        ELSE:
+            self.c_poll_enabled = False
+        self.c_poll_use = True
+        self._default_waitsockets = []
+        self._waitsockets = []
 
     def __dealloc__(self):
         if self._session is not NULL:
             c_ssh.ssh_free(self._session)
             self._session = NULL
+
+    cdef void _build_c_waitsocket_data(Session self) nogil:
+        self._c_waitsockets[0].fd = self._sock
+        self._c_waitsockets[0].events = 0
+        self._c_waitsockets[0].revents = 0
+
+    def _build_waitsocket_data(self):
+        self._waitsockets = [self.sock]
+
+    IF HAVE_POLL==1:
+        cdef int poll_socket(Session self,int block_dir,int timeout) nogil:
+            cdef int rc
+
+            with nogil:
+                if(block_dir & c_ssh.SSH_READ_PENDING):
+                    self._c_waitsockets[0].events |= utils.POLLIN
+
+                if(block_dir & c_ssh.SSH_WRITE_PENDING):
+                    self._c_waitsockets[0].events |= utils.POLLOUT
+
+                rc = utils.poll(self._c_waitsockets, 1, timeout)
+                self._c_waitsockets[0].events = 0
+            return rc
+
+    def check_c_poll_enabled(self):
+        with self._block_lock:
+            return(self.c_poll_enabled==True and self.c_poll_use==True)
+
+    def _block_call(self,_select_timeout=None):
+        if _select_timeout==None:
+            _select_timeout = 0.005
+        with self._block_lock:
+            # self.keepalive_send()
+            block_direction = self.get_poll_flags()
+        if block_direction==0:
+            time.sleep(0.1)
+            return(None)
+
+        if self.check_c_poll_enabled()==True:
+            with self._block_lock:
+                return(self.poll_socket(block_direction,_select_timeout*1000))
+        else:
+            rfds = self._default_waitsockets
+            wfds = self._default_waitsockets
+            if block_direction & c_ssh.SSH_READ_PENDING:
+                rfds = self._waitsockets
+
+            if block_direction & c_ssh.SSH_WRITE_PENDING:
+                wfds = self._waitsockets
+
+            return(pyselect.select(rfds,wfds,self._default_waitsockets,_select_timeout))
 
     def set_socket(self, socket not None):
         """Set socket to use for session.
@@ -82,6 +144,10 @@ cdef class Session:
         with nogil:
             rc = c_ssh.ssh_options_set(self._session, fd, &_sock)
         handle_error_codes(rc, self._session)
+        if self.c_poll_enabled==True:
+            self._build_c_waitsocket_data()
+        if self.check_c_poll_enabled()==False:
+            self._build_waitsocket_data()
         return rc
 
     def blocking_flush(self, int timeout):

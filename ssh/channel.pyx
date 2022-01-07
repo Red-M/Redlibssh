@@ -29,6 +29,7 @@ cdef class Channel:
     def __cinit__(self, Session session):
         self.closed = False
         self._session = session
+        self._block_lock = self._session._block_lock
 
     def __dealloc__(self):
         if self._channel is not NULL and self._session is not None:
@@ -148,8 +149,7 @@ cdef class Channel:
     def poll_timeout(self, int timeout, bint is_stderr=False):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_poll_timeout(
-                self._channel, timeout, is_stderr)
+            rc = c_ssh.ssh_channel_poll_timeout(self._channel, timeout, is_stderr)
         return handle_error_codes(rc, self._session._session)
 
     def read(self, c_ssh.uint32_t size=1024*1024, bint is_stderr=False):
@@ -169,8 +169,7 @@ cdef class Channel:
             free(cbuf)
         return handle_error_codes(rc, self._session._session), buf
 
-    def read_nonblocking(self, c_ssh.uint32_t size=1024*1024,
-                         bint is_stderr=False):
+    def read_nonblocking(self, c_ssh.uint32_t size=1024*1024, bint is_stderr=False):
         cdef int rc
         cdef bytes buf = b''
         cdef char* cbuf
@@ -179,8 +178,7 @@ cdef class Channel:
             if cbuf is NULL:
                 with gil:
                     raise MemoryError
-            rc = c_ssh.ssh_channel_read_nonblocking(
-                self._channel, cbuf, size, is_stderr)
+            rc = c_ssh.ssh_channel_read_nonblocking(self._channel, cbuf, size, is_stderr)
         try:
             if rc > 0:
                 buf = cbuf[:rc]
@@ -188,8 +186,7 @@ cdef class Channel:
             free(cbuf)
         return handle_error_codes(rc, self._session._session), buf
 
-    def read_timeout(self, int timeout,
-                     c_ssh.uint32_t size=1024*1024, bint is_stderr=False):
+    def read_timeout(self, int timeout, c_ssh.uint32_t size=1024*1024, bint is_stderr=False):
         cdef int rc
         cdef bytes buf = b''
         cdef char* cbuf
