@@ -22,6 +22,7 @@ _PYTHON_MAJOR_VERSION = int(platform.python_version_tuple()[0])
 ON_WINDOWS = platform.system() == 'Windows'
 HAVE_POLL = platform.system() == 'Linux'
 ON_RTD = os.environ.get('READTHEDOCS') == 'True'
+REDLIBSSH_BUILD_TRACING = bool(os.environ.get('REDLIBSSH_BUILD_TRACING', 0))
 SYSTEM_LIBSSH = bool(os.environ.get('SYSTEM_LIBSSH', 0)) or \
                 ON_RTD or ON_WINDOWS
 
@@ -54,15 +55,20 @@ cython_directives = {
     'boundscheck': False,
     'optimize.use_switch': True,
     'wraparound': False,
-    'language_level': 2,
+    'language_level': 3,
 }
-cython_args = {
-    'cython_directives': cython_directives,
-    'cython_compile_time_env': {
-        'ON_WINDOWS': ON_WINDOWS,
-        'HAVE_POLL': HAVE_POLL,
-    }} \
-    if USING_CYTHON else {}
+cython_args = {}
+if USING_CYTHON:
+    cython_args = {
+        'cython_directives': cython_directives,
+        'cython_compile_time_env': {
+            'ON_WINDOWS': ON_WINDOWS,
+            'HAVE_POLL': HAVE_POLL,
+        }
+    }
+    if REDLIBSSH_BUILD_TRACING==True:
+        cython_args.update({'define_macros':[("CYTHON_TRACE", 1),("CYTHON_TRACE_NOGIL", 1)]})
+        cython_args['cython_directives'].update({'linetrace':True})
 
 
 runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH else None

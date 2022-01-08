@@ -26,9 +26,9 @@ def build_ssh():
         os.symlink('lib', 'local/lib64')
 
     os.chdir('src')
-    check_call('cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../local -DWITH_GSS_API=ON ../libssh',
+    check_call('cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../local -DWITH_NACL=ON -DWITH_PKCS11_URI=ON -DWITH_GSSAPI=1 -DWITH_BLOWFISH_CIPHER=ON ../libssh',
                shell=True, env=os.environ)
-    check_call(['make', '-j%s' % (cpu_count(),), 'all', 'install'])
+    check_call(['make', '-j', 'all', 'install'])
     os.chdir('..')
 
     for src in glob('local/lib/libssh.so*'):
