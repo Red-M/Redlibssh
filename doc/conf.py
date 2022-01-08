@@ -18,8 +18,8 @@ import ssh
 # -- Project information -----------------------------------------------------
 
 project = 'ssh-python'
-copyright = '2020, Panos Kittenis'
-author = 'Panos Kittenis'
+copyright = '2022, Red-M'
+author = 'Red-M'
 
 
 # -- General configuration ---------------------------------------------------
