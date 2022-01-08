@@ -10,7 +10,7 @@ RUN /scripts/setup_manylinux.sh
 
 # Libssh2
 RUN mkdir -p build_libssh && cd build_libssh && \
-    -DCMAKE_BUILD_TYPE=Release -DWITH_PKCS11_URI=ON /libssh && \
-    cmake --build . --config Release --target install
+    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_NACL=ON -DWITH_PKCS11_URI=ON -DWITH_GSSAPI=ON -DWITH_BLOWFISH_CIPHER=ON /libssh && \
+    make -j install
 
 RUN rm -rf build_libssh
