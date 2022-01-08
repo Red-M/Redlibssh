@@ -11,7 +11,7 @@
 #else
 #define CYTHON_ABI "0_29_26"
 #define CYTHON_HEX_VERSION 0x001D1AF0
-#define CYTHON_FUTURE_DIVISION 0
+#define CYTHON_FUTURE_DIVISION 1
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -1318,7 +1318,7 @@ static PyObject *__pyx_n_s_ssh_utils;
 static PyObject *__pyx_kp_s_ssh_utils_pyx;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_timeout;
-static PyObject *__pyx_kp_s_utf_8;
+static PyObject *__pyx_kp_u_utf_8;
 static PyObject *__pyx_n_s_wait_socket;
 static PyObject *__pyx_n_s_writefds;
 static PyObject *__pyx_pf_3ssh_5utils_wait_socket(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_session, PyObject *__pyx_v_sock, PyObject *__pyx_v_timeout); /* proto */
@@ -2874,7 +2874,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_ssh_utils_pyx, __pyx_k_ssh_utils_pyx, sizeof(__pyx_k_ssh_utils_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_timeout, __pyx_k_timeout, sizeof(__pyx_k_timeout), 0, 0, 1, 1},
-  {&__pyx_kp_s_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 0, 1, 0},
+  {&__pyx_kp_u_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 1, 0, 0},
   {&__pyx_n_s_wait_socket, __pyx_k_wait_socket, sizeof(__pyx_k_wait_socket), 0, 0, 1, 1},
   {&__pyx_n_s_writefds, __pyx_k_writefds, sizeof(__pyx_k_writefds), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
@@ -3205,7 +3205,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_select);
   __Pyx_GIVEREF(__pyx_n_s_select);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_select);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_select, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_select, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_select); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
@@ -3217,7 +3217,7 @@ if (!__Pyx_RefNanny) {
   /* "ssh/utils.pyx":26
  *     SSH_WRITE_PENDING
  * 
- * from exceptions import OtherError, \             # <<<<<<<<<<<<<<
+ * from .exceptions import OtherError, \             # <<<<<<<<<<<<<<
  *     AuthenticationPartial, AuthenticationDenied, AuthenticationError, \
  *     SSHError, EOF
  */
@@ -3241,7 +3241,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_EOF);
   __Pyx_GIVEREF(__pyx_n_s_EOF);
   PyList_SET_ITEM(__pyx_t_2, 5, __pyx_n_s_EOF);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_exceptions, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_exceptions, __pyx_t_2, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_OtherError); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
@@ -3272,7 +3272,7 @@ if (!__Pyx_RefNanny) {
 
   /* "ssh/utils.pyx":32
  * IF HAVE_POLL==1:
- *     from utils cimport POLLIN, POLLOUT
+ *     from .utils cimport POLLIN, POLLOUT
  *     pollin=POLLIN             # <<<<<<<<<<<<<<
  *     pollout=POLLOUT
  * 
@@ -3283,7 +3283,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh/utils.pyx":33
- *     from utils cimport POLLIN, POLLOUT
+ *     from .utils cimport POLLIN, POLLOUT
  *     pollin=POLLIN
  *     pollout=POLLOUT             # <<<<<<<<<<<<<<
  * 
@@ -3301,7 +3301,7 @@ if (!__Pyx_RefNanny) {
  * 
  * cdef bytes to_bytes(_str):
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ENCODING, __pyx_kp_s_utf_8) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ENCODING, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
 
   /* "ssh/utils.pyx":76
  * 
