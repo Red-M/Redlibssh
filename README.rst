@@ -1,53 +1,52 @@
-ssh-python
+redlibssh
 ============
 
 Bindings for libssh_ C library.
 
-.. image:: https://img.shields.io/badge/License-LGPL%20v2-blue.svg
-   :target: https://pypi.python.org/pypi/ssh-python
-   :alt: License
-.. image:: https://img.shields.io/pypi/v/ssh-python.svg
-   :target: https://pypi.python.org/pypi/ssh-python
-   :alt: Latest Version
-.. image:: https://circleci.com/gh/ParallelSSH/ssh-python/tree/master.svg?style=shield
-   :target: https://circleci.com/gh/ParallelSSH/ssh-python/tree/master
-.. image:: https://img.shields.io/pypi/wheel/ssh-python.svg
-   :target: https://pypi.python.org/pypi/ssh-python
-.. image:: https://img.shields.io/pypi/pyversions/ssh-python.svg
-   :target: https://pypi.python.org/pypi/ssh-python
-.. image:: https://ci.appveyor.com/api/projects/status/2t4bmmtjvfy5s1in/branch/master?svg=true
-   :target: https://ci.appveyor.com/project/pkittenis/ssh-python
-.. image:: https://readthedocs.org/projects/ssh-python/badge/?version=latest
-   :target: http://ssh-python.readthedocs.org/en/latest/
+.. image:: https://coveralls.io/repos/github/Red-M/Redlibssh/badge.svg?branch=master
+   :target: https://coveralls.io/github/Red-M/Redlibssh?branch=master
+   :alt: Coverage
+.. image:: https://readthedocs.org/projects/redlibssh/badge/?version=latest
+   :target: http://redlibssh.readthedocs.org/en/latest/
    :alt: Latest documentation
+.. image:: https://img.shields.io/pypi/v/redlibssh.svg
+   :target: https://pypi.python.org/pypi/redlibssh
+   :alt: Latest Version
+.. image:: https://img.shields.io/pypi/wheel/redlibssh.svg
+   :target: https://pypi.python.org/pypi/redlibssh
+.. image:: https://img.shields.io/pypi/pyversions/redlibssh.svg
+   :target: https://pypi.python.org/pypi/redlibssh
+.. image:: https://img.shields.io/badge/License-LGPL%20v2-blue.svg
+   :target: https://pypi.python.org/pypi/redlibssh
+   :alt: License
 
 
 Installation
 _____________
 
-Binary wheels are provided for Linux (manylinux 2010), OSX (10.14 and 10.15 for brew Python), and Windows 64-bit (Python 3.6/3.7/3.8).
+Binary wheels are provided for Linux (manylinux 2010), OSX (10.14 and 10.15).
 
 Wheels have *no dependencies*.
 
-For building from source, see `documentation <https://ssh-python.readthedocs.io/en/latest/installation.html#building-from-source>`_.
+For building from source, see `documentation <https://redlibssh.readthedocs.io/en/latest/installation.html#building-from-source>`_.
 
 
 .. code-block:: shell
 
-   pip install ssh-python
+   pip install redlibssh
 
 Pip may need to be updated to be able to install binary wheels.
 
 .. code-block:: shell
 
    pip install -U pip
-   pip install ssh-python
+   pip install redlibssh
 
 
 Quick Start
 _____________
 
-See `command execution script <https://github.com/ParallelSSH/ssh-python/blob/master/examples/exec.py>`_ for complete example.
+See `command execution script <https://github.com/Red-M/redlibssh/blob/master/examples/exec.py>`_ for complete example.
 
 Features
 _________
