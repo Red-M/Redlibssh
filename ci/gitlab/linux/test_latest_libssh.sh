@@ -16,9 +16,9 @@ git pull origin master
 cd ../
 python3 setup.py build_ext --inplace
 pip install redssh[tests]
-git clone https://github.com/Red-M/RedSSH.git /tmp/redssh
-cp -r /tmp/redssh/tests ./tests
-\rm -rf /tmp/redssh
+# git clone https://github.com/Red-M/RedSSH.git /tmp/redssh
+# cp -r /tmp/redssh/tests ./tests
+# \rm -rf /tmp/redssh
 
 
 if [ -n $CI_SYSTEM ] && [ ${CI_SYSTEM} == "GITLAB" ]; then

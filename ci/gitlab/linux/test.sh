@@ -14,9 +14,9 @@ python3 -m readme_renderer ./README.rst -o /tmp/README.html
 python3 setup.py build_ext --inplace
 pip install -e .[tests]
 pip install redssh[tests]
-git clone https://github.com/Red-M/RedSSH.git /tmp/redssh
-cp -r /tmp/redssh/tests ./tests
-\rm -rf /tmp/redssh
+# git clone https://github.com/Red-M/RedSSH.git /tmp/redssh
+# cp -r /tmp/redssh/tests ./tests
+# \rm -rf /tmp/redssh
 
 
 if [ -n $CI_SYSTEM ] && [ ${CI_SYSTEM} == "GITLAB" ]; then
