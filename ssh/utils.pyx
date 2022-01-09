@@ -19,6 +19,7 @@ from select import select
 
 from cpython.version cimport PY_MAJOR_VERSION
 
+from . cimport c_ssh
 from .c_ssh cimport ssh_error_types_e, ssh_get_error, ssh_auth_e, SSH_OK, SSH_ERROR, SSH_AGAIN, SSH_EOF, ssh_session, ssh_string, ssh_string_get_char, ssh_string_free, ssh_string_len, SSH_READ_PENDING, SSH_WRITE_PENDING
 
 from .exceptions import OtherError, AuthenticationPartial, AuthenticationDenied, AuthenticationError, SSHError, EOF
@@ -68,6 +69,16 @@ cdef bytes ssh_string_to_bytes(ssh_string _str):
     finally:
         ssh_string_free(_str)
 
+def set_log_level(level):
+    cdef int c_level = int(level)
+    cdef int rc
+    rc = c_ssh.ssh_set_log_level(c_level)
+    return(rc)
+
+def get_log_level():
+    cdef int rc
+    rc = c_ssh.ssh_get_log_level()
+    return(rc)
 
 def wait_socket(session not None, sock not None, timeout=None):
     """Helper function for testing non-blocking mode.
@@ -83,8 +94,7 @@ def wait_socket(session not None, sock not None, timeout=None):
     select(readfds, writefds, (), timeout)
 
 
-cdef int handle_error_codes(
-        int errcode, ssh_session session) except -1:
+cdef int handle_error_codes(int errcode, ssh_session session) except -1:
     if errcode == SSH_OK:
         return SSH_OK
     elif errcode == SSH_ERROR:
