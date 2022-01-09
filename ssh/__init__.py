@@ -9,3 +9,4 @@ from . import exceptions
 from . import sftp_handles
 from . import tunnel
 from . import utils
+from . import libssh_enums as enums

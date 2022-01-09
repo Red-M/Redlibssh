@@ -914,7 +914,7 @@ static const char *__pyx_f[] = {
 struct __pyx_obj_3ssh_7session_Session;
 struct __pyx_obj_3ssh_9callbacks_Callbacks;
 
-/* "session.pxd":21
+/* "session.pxd":22
  *     from . cimport utils
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
@@ -936,7 +936,7 @@ struct __pyx_obj_3ssh_7session_Session {
 };
 
 
-/* "ssh/callbacks.pxd":20
+/* "ssh/callbacks.pxd":21
  * 
  * 
  * cdef class Callbacks:             # <<<<<<<<<<<<<<
@@ -949,7 +949,7 @@ struct __pyx_obj_3ssh_9callbacks_Callbacks {
 
 
 
-/* "session.pxd":21
+/* "session.pxd":22
  *     from . cimport utils
  * 
  * cdef class Session:             # <<<<<<<<<<<<<<
@@ -1379,12 +1379,12 @@ static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 /* Late includes */
 
-/* "ssh/callbacks.pyx":27
+/* "ssh/callbacks.pyx":28
  * 
  * 
- * cdef int auth_callback(const char *prompt, char *buf, size_t len,             # <<<<<<<<<<<<<<
- *                        int echo, int verify, void *userdata):
+ * cdef int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata):             # <<<<<<<<<<<<<<
  *     try:
+ *         func = <object>userdata
  */
 
 static int __pyx_f_3ssh_9callbacks_auth_callback(CYTHON_UNUSED char const *__pyx_v_prompt, CYTHON_UNUSED char *__pyx_v_buf, CYTHON_UNUSED size_t __pyx_v_len, CYTHON_UNUSED int __pyx_v_echo, CYTHON_UNUSED int __pyx_v_verify, void *__pyx_v_userdata) {
@@ -1404,8 +1404,8 @@ static int __pyx_f_3ssh_9callbacks_auth_callback(CYTHON_UNUSED char const *__pyx
   __Pyx_RefNannySetupContext("auth_callback", 0);
 
   /* "ssh/callbacks.pyx":29
- * cdef int auth_callback(const char *prompt, char *buf, size_t len,
- *                        int echo, int verify, void *userdata):
+ * 
+ * cdef int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata):
  *     try:             # <<<<<<<<<<<<<<
  *         func = <object>userdata
  *         return func()
@@ -1420,7 +1420,7 @@ static int __pyx_f_3ssh_9callbacks_auth_callback(CYTHON_UNUSED char const *__pyx
     /*try:*/ {
 
       /* "ssh/callbacks.pyx":30
- *                        int echo, int verify, void *userdata):
+ * cdef int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata):
  *     try:
  *         func = <object>userdata             # <<<<<<<<<<<<<<
  *         return func()
@@ -1460,8 +1460,8 @@ static int __pyx_f_3ssh_9callbacks_auth_callback(CYTHON_UNUSED char const *__pyx
       goto __pyx_L7_try_return;
 
       /* "ssh/callbacks.pyx":29
- * cdef int auth_callback(const char *prompt, char *buf, size_t len,
- *                        int echo, int verify, void *userdata):
+ * 
+ * cdef int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata):
  *     try:             # <<<<<<<<<<<<<<
  *         func = <object>userdata
  *         return func()
@@ -1504,8 +1504,8 @@ static int __pyx_f_3ssh_9callbacks_auth_callback(CYTHON_UNUSED char const *__pyx
     __pyx_L5_except_error:;
 
     /* "ssh/callbacks.pyx":29
- * cdef int auth_callback(const char *prompt, char *buf, size_t len,
- *                        int echo, int verify, void *userdata):
+ * 
+ * cdef int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata):
  *     try:             # <<<<<<<<<<<<<<
  *         func = <object>userdata
  *         return func()
@@ -1529,12 +1529,12 @@ static int __pyx_f_3ssh_9callbacks_auth_callback(CYTHON_UNUSED char const *__pyx
     goto __pyx_L0;
   }
 
-  /* "ssh/callbacks.pyx":27
+  /* "ssh/callbacks.pyx":28
  * 
  * 
- * cdef int auth_callback(const char *prompt, char *buf, size_t len,             # <<<<<<<<<<<<<<
- *                        int echo, int verify, void *userdata):
+ * cdef int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata):             # <<<<<<<<<<<<<<
  *     try:
+ *         func = <object>userdata
  */
 
   /* function exit code */
@@ -1845,8 +1845,8 @@ static PyObject *__pyx_pf_3ssh_9callbacks_9Callbacks_6set_callbacks(struct __pyx
  *     def set_callbacks(self, Session session not None):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
- *             rc = c_callbacks.ssh_set_callbacks(
- *                 session._session, self._cb)
+ *             rc = c_callbacks.ssh_set_callbacks(session._session, self._cb)
+ *         return handle_error_codes(rc, session._session)
  */
   {
       #ifdef WITH_THREAD
@@ -1859,8 +1859,7 @@ static PyObject *__pyx_pf_3ssh_9callbacks_9Callbacks_6set_callbacks(struct __pyx
         /* "ssh/callbacks.pyx":66
  *         cdef int rc
  *         with nogil:
- *             rc = c_callbacks.ssh_set_callbacks(             # <<<<<<<<<<<<<<
- *                 session._session, self._cb)
+ *             rc = c_callbacks.ssh_set_callbacks(session._session, self._cb)             # <<<<<<<<<<<<<<
  *         return handle_error_codes(rc, session._session)
  */
         __pyx_v_rc = ssh_set_callbacks(__pyx_v_session->_session, __pyx_v_self->_cb);
@@ -1870,8 +1869,8 @@ static PyObject *__pyx_pf_3ssh_9callbacks_9Callbacks_6set_callbacks(struct __pyx
  *     def set_callbacks(self, Session session not None):
  *         cdef int rc
  *         with nogil:             # <<<<<<<<<<<<<<
- *             rc = c_callbacks.ssh_set_callbacks(
- *                 session._session, self._cb)
+ *             rc = c_callbacks.ssh_set_callbacks(session._session, self._cb)
+ *         return handle_error_codes(rc, session._session)
  */
       /*finally:*/ {
         /*normal exit:*/{
@@ -1885,14 +1884,14 @@ static PyObject *__pyx_pf_3ssh_9callbacks_9Callbacks_6set_callbacks(struct __pyx
       }
   }
 
-  /* "ssh/callbacks.pyx":68
- *             rc = c_callbacks.ssh_set_callbacks(
- *                 session._session, self._cb)
+  /* "ssh/callbacks.pyx":67
+ *         with nogil:
+ *             rc = c_callbacks.ssh_set_callbacks(session._session, self._cb)
  *         return handle_error_codes(rc, session._session)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_3ssh_5utils_handle_error_codes(__pyx_v_rc, __pyx_v_session->_session); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 68, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3ssh_5utils_handle_error_codes(__pyx_v_rc, __pyx_v_session->_session); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -2315,11 +2314,11 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("ssh.session"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 21, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("ssh.session"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_3ssh_7session_Session = __Pyx_ImportType(__pyx_t_1, "ssh.session", "Session", sizeof(struct __pyx_obj_3ssh_7session_Session), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_3ssh_7session_Session) __PYX_ERR(2, 21, __pyx_L1_error)
-  __pyx_vtabptr_3ssh_7session_Session = (struct __pyx_vtabstruct_3ssh_7session_Session*)__Pyx_GetVtable(__pyx_ptype_3ssh_7session_Session->tp_dict); if (unlikely(!__pyx_vtabptr_3ssh_7session_Session)) __PYX_ERR(2, 21, __pyx_L1_error)
+   if (!__pyx_ptype_3ssh_7session_Session) __PYX_ERR(2, 22, __pyx_L1_error)
+  __pyx_vtabptr_3ssh_7session_Session = (struct __pyx_vtabstruct_3ssh_7session_Session*)__Pyx_GetVtable(__pyx_ptype_3ssh_7session_Session->tp_dict); if (unlikely(!__pyx_vtabptr_3ssh_7session_Session)) __PYX_ERR(2, 22, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -2558,9 +2557,9 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "ssh/callbacks.pyx":1
- * # This file is part of ssh-python.             # <<<<<<<<<<<<<<
+ * # This file is part of RedLibSSH.             # <<<<<<<<<<<<<<
  * # Copyright (C) 2018 Panos Kittenis
- * #
+ * # Copyright (C) 2022 Red-M
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

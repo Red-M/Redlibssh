@@ -1462,55 +1462,55 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "ssh/error_codes.pyx":20
+  /* "ssh/error_codes.pyx":21
  * 
  * 
  * SSH_OK = c_ssh.SSH_OK             # <<<<<<<<<<<<<<
  * SSH_EOF = c_ssh.SSH_EOF
  * SSH_ERROR = c_ssh.SSH_ERROR
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_OK); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_OK); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_OK, __pyx_t_1) < 0) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_OK, __pyx_t_1) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/error_codes.pyx":21
+  /* "ssh/error_codes.pyx":22
  * 
  * SSH_OK = c_ssh.SSH_OK
  * SSH_EOF = c_ssh.SSH_EOF             # <<<<<<<<<<<<<<
  * SSH_ERROR = c_ssh.SSH_ERROR
  * SSH_AGAIN = c_ssh.SSH_AGAIN
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_EOF); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_EOF); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_EOF, __pyx_t_1) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_EOF, __pyx_t_1) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/error_codes.pyx":22
+  /* "ssh/error_codes.pyx":23
  * SSH_OK = c_ssh.SSH_OK
  * SSH_EOF = c_ssh.SSH_EOF
  * SSH_ERROR = c_ssh.SSH_ERROR             # <<<<<<<<<<<<<<
  * SSH_AGAIN = c_ssh.SSH_AGAIN
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_ERROR); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_ERROR); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_ERROR, __pyx_t_1) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_ERROR, __pyx_t_1) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/error_codes.pyx":23
+  /* "ssh/error_codes.pyx":24
  * SSH_EOF = c_ssh.SSH_EOF
  * SSH_ERROR = c_ssh.SSH_ERROR
  * SSH_AGAIN = c_ssh.SSH_AGAIN             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_AGAIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(SSH_AGAIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_AGAIN, __pyx_t_1) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH_AGAIN, __pyx_t_1) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh/error_codes.pyx":1
- * # This file is part of ssh-python.             # <<<<<<<<<<<<<<
+ * # This file is part of RedLibSSH.             # <<<<<<<<<<<<<<
  * # Copyright (C) 2018 Panos Kittenis
- * #
+ * # Copyright (C) 2022 Red-M
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
