@@ -111,7 +111,7 @@ cdef class Session:
         if _select_timeout==None:
             _select_timeout = 0.005
         with self._block_lock:
-            # self.keepalive_send()
+            _check_connected(self._session)
             block_direction = self.get_poll_flags()
         if block_direction==0:
             time.sleep(0.1)
@@ -237,6 +237,7 @@ cdef class Session:
         cdef char *c_address = b_address
         cdef int rc
         with nogil:
+            _check_connected(self._session)
             rc = c_ssh.ssh_channel_cancel_forward(self._session, c_address, port)
         return handle_error_codes(rc, self._session)
 
@@ -245,6 +246,7 @@ cdef class Session:
         cdef char *c_address = b_address
         cdef int rc
         with nogil:
+            _check_connected(self._session)
             rc = c_ssh.ssh_channel_listen_forward(self._session, c_address, port, &bound_port)
         return handle_error_codes(rc, self._session)
 
@@ -484,40 +486,52 @@ cdef class Session:
 
     # ssh_userauth_agent is excluded from libssh.h on Windows.
     IF not ON_WINDOWS:
-        def userauth_agent(self, username not None):
-            cdef bytes b_username = to_bytes(username)
-            cdef char *c_username = b_username
+        def userauth_agent(self, username=None):
+            cdef bytes b_username = to_bytes(username) if username is not None else None
+            cdef char *c_username = NULL
+            if b_username is not None:
+                c_username = b_username
             cdef int rc
             with nogil:
                 _check_connected(self._session)
                 rc = c_ssh.ssh_userauth_agent(self._session, c_username)
             return handle_auth_error_codes(rc, self._session)
 
-    def userauth_publickey_auto(self, passphrase not None):
-        cdef bytes b_passphrase = to_bytes(passphrase)
-        cdef char *c_passphrase = b_passphrase
+    def userauth_publickey_auto(self, passphrase=None):
+        cdef bytes b_passphrase = to_bytes(passphrase) if passphrase is not None else None
+        cdef char *c_passphrase = NULL
+        if b_passphrase is not None:
+            c_passphrase = b_passphrase
         cdef int rc
         with nogil:
             _check_connected(self._session)
             rc = c_ssh.ssh_userauth_publickey_auto(self._session, NULL, c_passphrase)
         return handle_auth_error_codes(rc, self._session)
 
-    def userauth_password(self, username not None, password not None):
-        cdef bytes b_username = to_bytes(username)
-        cdef bytes b_password = to_bytes(password)
-        cdef char *c_username = b_username
-        cdef char *c_password = b_password
+    def userauth_password(self, username=None, password=None):
+        cdef bytes b_username = to_bytes(username) if username is not None else None
+        cdef char *c_username = NULL
+        if b_username is not None:
+            c_username = b_username
+        cdef bytes b_password = to_bytes(password) if password is not None else None
+        cdef char *c_password = NULL
+        if b_password is not None:
+            c_password = b_password
         cdef int rc
         with nogil:
             _check_connected(self._session)
             rc = c_ssh.ssh_userauth_password(self._session, c_username, c_password)
         return handle_auth_error_codes(rc, self._session)
 
-    def userauth_kbdint(self, username not None, submethods not None):
-        cdef bytes b_username = to_bytes(username)
-        cdef bytes b_submethods = to_bytes(submethods)
-        cdef char *c_username = b_username
-        cdef char *c_submethods = b_submethods
+    def userauth_kbdint(self, username=None, submethods=None):
+        cdef bytes b_username = to_bytes(username) if username is not None else None
+        cdef char *c_username = NULL
+        if b_username is not None:
+            c_username = b_username
+        cdef bytes b_submethods = to_bytes(submethods) if submethods is not None else None
+        cdef char *c_submethods = NULL
+        if b_submethods is not None:
+            c_submethods = b_submethods
         cdef int rc
         with nogil:
             _check_connected(self._session)
