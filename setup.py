@@ -117,6 +117,16 @@ if ON_WINDOWS and _PYTHON_MAJOR_VERSION == 2:
     package_data = {}
     sys.stdout.write("Windows Python 2 build - %s extensions: %s" % (len(extensions), os.sep))
 
+install_requires = []
+
+test_deps = [
+    'coveralls',
+    'pytest-cov',
+    'pylint',
+    'bandit',
+    'safety'
+]
+
 setup(
     name='redlibssh',
     version=versioneer.get_version(),
@@ -134,6 +144,10 @@ setup(
     zip_safe=False,
     include_package_data=True,
     platforms='any',
+    install_requires=install_requires,
+    extras_require={
+        'tests':list(set(install_requires+test_deps))
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',
