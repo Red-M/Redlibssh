@@ -25,8 +25,7 @@ from .c_ssh cimport ssh_auth_callback
 from . cimport c_callbacks
 
 
-cdef int auth_callback(const char *prompt, char *buf, size_t len,
-                       int echo, int verify, void *userdata):
+cdef int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata):
     try:
         func = <object>userdata
         return func()
@@ -64,6 +63,5 @@ cdef class Callbacks:
     def set_callbacks(self, Session session not None):
         cdef int rc
         with nogil:
-            rc = c_callbacks.ssh_set_callbacks(
-                session._session, self._cb)
+            rc = c_callbacks.ssh_set_callbacks(session._session, self._cb)
         return handle_error_codes(rc, session._session)

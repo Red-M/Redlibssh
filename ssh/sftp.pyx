@@ -85,8 +85,7 @@ cdef class SFTP:
         cdef bytes b_data = to_bytes(data)
         cdef const char *c_data = b_data
         with nogil:
-            rc = c_sftp.sftp_extension_supported(
-                self._sftp, c_name, c_data)
+            rc = c_sftp.sftp_extension_supported(self._sftp, c_name, c_data)
         return bool(rc)
 
     def opendir(self, path not None):

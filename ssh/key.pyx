@@ -60,12 +60,7 @@ cdef class SSHKey:
         cdef bint equal
         with nogil:
             is_private = c_ssh.ssh_key_is_private(self._key)
-            equal = c_ssh.ssh_key_cmp(
-                self._key, other._key, c_ssh.ssh_keycmp_e.SSH_KEY_CMP_PRIVATE) \
-                if is_private else \
-                c_ssh.ssh_key_cmp(
-                    self._key, other._key,
-                    c_ssh.ssh_keycmp_e.SSH_KEY_CMP_PUBLIC)
+            equal = c_ssh.ssh_key_cmp(self._key, other._key, c_ssh.ssh_keycmp_e.SSH_KEY_CMP_PRIVATE) if is_private else c_ssh.ssh_key_cmp(self._key, other._key, c_ssh.ssh_keycmp_e.SSH_KEY_CMP_PUBLIC)
         return bool(not equal)
 
     def key_type(self):
@@ -93,8 +88,7 @@ cdef class SSHKey:
             b_passphrase = to_bytes(passphrase)
             c_passphrase = b_passphrase
         with nogil:
-            rc = c_ssh.ssh_pki_export_privkey_file(
-                self._key, c_passphrase, NULL, NULL, c_filepath)
+            rc = c_ssh.ssh_pki_export_privkey_file(self._key, c_passphrase, NULL, NULL, c_filepath)
         if rc != c_ssh.SSH_OK:
             raise KeyExportError
 
@@ -147,8 +141,7 @@ def import_privkey_base64(bytes b64_key, passphrase=b''):
         b_passphrase = to_bytes(passphrase)
         c_passphrase = b_passphrase
     with nogil:
-        rc = c_ssh.ssh_pki_import_privkey_base64(
-            c_key, c_passphrase, NULL, NULL, &_key)
+        rc = c_ssh.ssh_pki_import_privkey_base64(c_key, c_passphrase, NULL, NULL, &_key)
     if rc != c_ssh.SSH_OK:
         raise KeyImportError
     key = SSHKey.from_ptr(_key)
@@ -167,8 +160,7 @@ def import_privkey_file(filepath, passphrase=b''):
         b_passphrase = to_bytes(passphrase)
         c_passphrase = b_passphrase
     with nogil:
-        rc = c_ssh.ssh_pki_import_privkey_file(
-            c_filepath, c_passphrase, NULL, NULL, &_key)
+        rc = c_ssh.ssh_pki_import_privkey_file(c_filepath, c_passphrase, NULL, NULL, &_key)
     if rc != c_ssh.SSH_OK:
         raise KeyImportError
     key = SSHKey.from_ptr(_key)
@@ -181,8 +173,7 @@ def import_pubkey_base64(bytes b64_key, KeyType key_type):
     cdef SSHKey key
     cdef c_ssh.ssh_key _key
     with nogil:
-        rc = c_ssh.ssh_pki_import_pubkey_base64(
-            c_key, key_type._type, &_key)
+        rc = c_ssh.ssh_pki_import_pubkey_base64(c_key, key_type._type, &_key)
     if rc != c_ssh.SSH_OK:
         raise KeyImportError
     key = SSHKey.from_ptr(_key)
@@ -196,8 +187,7 @@ def import_pubkey_file(filepath):
     cdef SSHKey key
     cdef c_ssh.ssh_key _key
     with nogil:
-        rc = c_ssh.ssh_pki_import_pubkey_file(
-            c_filepath, &_key)
+        rc = c_ssh.ssh_pki_import_pubkey_file(c_filepath, &_key)
     if rc != c_ssh.SSH_OK:
         raise KeyImportError
     key = SSHKey.from_ptr(_key)
@@ -210,8 +200,7 @@ def import_cert_base64(bytes b64_cert, KeyType key_type):
     cdef SSHKey key
     cdef c_ssh.ssh_key _key
     with nogil:
-        rc = c_ssh.ssh_pki_import_cert_base64(
-            c_key, key_type._type, &_key)
+        rc = c_ssh.ssh_pki_import_cert_base64(c_key, key_type._type, &_key)
     if rc != c_ssh.SSH_OK:
         raise KeyImportError
     key = SSHKey.from_ptr(_key)
@@ -225,8 +214,7 @@ def import_cert_file(filepath):
     cdef SSHKey key
     cdef c_ssh.ssh_key _key
     with nogil:
-        rc = c_ssh.ssh_pki_import_cert_file(
-            c_filepath, &_key)
+        rc = c_ssh.ssh_pki_import_cert_file(c_filepath, &_key)
     if rc != c_ssh.SSH_OK:
         raise KeyImportError
     key = SSHKey.from_ptr(_key)
@@ -239,7 +227,6 @@ def copy_cert_to_privkey(SSHKey cert_key, SSHKey priv_key):
     cdef c_ssh.ssh_key _priv_key = priv_key._key
     cdef c_ssh.ssh_key _cert_key = cert_key._key
     with nogil:
-        rc = c_ssh.ssh_pki_copy_cert_to_privkey(
-            _cert_key, _priv_key)
+        rc = c_ssh.ssh_pki_copy_cert_to_privkey(_cert_key, _priv_key)
     if rc != c_ssh.SSH_OK:
         raise KeyImportError

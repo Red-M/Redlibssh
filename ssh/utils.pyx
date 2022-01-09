@@ -19,14 +19,9 @@ from select import select
 
 from cpython.version cimport PY_MAJOR_VERSION
 
-from .c_ssh cimport ssh_error_types_e, ssh_get_error, ssh_auth_e, \
-    SSH_OK, SSH_ERROR, SSH_AGAIN, SSH_EOF, ssh_session, ssh_string, \
-    ssh_string_get_char, ssh_string_free, ssh_string_len, SSH_READ_PENDING, \
-    SSH_WRITE_PENDING
+from .c_ssh cimport ssh_error_types_e, ssh_get_error, ssh_auth_e, SSH_OK, SSH_ERROR, SSH_AGAIN, SSH_EOF, ssh_session, ssh_string, ssh_string_get_char, ssh_string_free, ssh_string_len, SSH_READ_PENDING, SSH_WRITE_PENDING
 
-from .exceptions import OtherError, \
-    AuthenticationPartial, AuthenticationDenied, AuthenticationError, \
-    SSHError, EOF
+from .exceptions import OtherError, AuthenticationPartial, AuthenticationDenied, AuthenticationError, SSHError, EOF
 
 IF HAVE_POLL==1:
     from .utils cimport POLLIN, POLLOUT
@@ -83,10 +78,8 @@ def wait_socket(session not None, sock not None, timeout=None):
     cdef int directions = session.get_poll_flags()
     if directions == 0:
         return 0
-    readfds = (sock,) \
-        if (directions & SSH_READ_PENDING) else ()
-    writefds = (sock,) \
-        if (directions & SSH_WRITE_PENDING) else ()
+    readfds = (sock,) if (directions & SSH_READ_PENDING) else ()
+    writefds = (sock,) if (directions & SSH_WRITE_PENDING) else ()
     select(readfds, writefds, (), timeout)
 
 

@@ -49,8 +49,7 @@ cdef class SFTPAttributes:
         cdef SFTPAttributes attrs
         cdef c_sftp.sftp_attributes _attrs
         with nogil:
-            _attrs = <c_sftp.sftp_attributes>malloc(
-                sizeof(c_sftp.sftp_attributes_struct))
+            _attrs = <c_sftp.sftp_attributes>malloc(sizeof(c_sftp.sftp_attributes_struct))
         if _attrs is NULL:
             raise MemoryError
         _attrs.name = b''
@@ -137,16 +136,14 @@ cdef class SFTPAttributes:
     def owner(self):
         if self._attrs is NULL:
             return
-        cdef bytes b_owner = self._attrs.owner \
-            if self._attrs.owner is not NULL else None
+        cdef bytes b_owner = self._attrs.owner if self._attrs.owner is not NULL else None
         return b_owner
 
     @property
     def group(self):
         if self._attrs is NULL:
             return
-        cdef bytes b_group = self._attrs.group \
-            if self._attrs.group is not NULL else None
+        cdef bytes b_group = self._attrs.group if self._attrs.group is not NULL else None
         return b_group
 
     @property
@@ -191,8 +188,7 @@ cdef class SFTPAttributes:
 
     @property
     def createtime_nseconds(self):
-        return self._attrs.createtime_nseconds \
-            if self._attrs is not NULL else None
+        return self._attrs.createtime_nseconds if self._attrs is not NULL else None
 
     @createtime_nseconds.setter
     def createtime_nseconds(self, uint32_t nseconds):

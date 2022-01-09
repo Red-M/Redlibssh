@@ -268,47 +268,33 @@ cdef extern from "libssh/libssh.h" nogil:
     int ssh_channel_is_open(ssh_channel channel)
     ssh_channel ssh_channel_new(ssh_session session)
     int ssh_channel_open_auth_agent(ssh_channel channel)
-    int ssh_channel_open_forward(ssh_channel channel, const char *remotehost,
-                                 int remoteport, const char *sourcehost,
-                                 int localport)
+    int ssh_channel_open_forward(ssh_channel channel, const char *remotehost, int remoteport, const char *sourcehost, int localport)
     int ssh_channel_open_session(ssh_channel channel)
-    int ssh_channel_open_x11(
-        ssh_channel channel, const char *orig_addr, int orig_port)
+    int ssh_channel_open_x11(ssh_channel channel, const char *orig_addr, int orig_port)
     int ssh_channel_poll(ssh_channel channel, int is_stderr)
-    int ssh_channel_poll_timeout(
-        ssh_channel channel, int timeout, int is_stderr)
-    int ssh_channel_read(
-        ssh_channel channel, void *dest, uint32_t count, int is_stderr)
+    int ssh_channel_poll_timeout(ssh_channel channel, int timeout, int is_stderr)
+    int ssh_channel_read(ssh_channel channel, void *dest, uint32_t count, int is_stderr)
     int ssh_channel_read_timeout(ssh_channel channel, void *dest,
                                  uint32_t count, int is_stderr, int timeout_ms)
-    int ssh_channel_read_nonblocking(
-        ssh_channel channel, void *dest, uint32_t count, int is_stderr)
-    int ssh_channel_request_env(
-        ssh_channel channel, const char *name, const char *value)
+    int ssh_channel_read_nonblocking(ssh_channel channel, void *dest, uint32_t count, int is_stderr)
+    int ssh_channel_request_env(ssh_channel channel, const char *name, const char *value)
     int ssh_channel_request_exec(ssh_channel channel, const char *cmd)
     int ssh_channel_request_pty(ssh_channel channel)
-    int ssh_channel_request_pty_size(ssh_channel channel, const char *term,
-                                     int cols, int rows)
+    int ssh_channel_request_pty_size(ssh_channel channel, const char *term, int cols, int rows)
     int ssh_channel_request_shell(ssh_channel channel)
     int ssh_channel_request_send_signal(ssh_channel channel, const char *signum)
     int ssh_channel_request_send_break(ssh_channel channel, uint32_t length)
     int ssh_channel_request_sftp(ssh_channel channel)
-    int ssh_channel_request_subsystem(
-        ssh_channel channel, const char *subsystem)
-    int ssh_channel_request_x11(
-        ssh_channel channel, int single_connection, const char *protocol,
+    int ssh_channel_request_subsystem(ssh_channel channel, const char *subsystem)
+    int ssh_channel_request_x11(ssh_channel channel, int single_connection, const char *protocol,
         const char *cookie, int screen_number)
     int ssh_channel_request_auth_agent(ssh_channel channel)
     int ssh_channel_send_eof(ssh_channel channel)
-    int ssh_channel_select(ssh_channel *readchans, ssh_channel *writechans,
-                           ssh_channel *exceptchans, timeval * timeout)
+    int ssh_channel_select(ssh_channel *readchans, ssh_channel *writechans, ssh_channel *exceptchans, timeval * timeout)
     void ssh_channel_set_blocking(ssh_channel channel, int blocking)
-    void ssh_channel_set_counter(ssh_channel channel,
-                                 ssh_counter counter)
+    void ssh_channel_set_counter(ssh_channel channel, ssh_counter counter)
     int ssh_channel_write(ssh_channel channel, const void *data, uint32_t len)
-    int ssh_channel_write_stderr(ssh_channel channel,
-                                 const void *data,
-                                 uint32_t len)
+    int ssh_channel_write_stderr(ssh_channel channel, const void *data, uint32_t len)
     uint32_t ssh_channel_window_size(ssh_channel channel)
 
     char *ssh_basename(const char *path)
@@ -317,12 +303,8 @@ cdef extern from "libssh/libssh.h" nogil:
 
     ssh_connector ssh_connector_new(ssh_session session)
     void ssh_connector_free(ssh_connector connector)
-    int ssh_connector_set_in_channel(ssh_connector connector,
-                                     ssh_channel channel,
-                                     ssh_connector_flags_e flags)
-    int ssh_connector_set_out_channel(ssh_connector connector,
-                                      ssh_channel channel,
-                                      ssh_connector_flags_e flags)
+    int ssh_connector_set_in_channel(ssh_connector connector, ssh_channel channel, ssh_connector_flags_e flags)
+    int ssh_connector_set_out_channel(ssh_connector connector, ssh_channel channel, ssh_connector_flags_e flags)
     void ssh_connector_set_in_fd(ssh_connector connector, socket_t fd)
     void ssh_connector_set_out_fd(ssh_connector connector, socket_t fd)
 
@@ -332,12 +314,9 @@ cdef extern from "libssh/libssh.h" nogil:
     int ssh_finalize()
 
     # Reverse port forwarding
-    ssh_channel ssh_channel_accept_forward(
-        ssh_session session, int timeout_ms, int *destination_port)
-    int ssh_channel_cancel_forward(
-        ssh_session session, const char *address, int port)
-    int ssh_channel_listen_forward(
-        ssh_session session, const char *address, int port, int *bound_port)
+    ssh_channel ssh_channel_accept_forward(ssh_session session, int timeout_ms, int *destination_port)
+    int ssh_channel_cancel_forward(ssh_session session, const char *address, int port)
+    int ssh_channel_listen_forward(ssh_session session, const char *address, int port, int *bound_port)
 
     void ssh_free(ssh_session session)
     const char *ssh_get_disconnect_message(ssh_session session)
@@ -353,17 +332,13 @@ cdef extern from "libssh/libssh.h" nogil:
     enum ssh_publickey_hash_type:
         SSH_PUBLICKEY_HASH_SHA1
         SSH_PUBLICKEY_HASH_MD5
-    int ssh_get_publickey_hash(const ssh_key key,
-                               ssh_publickey_hash_type type,
-                               unsigned char **hash,
-                               size_t *hlen)
+    int ssh_get_publickey_hash(const ssh_key key, ssh_publickey_hash_type type, unsigned char **hash, size_t *hlen)
 
     # deprecated functions
     int ssh_get_pubkey_hash(ssh_session session, unsigned char **hash)
     ssh_channel ssh_forward_accept(ssh_session session, int timeout_ms)
     int ssh_forward_cancel(ssh_session session, const char *address, int port)
-    int ssh_forward_listen(ssh_session session, const char *address,
-                           int port, int *bound_port)
+    int ssh_forward_listen(ssh_session session, const char *address, int port, int *bound_port)
     int ssh_get_publickey(ssh_session session, ssh_key *key)
     # End deprecated
 
@@ -380,14 +355,10 @@ cdef extern from "libssh/libssh.h" nogil:
     int ssh_get_log_level()
     void *ssh_get_log_userdata()
     int ssh_set_log_userdata(void *data)
-    _ssh_log(int verbosity,
-             const char *function,
-             const char *format, int, int)
+    _ssh_log(int verbosity, const char *function, const char *format, int, int)
 
     # legacy
-    ssh_log(ssh_session session,
-            int prioriry,
-            const char *format, int, int)
+    ssh_log(ssh_session session, int prioriry, const char *format, int, int)
 
     ssh_channel ssh_message_channel_request_open_reply_accept(ssh_message msg)
     int ssh_message_channel_request_reply_success(ssh_message msg)
@@ -401,19 +372,15 @@ cdef extern from "libssh/libssh.h" nogil:
     int ssh_options_copy(ssh_session src, ssh_session *dest)
     int ssh_options_getopt(ssh_session session, int *argcptr, char **argv)
     int ssh_options_parse_config(ssh_session session, const char *filename)
-    int ssh_options_set(ssh_session session, ssh_options_e type,
-                        const void *value)
-    int ssh_options_get(ssh_session session, ssh_options_e type,
-                        char **value)
+    int ssh_options_set(ssh_session session, ssh_options_e type, const void *value)
+    int ssh_options_get(ssh_session session, ssh_options_e type, char **value)
     int ssh_options_get_port(ssh_session session, unsigned int * port_target)
     int ssh_pcap_file_close(ssh_pcap_file pcap)
     void ssh_pcap_file_free(ssh_pcap_file pcap)
     ssh_pcap_file ssh_pcap_file_new()
     int ssh_pcap_file_open(ssh_pcap_file pcap, const char *filename)
 
-    ctypedef int(*ssh_auth_callback)(
-        const char *prompt, char *buf, size_t len,
-        int echo, int verify, void *userdata)
+    ctypedef int(*ssh_auth_callback)(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata)
     ssh_key ssh_key_new()
     void ssh_key_free(ssh_key key)
     ssh_keytypes_e ssh_key_type(const ssh_key key)
@@ -421,58 +388,33 @@ cdef extern from "libssh/libssh.h" nogil:
     ssh_keytypes_e ssh_key_type_from_name(const char *name)
     int ssh_key_is_public(const ssh_key k)
     int ssh_key_is_private(const ssh_key k)
-    int ssh_key_cmp(
-        const ssh_key k1, const ssh_key k2, ssh_keycmp_e what)
+    int ssh_key_cmp(const ssh_key k1, const ssh_key k2, ssh_keycmp_e what)
 
-    int ssh_pki_generate(ssh_keytypes_e type, int parameter,
-                         ssh_key *pkey)
-    int ssh_pki_import_privkey_base64(
-        const char *b64_key, const char *passphrase,
-        ssh_auth_callback auth_fn, void *auth_data, ssh_key *pkey)
-    int ssh_pki_import_privkey_file(
-        const char *filename, const char *passphrase,
-        ssh_auth_callback auth_fn, void *auth_data, ssh_key *pkey)
-    int ssh_pki_export_privkey_file(
-        const ssh_key privkey, const char *passphrase,
-        ssh_auth_callback auth_fn, void *auth_data, const char *filename)
+    int ssh_pki_generate(ssh_keytypes_e type, int parameter, ssh_key *pkey)
+    int ssh_pki_import_privkey_base64(const char *b64_key, const char *passphrase, ssh_auth_callback auth_fn, void *auth_data, ssh_key *pkey)
+    int ssh_pki_import_privkey_file(const char *filename, const char *passphrase, ssh_auth_callback auth_fn, void *auth_data, ssh_key *pkey)
+    int ssh_pki_export_privkey_file(const ssh_key privkey, const char *passphrase, ssh_auth_callback auth_fn, void *auth_data, const char *filename)
 
-    int ssh_pki_copy_cert_to_privkey(const ssh_key cert_key,
-                                     ssh_key privkey)
+    int ssh_pki_copy_cert_to_privkey(const ssh_key cert_key, ssh_key privkey)
 
-    int ssh_pki_import_pubkey_base64(const char *b64_key,
-                                     ssh_keytypes_e type,
-                                     ssh_key *pkey)
-    int ssh_pki_import_pubkey_file(const char *filename,
-                                   ssh_key *pkey)
+    int ssh_pki_import_pubkey_base64(const char *b64_key, ssh_keytypes_e type, ssh_key *pkey)
+    int ssh_pki_import_pubkey_file(const char *filename, ssh_key *pkey)
 
-    int ssh_pki_import_cert_base64(const char *b64_cert,
-                                   ssh_keytypes_e type,
-                                   ssh_key *pkey)
-    int ssh_pki_import_cert_file(const char *filename,
-                                 ssh_key *pkey)
+    int ssh_pki_import_cert_base64(const char *b64_cert, ssh_keytypes_e type, ssh_key *pkey)
+    int ssh_pki_import_cert_file(const char *filename, ssh_key *pkey)
 
-    int ssh_pki_export_privkey_to_pubkey(const ssh_key privkey,
-                                         ssh_key *pkey)
-    int ssh_pki_export_pubkey_base64(const ssh_key key,
-                                     char **b64_key)
-    int ssh_pki_export_pubkey_file(const ssh_key key,
-                                   const char *filename)
+    int ssh_pki_export_privkey_to_pubkey(const ssh_key privkey, ssh_key *pkey)
+    int ssh_pki_export_pubkey_base64(const ssh_key key, char **b64_key)
+    int ssh_pki_export_pubkey_file(const ssh_key key, const char *filename)
 
     const char *ssh_pki_key_ecdsa_name(const ssh_key key)
 
-    char *ssh_get_fingerprint_hash(ssh_publickey_hash_type type,
-                                   unsigned char *hash,
-                                   size_t len)
-    void ssh_print_hash(ssh_publickey_hash_type type,
-                        unsigned char *hash,
-                        size_t len)
-    void ssh_print_hexa(
-        const char *descr, const unsigned char *what, size_t len)
+    char *ssh_get_fingerprint_hash(ssh_publickey_hash_type type, unsigned char *hash, size_t len)
+    void ssh_print_hash(ssh_publickey_hash_type type, unsigned char *hash, size_t len)
+    void ssh_print_hexa(const char *descr, const unsigned char *what, size_t len)
     int ssh_send_ignore(ssh_session session, const char *data)
-    int ssh_send_debug(
-        ssh_session session, const char *message, int always_display)
-    void ssh_gssapi_set_creds(
-        ssh_session session, const ssh_gssapi_creds creds)
+    int ssh_send_debug(ssh_session session, const char *message, int always_display)
+    void ssh_gssapi_set_creds(ssh_session session, const ssh_gssapi_creds creds)
     int ssh_scp_accept_request(ssh_scp scp)
     int ssh_scp_close(ssh_scp scp)
     int ssh_scp_deny_request(ssh_scp scp, const char *reason)
@@ -482,10 +424,8 @@ cdef extern from "libssh/libssh.h" nogil:
     ssh_scp ssh_scp_new(ssh_session session, int mode, const char *location)
     int ssh_scp_pull_request(ssh_scp scp)
     int ssh_scp_push_directory(ssh_scp scp, const char *dirname, int mode)
-    int ssh_scp_push_file(
-        ssh_scp scp, const char *filename, size_t size, int perms)
-    int ssh_scp_push_file64(
-        ssh_scp scp, const char *filename, uint64_t size, int perms)
+    int ssh_scp_push_file(ssh_scp scp, const char *filename, size_t size, int perms)
+    int ssh_scp_push_file64(ssh_scp scp, const char *filename, uint64_t size, int perms)
     int ssh_scp_read(ssh_scp scp, void *buffer, size_t size)
     const char *ssh_scp_request_get_filename(ssh_scp scp)
     int ssh_scp_request_get_permissions(ssh_scp scp)
@@ -493,15 +433,12 @@ cdef extern from "libssh/libssh.h" nogil:
     uint64_t ssh_scp_request_get_size64(ssh_scp scp)
     const char *ssh_scp_request_get_warning(ssh_scp scp)
     int ssh_scp_write(ssh_scp scp, const void *buffer, size_t len)
-    int ssh_select(
-        ssh_channel *channels, ssh_channel *outchannels,
-        socket_t maxfd, fd_set *readfds, timeval *timeout)
+    int ssh_select(ssh_channel *channels, ssh_channel *outchannels, socket_t maxfd, fd_set *readfds, timeval *timeout)
     int ssh_service_request(ssh_session session, const char *service)
     int ssh_set_agent_channel(ssh_session session, ssh_channel channel)
     int ssh_set_agent_socket(ssh_session session, socket_t fd)
     void ssh_set_blocking(ssh_session session, int blocking)
-    void ssh_set_counters(ssh_session session, ssh_counter scounter,
-                          ssh_counter rcounter)
+    void ssh_set_counters(ssh_session session, ssh_counter scounter, ssh_counter rcounter)
     void ssh_set_fd_except(ssh_session session)
     void ssh_set_fd_toread(ssh_session session)
     void ssh_set_fd_towrite(ssh_session session)
@@ -511,35 +448,22 @@ cdef extern from "libssh/libssh.h" nogil:
     # Userauth
     int ssh_userauth_none(ssh_session session, const char *username)
     int ssh_userauth_list(ssh_session session, const char *username)
-    int ssh_userauth_try_publickey(ssh_session session,
-                                   const char *username,
-                                   const ssh_key pubkey)
-    int ssh_userauth_publickey(ssh_session session,
-                               const char *username,
-                               const ssh_key privkey)
+    int ssh_userauth_try_publickey(ssh_session session, const char *username, const ssh_key pubkey)
+    int ssh_userauth_publickey(ssh_session session, const char *username, const ssh_key privkey)
     # #ifndef _WIN32
-    int ssh_userauth_agent(ssh_session session,
-                           const char *username)
+    int ssh_userauth_agent(ssh_session session, const char *username)
     # #endif
-    int ssh_userauth_publickey_auto(ssh_session session,
-                                    const char *username,
-                                    const char *passphrase)
-    int ssh_userauth_password(ssh_session session,
-                              const char *username,
-                              const char *password)
+    int ssh_userauth_publickey_auto(ssh_session session, const char *username, const char *passphrase)
+    int ssh_userauth_password(ssh_session session, const char *username, const char *password)
 
-    int ssh_userauth_kbdint(
-        ssh_session session, const char *user, const char *submethods)
+    int ssh_userauth_kbdint(ssh_session session, const char *user, const char *submethods)
     const char *ssh_userauth_kbdint_getinstruction(ssh_session session)
     const char *ssh_userauth_kbdint_getname(ssh_session session)
     int ssh_userauth_kbdint_getnprompts(ssh_session session)
-    const char *ssh_userauth_kbdint_getprompt(
-        ssh_session session, unsigned int i, char *echo)
+    const char *ssh_userauth_kbdint_getprompt(ssh_session session, unsigned int i, char *echo)
     int ssh_userauth_kbdint_getnanswers(ssh_session session)
-    const char *ssh_userauth_kbdint_getanswer(
-        ssh_session session, unsigned int i)
-    int ssh_userauth_kbdint_setanswer(
-        ssh_session session, unsigned int i, const char *answer)
+    const char *ssh_userauth_kbdint_getanswer(ssh_session session, unsigned int i)
+    int ssh_userauth_kbdint_setanswer(ssh_session session, unsigned int i, const char *answer)
     int ssh_userauth_gssapi(ssh_session session)
     const char *ssh_version(int req_version)
     int ssh_write_knownhost(ssh_session session)
@@ -557,14 +481,12 @@ cdef extern from "libssh/libssh.h" nogil:
     char *ssh_string_to_char(ssh_string str)
     void ssh_string_free_char(char *s)
 
-    int ssh_getpass(const char *prompt, char *buf, size_t len, int echo,
-                    int verify)
+    int ssh_getpass(const char *prompt, char *buf, size_t len, int echo, int verify)
 
     ctypedef int(*ssh_event_callback)(socket_t fd, int revents, void *userdata)
 
     ssh_event ssh_event_new()
-    int ssh_event_add_fd(ssh_event event, socket_t fd, short events,
-                         ssh_event_callback cb, void *userdata)
+    int ssh_event_add_fd(ssh_event event, socket_t fd, short events, ssh_event_callback cb, void *userdata)
     int ssh_event_add_session(ssh_event event, ssh_session session)
     int ssh_event_add_connector(ssh_event event, ssh_connector connector)
     int ssh_event_dopoll(ssh_event event, int timeout)
@@ -583,7 +505,6 @@ cdef extern from "libssh/libssh.h" nogil:
     void ssh_buffer_free(ssh_buffer buffer)
     int ssh_buffer_reinit(ssh_buffer buffer)
     int ssh_buffer_add_data(ssh_buffer buffer, const void *data, uint32_t len)
-    uint32_t ssh_buffer_get_data(
-        ssh_buffer buffer, void *data, uint32_t requestedlen)
+    uint32_t ssh_buffer_get_data(ssh_buffer buffer, void *data, uint32_t requestedlen)
     void *ssh_buffer_get(ssh_buffer buffer)
     uint32_t ssh_buffer_get_len(ssh_buffer buffer)

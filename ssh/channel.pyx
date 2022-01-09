@@ -111,9 +111,7 @@ cdef class Channel:
         cdef const_char *c_sourcehost = b_sourcehost
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_open_forward(
-                self._channel, c_remotehost, remoteport,
-                c_sourcehost, sourceport)
+            rc = c_ssh.ssh_channel_open_forward(self._channel, c_remotehost, remoteport, c_sourcehost, sourceport)
         return handle_error_codes(rc, self._session._session)
 
     def open_session(self):
@@ -127,8 +125,7 @@ cdef class Channel:
         cdef const_char *c_sourcehost = b_sourcehost
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_open_x11(
-                self._channel, c_sourcehost, sourceport)
+            rc = c_ssh.ssh_channel_open_x11(self._channel, c_sourcehost, sourceport)
         return handle_error_codes(rc, self._session._session)
 
     def accept_x11(self, int timeout_ms):
@@ -196,8 +193,7 @@ cdef class Channel:
             if cbuf is NULL:
                 with gil:
                     raise MemoryError
-            rc = c_ssh.ssh_channel_read_timeout(
-                self._channel, cbuf, size, is_stderr, timeout)
+            rc = c_ssh.ssh_channel_read_timeout(self._channel, cbuf, size, is_stderr, timeout)
         try:
             if rc > 0:
                 buf = cbuf[:rc]
@@ -240,8 +236,7 @@ cdef class Channel:
         cdef const_char *c_terminal = b_terminal
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_request_pty_size(
-                self._channel, c_terminal, col, row)
+            rc = c_ssh.ssh_channel_request_pty_size(self._channel, c_terminal, col, row)
         return handle_error_codes(rc, self._session._session)
 
     def request_send_signal(self, sig):
@@ -249,15 +244,13 @@ cdef class Channel:
         cdef const_char *c_sig = b_sig
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_request_send_signal(
-                self._channel, c_sig)
+            rc = c_ssh.ssh_channel_request_send_signal(self._channel, c_sig)
         return handle_error_codes(rc, self._session._session)
 
     def request_send_break(self, c_ssh.uint32_t length):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_request_send_break(
-                self._channel, length)
+            rc = c_ssh.ssh_channel_request_send_break(self._channel, length)
         return handle_error_codes(rc, self._session._session)
 
     def request_shell(self):
@@ -277,15 +270,13 @@ cdef class Channel:
         cdef const_char *c_sys = b_sys
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_request_subsystem(
-                self._channel, c_sys)
+            rc = c_ssh.ssh_channel_request_subsystem(self._channel, c_sys)
         return handle_error_codes(rc, self._session._session)
 
     def request_x11(self, int screen_number, bint single_connection=True):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_request_x11(
-                self._channel, single_connection, NULL, NULL, screen_number)
+            rc = c_ssh.ssh_channel_request_x11(self._channel, single_connection, NULL, NULL, screen_number)
         return handle_error_codes(rc, self._session._session)
 
     def set_blocking(self, bint blocking):
@@ -311,12 +302,10 @@ cdef class Channel:
         cdef int rc
         with nogil:
             while buf_remainder > 0:
-                rc = c_ssh.ssh_channel_write(
-                    self._channel, _buf, buf_remainder)
+                rc = c_ssh.ssh_channel_write(self._channel, _buf, buf_remainder)
                 if rc < 0 and rc != c_ssh.SSH_AGAIN:
                     with gil:
-                        return handle_error_codes(
-                            rc, self._session._session)
+                        return handle_error_codes(rc, self._session._session)
                 elif rc == c_ssh.SSH_AGAIN:
                     break
                 _buf += rc
@@ -340,12 +329,10 @@ cdef class Channel:
         cdef int rc
         with nogil:
             while buf_remainder > 0:
-                rc = c_ssh.ssh_channel_write_stderr(
-                    self._channel, _buf, buf_remainder)
+                rc = c_ssh.ssh_channel_write_stderr(self._channel, _buf, buf_remainder)
                 if rc < 0 and rc != c_ssh.SSH_AGAIN:
                     with gil:
-                        return handle_error_codes(
-                            rc, self._session._session)
+                        return handle_error_codes(rc, self._session._session)
                 elif rc == c_ssh.SSH_AGAIN:
                     break
                 _buf += rc
@@ -359,6 +346,5 @@ cdef class Channel:
             size = c_ssh.ssh_channel_window_size(self._channel)
         return size
 
-    def select(self, channels not None, outchannels not None, maxfd,
-               readfds, timeout=None):
+    def select(self, channels not None, outchannels not None, maxfd, readfds, timeout=None):
         raise NotImplementedError

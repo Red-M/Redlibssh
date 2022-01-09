@@ -175,8 +175,7 @@ cdef class Session:
             _check_connected(self._session)
             _sftp = sftp_new(self._session)
         if _sftp is NULL:
-            return handle_error_codes(
-                c_ssh.ssh_get_error_code(self._session), self._session)
+            return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
         sftp = SFTP.from_ptr(_sftp, self)
         return sftp
 
@@ -193,8 +192,7 @@ cdef class Session:
             _sftp = sftp_new(self._session)
             if _sftp is NULL:
                 with gil:
-                    return handle_error_codes(
-                        c_ssh.ssh_get_error_code(self._session), self._session)
+                    return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
             rc = sftp_init(_sftp)
         sftp = SFTP.from_ptr(_sftp, self)
         handle_error_codes(rc, self._session)
@@ -229,8 +227,7 @@ cdef class Session:
         cdef c_ssh.ssh_channel _channel
         with nogil:
             _check_connected(self._session)
-            _channel = c_ssh.ssh_channel_accept_forward(
-                self._session, timeout, &dest_port)
+            _channel = c_ssh.ssh_channel_accept_forward(self._session, timeout, &dest_port)
         if _channel is NULL:
             return
         return Channel.from_ptr(_channel, self)
@@ -240,8 +237,7 @@ cdef class Session:
         cdef char *c_address = b_address
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_cancel_forward(
-                self._session, c_address, port)
+            rc = c_ssh.ssh_channel_cancel_forward(self._session, c_address, port)
         return handle_error_codes(rc, self._session)
 
     def listen_forward(self, address not None, int port, int bound_port):
@@ -249,8 +245,7 @@ cdef class Session:
         cdef char *c_address = b_address
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_channel_listen_forward(
-                self._session, c_address, port, &bound_port)
+            rc = c_ssh.ssh_channel_listen_forward(self._session, c_address, port, &bound_port)
         return handle_error_codes(rc, self._session)
 
     def get_disconnect_message(self):
@@ -343,8 +338,7 @@ cdef class Session:
     def options_set_port(self, int port):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_options_set(
-                self._session, c_ssh.ssh_options_e.SSH_OPTIONS_PORT, &port)
+            rc = c_ssh.ssh_options_set(self._session, c_ssh.ssh_options_e.SSH_OPTIONS_PORT, &port)
         return handle_error_codes(rc, self._session)
 
     def options_set_gssapi_delegate_credentials(self, bint delegate):
@@ -355,10 +349,7 @@ cdef class Session:
         :type delegate: bool
         """
         with nogil:
-            rc = c_ssh.ssh_options_set(
-                self._session,
-                c_ssh.ssh_options_e.SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS,
-                &delegate)
+            rc = c_ssh.ssh_options_set(self._session, c_ssh.ssh_options_e.SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS, &delegate)
         return handle_error_codes(rc, self._session)
 
     def options_set(self, Option option, value):
@@ -387,8 +378,7 @@ cdef class Session:
         cdef int rc
         cdef bytes b_value
         with nogil:
-            rc = c_ssh.ssh_options_get(
-                self._session, option._option, value)
+            rc = c_ssh.ssh_options_get(self._session, option._option, value)
         if rc < 0:
             raise OptionError
         _value = value[0]
@@ -413,8 +403,7 @@ cdef class Session:
         cdef char *c_message = message
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_send_debug(
-                self._session, c_message, always_display)
+            rc = c_ssh.ssh_send_debug(self._session, c_message, always_display)
         return handle_error_codes(rc, self._session)
 
     def gssapi_set_creds(self, creds not None):
@@ -432,8 +421,7 @@ cdef class Session:
         def set_agent_channel(self, Channel channel):
             cdef int rc
             with nogil:
-                rc = c_ssh.ssh_set_agent_channel(
-                    self._session, channel._channel)
+                rc = c_ssh.ssh_set_agent_channel(self._session, channel._channel)
             return handle_error_codes(rc, self._session)
 
         def set_agent_socket(self, socket not None):
@@ -484,16 +472,14 @@ cdef class Session:
         cdef int rc
         with nogil:
             _check_connected(self._session)
-            rc = c_ssh.ssh_userauth_try_publickey(
-                self._session, NULL, pubkey._key)
+            rc = c_ssh.ssh_userauth_try_publickey(self._session, NULL, pubkey._key)
         return handle_auth_error_codes(rc, self._session)
 
     def userauth_publickey(self, SSHKey privkey not None):
         cdef int rc
         with nogil:
             _check_connected(self._session)
-            rc = c_ssh.ssh_userauth_publickey(
-                self._session, NULL, privkey._key)
+            rc = c_ssh.ssh_userauth_publickey(self._session, NULL, privkey._key)
         return handle_auth_error_codes(rc, self._session)
 
     # ssh_userauth_agent is excluded from libssh.h on Windows.
@@ -513,8 +499,7 @@ cdef class Session:
         cdef int rc
         with nogil:
             _check_connected(self._session)
-            rc = c_ssh.ssh_userauth_publickey_auto(
-                self._session, NULL, c_passphrase)
+            rc = c_ssh.ssh_userauth_publickey_auto(self._session, NULL, c_passphrase)
         return handle_auth_error_codes(rc, self._session)
 
     def userauth_password(self, username not None, password not None):
@@ -525,8 +510,7 @@ cdef class Session:
         cdef int rc
         with nogil:
             _check_connected(self._session)
-            rc = c_ssh.ssh_userauth_password(
-                self._session, c_username, c_password)
+            rc = c_ssh.ssh_userauth_password(self._session, c_username, c_password)
         return handle_auth_error_codes(rc, self._session)
 
     def userauth_kbdint(self, username not None, submethods not None):
@@ -537,8 +521,7 @@ cdef class Session:
         cdef int rc
         with nogil:
             _check_connected(self._session)
-            rc = c_ssh.ssh_userauth_kbdint(
-                self._session, c_username, c_submethods)
+            rc = c_ssh.ssh_userauth_kbdint(self._session, c_username, c_submethods)
         return handle_auth_error_codes(rc, self._session)
 
     def userauth_kbdint_getinstruction(self):
@@ -546,8 +529,7 @@ cdef class Session:
         cdef const_char *_instruction
         with nogil:
             _check_connected(self._session)
-            _instruction = c_ssh.ssh_userauth_kbdint_getinstruction(
-                self._session)
+            _instruction = c_ssh.ssh_userauth_kbdint_getinstruction(self._session)
         b_instruction = to_str(<char *>_instruction)
         return b_instruction
 
@@ -573,8 +555,7 @@ cdef class Session:
         cdef char *c_echo = echo
         with nogil:
             _check_connected(self._session)
-            _prompt = c_ssh.ssh_userauth_kbdint_getprompt(
-                self._session, i, c_echo)
+            _prompt = c_ssh.ssh_userauth_kbdint_getprompt(self._session, i, c_echo)
         b_prompt = _prompt
         return b_prompt
 
@@ -590,8 +571,7 @@ cdef class Session:
         cdef bytes b_answer
         with nogil:
             _check_connected(self._session)
-            _answer = c_ssh.ssh_userauth_kbdint_getanswer(
-                self._session, i)
+            _answer = c_ssh.ssh_userauth_kbdint_getanswer(self._session, i)
         b_answer = _answer
         return b_answer
 
@@ -600,8 +580,7 @@ cdef class Session:
         cdef int rc
         with nogil:
             _check_connected(self._session)
-            rc = c_ssh.ssh_userauth_kbdint_setanswer(
-                self._session, i, <const_char *>(c_answer))
+            rc = c_ssh.ssh_userauth_kbdint_setanswer(self._session, i, <const_char *>(c_answer))
         return handle_auth_error_codes(rc, self._session)
 
     def userauth_gssapi(self):
@@ -722,11 +701,9 @@ cdef class Session:
             _scp = c_ssh.ssh_scp_new(self._session, mode, c_location)
             if _scp is NULL:
                 with gil:
-                    return handle_error_codes(
-                        c_ssh.ssh_get_error_code(self._session), self._session)
+                    return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
             if c_ssh.ssh_scp_init(_scp) != c_ssh.SSH_OK:
                 c_ssh.ssh_scp_free(_scp)
                 with gil:
-                    return handle_error_codes(
-                        c_ssh.ssh_get_error_code(self._session), self._session)
+                    return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
         return SCP.from_ptr(_scp, self)

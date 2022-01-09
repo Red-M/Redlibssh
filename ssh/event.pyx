@@ -58,12 +58,10 @@ cdef class Event:
 
     def add_fd(self, sock, short events, callback=None):
         cdef c_ssh.socket_t _sock = PyObject_AsFileDescriptor(sock)
-        cdef c_ssh.ssh_event_callback cb = \
-            <c_ssh.ssh_event_callback>&Event.event_callback
+        cdef c_ssh.ssh_event_callback cb = <c_ssh.ssh_event_callback>&Event.event_callback
         cdef int rc
         cdef void *_cb = NULL if callback is None else <void *>callback
-        rc = c_ssh.ssh_event_add_fd(
-            self._event, _sock, events, cb, _cb)
+        rc = c_ssh.ssh_event_add_fd(self._event, _sock, events, cb, _cb)
         if rc == 0:
             self._sock = sock
         return rc
@@ -88,8 +86,7 @@ cdef class Event:
     def add_connector(self, Connector connector):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_event_add_connector(
-                self._event, connector._connector)
+            rc = c_ssh.ssh_event_add_connector(self._event, connector._connector)
         if rc == 0:
             self.connector = connector
         return handle_error_codes(rc, connector.session._session)
@@ -111,8 +108,7 @@ cdef class Event:
     def remove_connector(self, Connector connector):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_event_remove_connector(
-                self._event, connector._connector)
+            rc = c_ssh.ssh_event_remove_connector(self._event, connector._connector)
         if rc == 0:
             self.connector = None
         return handle_error_codes(rc, connector.session._session)

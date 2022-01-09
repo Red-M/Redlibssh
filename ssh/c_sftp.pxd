@@ -15,8 +15,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-130
 
-from .c_ssh cimport uint64_t, uint32_t, uint8_t, ssh_string, ssh_buffer, \
-    ssh_channel, ssh_session, timeval
+from .c_ssh cimport uint64_t, uint32_t, uint8_t, ssh_string, ssh_buffer, ssh_channel, ssh_session, timeval
 
 
 cdef extern from "libssh/sftp.h" nogil:
@@ -146,8 +145,7 @@ cdef extern from "libssh/sftp.h" nogil:
     unsigned int sftp_extensions_get_count(sftp_session sftp)
     const char *sftp_extensions_get_name(sftp_session sftp, unsigned int indexn)
     const char *sftp_extensions_get_data(sftp_session sftp, unsigned int indexn)
-    int sftp_extension_supported(sftp_session sftp, const char *name,
-                                 const char *data)
+    int sftp_extension_supported(sftp_session sftp, const char *name, const char *data)
     sftp_dir sftp_opendir(sftp_session session, const char *path)
     sftp_attributes sftp_readdir(sftp_session session, sftp_dir dir)
     int sftp_dir_eof(sftp_dir dir)
@@ -157,8 +155,7 @@ cdef extern from "libssh/sftp.h" nogil:
     void sftp_attributes_free(sftp_attributes file)
     int sftp_closedir(sftp_dir dir)
     int sftp_close(sftp_file file)
-    sftp_file sftp_open(sftp_session session, const char *file, int accesstype,
-                        mode_t mode)
+    sftp_file sftp_open(sftp_session session, const char *file, int accesstype, mode_t mode)
     void sftp_file_set_nonblocking(sftp_file handle)
     void sftp_file_set_blocking(sftp_file handle)
     ssize_t sftp_read(sftp_file file, void *buf, size_t count)
@@ -173,11 +170,9 @@ cdef extern from "libssh/sftp.h" nogil:
     int sftp_unlink(sftp_session sftp, const char *file)
     int sftp_rmdir(sftp_session sftp, const char *directory)
     int sftp_mkdir(sftp_session sftp, const char *directory, mode_t mode)
-    int sftp_rename(
-        sftp_session sftp, const char *original, const  char *newname)
+    int sftp_rename(sftp_session sftp, const char *original, const  char *newname)
     int sftp_setstat(sftp_session sftp, const char *file, sftp_attributes attr)
-    int sftp_chown(
-        sftp_session sftp, const char *file, uid_t owner, gid_t group)
+    int sftp_chown(sftp_session sftp, const char *file, uid_t owner, gid_t group)
     int sftp_chmod(sftp_session sftp, const char *file, mode_t mode)
     int sftp_utimes(sftp_session sftp, const char *file, const timeval *times)
     int sftp_symlink(sftp_session sftp, const char *target, const char *dest)

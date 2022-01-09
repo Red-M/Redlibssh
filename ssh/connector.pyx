@@ -42,12 +42,9 @@ cdef class Flag:
         return self.__str__()
 
 
-CONNECTOR_STDOUT = Flag.from_flag(
-    c_ssh.ssh_connector_flags_e.SSH_CONNECTOR_STDOUT)
-CONNECTOR_STDERR = Flag.from_flag(
-    c_ssh.ssh_connector_flags_e.SSH_CONNECTOR_STDERR)
-CONNECTOR_BOTH = Flag.from_flag(
-    c_ssh.ssh_connector_flags_e.SSH_CONNECTOR_BOTH)
+CONNECTOR_STDOUT = Flag.from_flag(c_ssh.ssh_connector_flags_e.SSH_CONNECTOR_STDOUT)
+CONNECTOR_STDERR = Flag.from_flag(c_ssh.ssh_connector_flags_e.SSH_CONNECTOR_STDERR)
+CONNECTOR_BOTH = Flag.from_flag(c_ssh.ssh_connector_flags_e.SSH_CONNECTOR_BOTH)
 
 
 cdef class Connector:
@@ -69,15 +66,13 @@ cdef class Connector:
     def set_in_channel(self, Channel channel, Flag flag):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_connector_set_in_channel(
-                self._connector, channel._channel, flag._flag)
+            rc = c_ssh.ssh_connector_set_in_channel(self._connector, channel._channel, flag._flag)
         return handle_error_codes(rc, self.session._session)
 
     def set_out_channel(self, Channel channel, Flag flag):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_connector_set_out_channel(
-                self._connector, channel._channel, flag._flag)
+            rc = c_ssh.ssh_connector_set_out_channel(self._connector, channel._channel, flag._flag)
         return handle_error_codes(rc, self.session._session)
 
     def set_in_fd(self, socket):
