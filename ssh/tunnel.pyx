@@ -70,7 +70,7 @@ cdef class Tunnel:
                 if(block_dir & c_ssh.SSH_WRITE_PENDING):
                     self._c_waitsockets[0].events |= utils.POLLOUT
 
-                rc = utils.poll(self._c_waitsockets, 1, timeout)
+                rc = utils.poll(self._c_waitsockets, 2, timeout)
                 self._c_waitsockets[0].events = 0
             return rc
 
