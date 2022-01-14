@@ -17,6 +17,20 @@
 
 from .c_ssh cimport uint64_t, uint32_t, uint8_t, ssh_string, ssh_buffer, ssh_channel, ssh_session, timeval
 
+cdef extern from "fcntl.h" nogil:
+    enum:
+        O_RDONLY
+        O_WRONLY
+        O_RDWR
+        O_CLOEXEC
+        O_CREAT
+        O_DIRECTORY
+        O_EXCL
+        O_NOCTTY
+        O_NOFOLLOW
+        O_TMPFILE
+        O_TRUNC
+
 
 cdef extern from "libssh/sftp.h" nogil:
     ctypedef long mode_t

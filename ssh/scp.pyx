@@ -82,10 +82,10 @@ cdef class SCP:
         return handle_error_codes(rc, self.session._session)
 
     def init(self):
-        """Handled by session.scp_new"""
         cdef int rc
-        with nogil:
-            rc = c_ssh.ssh_scp_init(self._scp)
+        with self.session._block_lock:
+            with nogil:
+                rc = c_ssh.ssh_scp_init(self._scp)
         return handle_error_codes(rc, self.session._session)
 
     def leave_directory(self):

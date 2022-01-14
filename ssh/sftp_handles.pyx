@@ -194,7 +194,7 @@ cdef class SFTPFile:
 cdef class SFTPDir:
 
     def __dealloc__(self):
-        if not self.closed:
+        if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:
             self.closedir()
 
     @staticmethod

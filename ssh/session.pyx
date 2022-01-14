@@ -24,7 +24,7 @@ from libc.string cimport const_char
 
 from .channel cimport Channel
 from .connector cimport Connector
-from .utils cimport to_bytes, to_str, handle_error_codes, handle_auth_error_codes
+from .utils cimport to_bytes, to_str, handle_error_codes, handle_auth_error_codes, handle_sftp_error_codes
 from .options cimport Option
 from .key cimport SSHKey
 from .sftp cimport SFTP
@@ -32,7 +32,7 @@ from .scp cimport SCP
 
 from .exceptions import OptionError, InvalidAPIUse, ChannelOpenFailure
 
-from .c_sftp cimport sftp_session, sftp_new, sftp_init
+from .c_sftp cimport sftp_session, sftp_new, sftp_init, sftp_new_channel
 from . cimport c_ssh
 
 
@@ -175,7 +175,7 @@ cdef class Session:
             _check_connected(self._session)
             _sftp = sftp_new(self._session)
         if _sftp is NULL:
-            return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
+            return handle_sftp_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
         sftp = SFTP.from_ptr(_sftp, self)
         return sftp
 
@@ -183,19 +183,34 @@ cdef class Session:
         """Convenience function for creating and initialising new SFTP
         session.
 
-        Not part of libssh API."""
+        Not part of libssh API. Horribly broken in nonblocking mode"""
         cdef sftp_session _sftp
         cdef SFTP sftp
         cdef int rc
         with nogil:
             _check_connected(self._session)
             _sftp = sftp_new(self._session)
-            if _sftp is NULL:
-                with gil:
-                    return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
+        if _sftp is NULL:
+            return handle_sftp_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
+        with nogil:
             rc = sftp_init(_sftp)
         sftp = SFTP.from_ptr(_sftp, self)
-        handle_error_codes(rc, self._session)
+        handle_sftp_error_codes(rc, self._session)
+        return sftp
+
+    def sftp_new_channel(self, Channel channel):
+        cdef sftp_session _sftp
+        cdef SFTP sftp
+        cdef int rc
+        with nogil:
+            _check_connected(self._session)
+        _sftp = sftp_new_channel(self._session,channel._channel)
+        if _sftp is NULL:
+            return handle_sftp_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
+        with nogil:
+            rc = sftp_init(_sftp)
+        sftp = SFTP.from_ptr(_sftp, self)
+        handle_sftp_error_codes(rc, self._session)
         return sftp
 
     def connect(self):
@@ -271,6 +286,8 @@ cdef class Session:
         with nogil:
             _check_connected(self._session)
             _banner = c_ssh.ssh_get_issue_banner(self._session)
+        if _banner is NULL:
+            return
         banner = _banner
         return banner
 

@@ -23,6 +23,7 @@ cdef object to_str(const char *c_str)
 cdef object to_str_len(const char *c_str, int length)
 cdef int handle_error_codes(int errcode, ssh_session) except -1
 cdef int handle_auth_error_codes(int errcode, ssh_session) except -1
+cdef int handle_sftp_error_codes(int errcode, ssh_session) except -1
 cdef bytes ssh_string_to_bytes(ssh_string _str)
 
 IF HAVE_POLL==1:

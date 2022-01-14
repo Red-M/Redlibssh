@@ -21,8 +21,9 @@ from cpython.version cimport PY_MAJOR_VERSION
 
 from . cimport c_ssh
 from .c_ssh cimport ssh_error_types_e, ssh_get_error, ssh_auth_e, SSH_OK, SSH_ERROR, SSH_AGAIN, SSH_EOF, ssh_session, ssh_string, ssh_string_get_char, ssh_string_free, ssh_string_len, SSH_READ_PENDING, SSH_WRITE_PENDING
+from .c_sftp cimport SSH_FX_OK, SSH_FX_EOF, SSH_FX_NO_SUCH_FILE, SSH_FX_PERMISSION_DENIED, SSH_FX_FAILURE, SSH_FX_BAD_MESSAGE, SSH_FX_NO_CONNECTION, SSH_FX_CONNECTION_LOST, SSH_FX_OP_UNSUPPORTED, SSH_FX_INVALID_HANDLE, SSH_FX_NO_SUCH_PATH, SSH_FX_FILE_ALREADY_EXISTS, SSH_FX_WRITE_PROTECT, SSH_FX_NO_MEDIA
 
-from .exceptions import OtherError, AuthenticationPartial, AuthenticationDenied, AuthenticationError, SSHError, EOF
+from .exceptions import OtherError, AuthenticationPartial, AuthenticationDenied, AuthenticationError, SSHError, EOF, SFTPError
 
 IF HAVE_POLL==1:
     from .utils cimport POLLIN, POLLOUT
@@ -120,5 +121,38 @@ cdef int handle_auth_error_codes(int errcode, ssh_session session) except -1:
         raise AuthenticationPartial(ssh_get_error(session))
     elif errcode == ssh_auth_e.SSH_AUTH_AGAIN:
         return ssh_auth_e.SSH_AUTH_AGAIN
+    else:
+        return handle_error_codes(errcode, session)
+
+
+cdef int handle_sftp_error_codes(int errcode, ssh_session session) except -1:
+    if errcode == SSH_FX_OK:
+        return SSH_FX_OK
+    elif errcode == SSH_FX_EOF:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_NO_SUCH_FILE:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_PERMISSION_DENIED:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_FAILURE:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_BAD_MESSAGE:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_NO_CONNECTION:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_CONNECTION_LOST:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_OP_UNSUPPORTED:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_INVALID_HANDLE:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_NO_SUCH_PATH:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_FILE_ALREADY_EXISTS:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_WRITE_PROTECT:
+        raise SFTPError(ssh_get_error(session))
+    elif errcode == SSH_FX_NO_MEDIA:
+        raise SFTPError(ssh_get_error(session))
     else:
         return handle_error_codes(errcode, session)
