@@ -20,18 +20,18 @@ else:
 
 _PYTHON_MAJOR_VERSION = int(platform.python_version_tuple()[0])
 ON_WINDOWS = platform.system() == 'Windows'
-HAVE_POLL = platform.system() == 'Linux'
+ON_LINUX = platform.system() == 'Linux'
+ON_OSX = platform.system() == 'Darwin'
 ON_RTD = os.environ.get('READTHEDOCS') == 'True'
 REDLIBSSH_BUILD_TRACING = bool(os.environ.get('REDLIBSSH_BUILD_TRACING', 0))
-SYSTEM_LIBSSH = bool(os.environ.get('SYSTEM_LIBSSH', 0)) or \
-                ON_RTD or ON_WINDOWS
+SYSTEM_LIBSSH = bool(os.environ.get('SYSTEM_LIBSSH', 0)) or ON_RTD or ON_WINDOWS
 
 if ON_WINDOWS and _PYTHON_MAJOR_VERSION < 3:
     raise ImportError(
         "ssh-python requires Python 3 or above on Windows platforms.")
 
 # Only build libssh if SYSTEM_LIBSSH is not set and running a build
-if not SYSTEM_LIBSSH and (len(sys.argv) >= 2 and not (
+if not SYSTEM_LIBSSH and ON_LINUX and (len(sys.argv) >= 2 and not (
         '--help' in sys.argv[1:] or
         sys.argv[1] in (
             '--help-commands', 'egg_info', '--version', 'clean',
@@ -63,7 +63,7 @@ if USING_CYTHON:
         'cython_directives': cython_directives,
         'cython_compile_time_env': {
             'ON_WINDOWS': ON_WINDOWS,
-            'HAVE_POLL': HAVE_POLL,
+            'HAVE_POLL': ON_LINUX,
         }
     }
     if REDLIBSSH_BUILD_TRACING==True:
@@ -71,10 +71,9 @@ if USING_CYTHON:
         cython_args['cython_directives'].update({'linetrace':True})
 
 
-runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH else None
-_lib_dir = os.path.abspath("./local/lib") if not SYSTEM_LIBSSH else "/usr/local/lib"
-include_dirs = ["./local/include"] if (ON_WINDOWS or ON_RTD) or \
-               not SYSTEM_LIBSSH else ["/usr/local/include"]
+runtime_library_dirs = ["$ORIGIN/."] if not SYSTEM_LIBSSH or ON_OSX else None
+_lib_dir = os.path.abspath("./local/lib") if not SYSTEM_LIBSSH or ON_OSX else "/usr/local/lib"
+include_dirs = ["./local/include"] if (ON_WINDOWS or ON_RTD) or not SYSTEM_LIBSSH or ON_OSX else ["/usr/local/include"]
 
 extensions = [
     Extension(
@@ -82,7 +81,7 @@ extensions = [
         sources=[sources[i]],
         include_dirs=include_dirs,
         libraries=_libs,
-        library_dirs=[_lib_dir],
+        library_dirs=[_lib_dir,os.path.abspath("./local/lib")],
         runtime_library_dirs=runtime_library_dirs,
         extra_compile_args=_comp_args,
         **cython_args

@@ -44,9 +44,9 @@ for PYENV in ${BUILD_PYENV_VERSIONS[@]}; do
     python -m pip install -U setuptools pip
     pip install -U delocate wheel
     pip wheel .
-    # \cp /usr/local/lib/libssh2* .
+    # \cp ./local/lib/libssh* .
     delocate-listdeps --all ./*.whl
-    delocate-wheel -v ./*.whl
+    delocate-wheel --require-archs ${MACOSX_REQUIRED_ARCHITECTURES} -v ./*.whl
     delocate-listdeps --all ./*.whl
 
     ls -l *.whl
