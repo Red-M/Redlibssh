@@ -22,13 +22,10 @@ cdef extern from "fcntl.h" nogil:
         O_RDONLY
         O_WRONLY
         O_RDWR
-        O_CLOEXEC
         O_CREAT
-        O_DIRECTORY
         O_EXCL
         O_NOCTTY
         O_NOFOLLOW
-        O_TMPFILE
         O_TRUNC
 
 

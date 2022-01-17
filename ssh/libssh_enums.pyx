@@ -419,11 +419,8 @@ class SFTP_AT(enum.Enum):
     O_RDONLY = c_sftp.O_RDONLY
     O_WRONLY = c_sftp.O_WRONLY
     O_RDWR = c_sftp.O_RDWR
-    O_CLOEXEC = c_sftp.O_CLOEXEC
     O_CREAT = c_sftp.O_CREAT
-    O_DIRECTORY = c_sftp.O_DIRECTORY
     O_EXCL = c_sftp.O_EXCL
     O_NOCTTY = c_sftp.O_NOCTTY
     O_NOFOLLOW = c_sftp.O_NOFOLLOW
-    O_TMPFILE = c_sftp.O_TMPFILE
     O_TRUNC = c_sftp.O_TRUNC
