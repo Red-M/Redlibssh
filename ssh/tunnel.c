@@ -2142,7 +2142,7 @@ static int __pyx_f_3ssh_6tunnel_6Tunnel_poll_sockets(struct __pyx_obj_3ssh_6tunn
  *                 if(block_dir & c_ssh.SSH_WRITE_PENDING):
  *                     self._c_waitsockets[0].events |= utils.POLLOUT             # <<<<<<<<<<<<<<
  * 
- *                 rc = utils.poll(self._c_waitsockets, 1, timeout)
+ *                 rc = utils.poll(self._c_waitsockets, 2, timeout)
  */
           __pyx_t_2 = 0;
           (__pyx_v_self->_c_waitsockets[__pyx_t_2]).events = ((__pyx_v_self->_c_waitsockets[__pyx_t_2]).events | POLLOUT);
@@ -2159,15 +2159,15 @@ static int __pyx_f_3ssh_6tunnel_6Tunnel_poll_sockets(struct __pyx_obj_3ssh_6tunn
         /* "ssh/tunnel.pyx":73
  *                     self._c_waitsockets[0].events |= utils.POLLOUT
  * 
- *                 rc = utils.poll(self._c_waitsockets, 1, timeout)             # <<<<<<<<<<<<<<
+ *                 rc = utils.poll(self._c_waitsockets, 2, timeout)             # <<<<<<<<<<<<<<
  *                 self._c_waitsockets[0].events = 0
  *             return rc
  */
-        __pyx_v_rc = poll(__pyx_v_self->_c_waitsockets, 1, __pyx_v_timeout);
+        __pyx_v_rc = poll(__pyx_v_self->_c_waitsockets, 2, __pyx_v_timeout);
 
         /* "ssh/tunnel.pyx":74
  * 
- *                 rc = utils.poll(self._c_waitsockets, 1, timeout)
+ *                 rc = utils.poll(self._c_waitsockets, 2, timeout)
  *                 self._c_waitsockets[0].events = 0             # <<<<<<<<<<<<<<
  *             return rc
  * 
@@ -2195,7 +2195,7 @@ static int __pyx_f_3ssh_6tunnel_6Tunnel_poll_sockets(struct __pyx_obj_3ssh_6tunn
   }
 
   /* "ssh/tunnel.pyx":75
- *                 rc = utils.poll(self._c_waitsockets, 1, timeout)
+ *                 rc = utils.poll(self._c_waitsockets, 2, timeout)
  *                 self._c_waitsockets[0].events = 0
  *             return rc             # <<<<<<<<<<<<<<
  * 

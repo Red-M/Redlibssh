@@ -681,6 +681,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <sys/types.h>
 #include "libssh/libssh.h"
 #include "poll.h"
+#include "fcntl.h"
 #include "libssh/sftp.h"
 #include <string.h>
 #include <stdlib.h>

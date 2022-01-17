@@ -680,6 +680,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <time.h>
 #include <sys/types.h>
 #include "libssh/libssh.h"
+#include "fcntl.h"
 #include "libssh/sftp.h"
 #include "libssh/ssh2.h"
 #include "libssh/callbacks.h"
@@ -1293,6 +1294,8 @@ static const char __pyx_k_IGNORE[] = "IGNORE";
 static const char __pyx_k_KeyCMP[] = "KeyCMP";
 static const char __pyx_k_NATIVE[] = "NATIVE";
 static const char __pyx_k_NEWDIR[] = "NEWDIR";
+static const char __pyx_k_O_EXCL[] = "O_EXCL";
+static const char __pyx_k_O_RDWR[] = "O_RDWR";
 static const char __pyx_k_PACKET[] = "PACKET";
 static const char __pyx_k_PUBLIC[] = "PUBLIC";
 static const char __pyx_k_REMOVE[] = "REMOVE";
@@ -1317,6 +1320,8 @@ static const char __pyx_k_NEWFILE[] = "NEWFILE";
 static const char __pyx_k_NEWKEYS[] = "NEWKEYS";
 static const char __pyx_k_NODELAY[] = "NODELAY";
 static const char __pyx_k_OPENDIR[] = "OPENDIR";
+static const char __pyx_k_O_CREAT[] = "O_CREAT";
+static const char __pyx_k_O_TRUNC[] = "O_TRUNC";
 static const char __pyx_k_Options[] = "Options";
 static const char __pyx_k_PARTIAL[] = "PARTIAL";
 static const char __pyx_k_PRIVATE[] = "PRIVATE";
@@ -1327,6 +1332,7 @@ static const char __pyx_k_Request[] = "Request";
 static const char __pyx_k_SERVICE[] = "SERVICE";
 static const char __pyx_k_SESSION[] = "SESSION";
 static const char __pyx_k_SETSTAT[] = "SETSTAT";
+static const char __pyx_k_SFTP_AT[] = "SFTP_AT";
 static const char __pyx_k_SFTP_FX[] = "SFTP_FX";
 static const char __pyx_k_SPECIAL[] = "SPECIAL";
 static const char __pyx_k_SSH_DIR[] = "SSH_DIR";
@@ -1351,6 +1357,9 @@ static const char __pyx_k_LANG_C_S[] = "LANG_C_S";
 static const char __pyx_k_LANG_S_C[] = "LANG_S_C";
 static const char __pyx_k_NO_ERROR[] = "NO_ERROR";
 static const char __pyx_k_NO_MEDIA[] = "NO_MEDIA";
+static const char __pyx_k_O_NOCTTY[] = "O_NOCTTY";
+static const char __pyx_k_O_RDONLY[] = "O_RDONLY";
+static const char __pyx_k_O_WRONLY[] = "O_WRONLY";
 static const char __pyx_k_PASSWORD[] = "PASSWORD";
 static const char __pyx_k_PORT_STR[] = "PORT_STR";
 static const char __pyx_k_PROTOCOL[] = "PROTOCOL";
@@ -1374,6 +1383,8 @@ static const char __pyx_k_KEEPALIVE[] = "KEEPALIVE";
 static const char __pyx_k_MAC_ERROR[] = "MAC_ERROR";
 static const char __pyx_k_NOT_KNOWN[] = "NOT_KNOWN";
 static const char __pyx_k_OVERWRITE[] = "OVERWRITE";
+static const char __pyx_k_O_CLOEXEC[] = "O_CLOEXEC";
+static const char __pyx_k_O_TMPFILE[] = "O_TMPFILE";
 static const char __pyx_k_PUBLICKEY[] = "PUBLICKEY";
 static const char __pyx_k_RECURSIVE[] = "RECURSIVE";
 static const char __pyx_k_SSH2_Open[] = "SSH2_Open";
@@ -1395,6 +1406,7 @@ static const char __pyx_k_KEXDH_INIT[] = "KEXDH_INIT";
 static const char __pyx_k_KNOWNHOSTS[] = "KNOWNHOSTS";
 static const char __pyx_k_MODIFYTIME[] = "MODIFYTIME";
 static const char __pyx_k_OWNERGROUP[] = "OWNERGROUP";
+static const char __pyx_k_O_NOFOLLOW[] = "O_NOFOLLOW";
 static const char __pyx_k_RSA_CERT01[] = "RSA_CERT01";
 static const char __pyx_k_Auth_Method[] = "Auth_Method";
 static const char __pyx_k_BAD_MESSAGE[] = "BAD_MESSAGE";
@@ -1408,6 +1420,7 @@ static const char __pyx_k_GSSAPI_AUTH[] = "GSSAPI_AUTH";
 static const char __pyx_k_INTERACTIVE[] = "INTERACTIVE";
 static const char __pyx_k_KBDINT_AUTH[] = "KBDINT_AUTH";
 static const char __pyx_k_KEXDH_REPLY[] = "KEXDH_REPLY";
+static const char __pyx_k_O_DIRECTORY[] = "O_DIRECTORY";
 static const char __pyx_k_PERMISSIONS[] = "PERMISSIONS";
 static const char __pyx_k_PUBKEY_AUTH[] = "PUBKEY_AUTH";
 static const char __pyx_k_SCP_Request[] = "SCP_Request";
@@ -1708,6 +1721,17 @@ static PyObject *__pyx_n_s_OPEN_FAILURE;
 static PyObject *__pyx_n_s_OP_UNSUPPORTED;
 static PyObject *__pyx_n_s_OVERWRITE;
 static PyObject *__pyx_n_s_OWNERGROUP;
+static PyObject *__pyx_n_s_O_CLOEXEC;
+static PyObject *__pyx_n_s_O_CREAT;
+static PyObject *__pyx_n_s_O_DIRECTORY;
+static PyObject *__pyx_n_s_O_EXCL;
+static PyObject *__pyx_n_s_O_NOCTTY;
+static PyObject *__pyx_n_s_O_NOFOLLOW;
+static PyObject *__pyx_n_s_O_RDONLY;
+static PyObject *__pyx_n_s_O_RDWR;
+static PyObject *__pyx_n_s_O_TMPFILE;
+static PyObject *__pyx_n_s_O_TRUNC;
+static PyObject *__pyx_n_s_O_WRONLY;
 static PyObject *__pyx_n_s_Options;
 static PyObject *__pyx_n_s_PACKET;
 static PyObject *__pyx_n_s_PARTIAL;
@@ -1757,6 +1781,7 @@ static PyObject *__pyx_n_s_SERVICE_REQUEST;
 static PyObject *__pyx_n_s_SESSION;
 static PyObject *__pyx_n_s_SETSTAT;
 static PyObject *__pyx_n_s_SFTP;
+static PyObject *__pyx_n_s_SFTP_AT;
 static PyObject *__pyx_n_s_SFTP_FX;
 static PyObject *__pyx_n_s_SFTP_FXE;
 static PyObject *__pyx_n_s_SFTP_FXF;
@@ -2068,6 +2093,17 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_OP_UNSUPPORTED, __pyx_k_OP_UNSUPPORTED, sizeof(__pyx_k_OP_UNSUPPORTED), 0, 0, 1, 1},
   {&__pyx_n_s_OVERWRITE, __pyx_k_OVERWRITE, sizeof(__pyx_k_OVERWRITE), 0, 0, 1, 1},
   {&__pyx_n_s_OWNERGROUP, __pyx_k_OWNERGROUP, sizeof(__pyx_k_OWNERGROUP), 0, 0, 1, 1},
+  {&__pyx_n_s_O_CLOEXEC, __pyx_k_O_CLOEXEC, sizeof(__pyx_k_O_CLOEXEC), 0, 0, 1, 1},
+  {&__pyx_n_s_O_CREAT, __pyx_k_O_CREAT, sizeof(__pyx_k_O_CREAT), 0, 0, 1, 1},
+  {&__pyx_n_s_O_DIRECTORY, __pyx_k_O_DIRECTORY, sizeof(__pyx_k_O_DIRECTORY), 0, 0, 1, 1},
+  {&__pyx_n_s_O_EXCL, __pyx_k_O_EXCL, sizeof(__pyx_k_O_EXCL), 0, 0, 1, 1},
+  {&__pyx_n_s_O_NOCTTY, __pyx_k_O_NOCTTY, sizeof(__pyx_k_O_NOCTTY), 0, 0, 1, 1},
+  {&__pyx_n_s_O_NOFOLLOW, __pyx_k_O_NOFOLLOW, sizeof(__pyx_k_O_NOFOLLOW), 0, 0, 1, 1},
+  {&__pyx_n_s_O_RDONLY, __pyx_k_O_RDONLY, sizeof(__pyx_k_O_RDONLY), 0, 0, 1, 1},
+  {&__pyx_n_s_O_RDWR, __pyx_k_O_RDWR, sizeof(__pyx_k_O_RDWR), 0, 0, 1, 1},
+  {&__pyx_n_s_O_TMPFILE, __pyx_k_O_TMPFILE, sizeof(__pyx_k_O_TMPFILE), 0, 0, 1, 1},
+  {&__pyx_n_s_O_TRUNC, __pyx_k_O_TRUNC, sizeof(__pyx_k_O_TRUNC), 0, 0, 1, 1},
+  {&__pyx_n_s_O_WRONLY, __pyx_k_O_WRONLY, sizeof(__pyx_k_O_WRONLY), 0, 0, 1, 1},
   {&__pyx_n_s_Options, __pyx_k_Options, sizeof(__pyx_k_Options), 0, 0, 1, 1},
   {&__pyx_n_s_PACKET, __pyx_k_PACKET, sizeof(__pyx_k_PACKET), 0, 0, 1, 1},
   {&__pyx_n_s_PARTIAL, __pyx_k_PARTIAL, sizeof(__pyx_k_PARTIAL), 0, 0, 1, 1},
@@ -2117,6 +2153,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_SESSION, __pyx_k_SESSION, sizeof(__pyx_k_SESSION), 0, 0, 1, 1},
   {&__pyx_n_s_SETSTAT, __pyx_k_SETSTAT, sizeof(__pyx_k_SETSTAT), 0, 0, 1, 1},
   {&__pyx_n_s_SFTP, __pyx_k_SFTP, sizeof(__pyx_k_SFTP), 0, 0, 1, 1},
+  {&__pyx_n_s_SFTP_AT, __pyx_k_SFTP_AT, sizeof(__pyx_k_SFTP_AT), 0, 0, 1, 1},
   {&__pyx_n_s_SFTP_FX, __pyx_k_SFTP_FX, sizeof(__pyx_k_SFTP_FX), 0, 0, 1, 1},
   {&__pyx_n_s_SFTP_FXE, __pyx_k_SFTP_FXE, sizeof(__pyx_k_SFTP_FXE), 0, 0, 1, 1},
   {&__pyx_n_s_SFTP_FXF, __pyx_k_SFTP_FXF, sizeof(__pyx_k_SFTP_FXF), 0, 0, 1, 1},
@@ -7650,6 +7687,7 @@ if (!__Pyx_RefNanny) {
  * class SFTP_FXE(enum.Enum):
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY             # <<<<<<<<<<<<<<
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
+ * class SFTP_AT(enum.Enum):
  */
   __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXE_STATVFS_ST_RDONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 416, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -7660,6 +7698,8 @@ if (!__Pyx_RefNanny) {
  * class SFTP_FXE(enum.Enum):
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID             # <<<<<<<<<<<<<<
+ * class SFTP_AT(enum.Enum):
+ *     O_RDONLY = c_sftp.O_RDONLY
  */
   __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXE_STATVFS_ST_NOSUID); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -7676,6 +7716,172 @@ if (!__Pyx_RefNanny) {
   __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXE, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXE, __pyx_t_4) < 0) __PYX_ERR(0, 415, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh/libssh_enums.pyx":418
+ *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
+ *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
+ * class SFTP_AT(enum.Enum):             # <<<<<<<<<<<<<<
+ *     O_RDONLY = c_sftp.O_RDONLY
+ *     O_WRONLY = c_sftp.O_WRONLY
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Enum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_AT, __pyx_n_s_SFTP_AT, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "ssh/libssh_enums.pyx":419
+ *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
+ * class SFTP_AT(enum.Enum):
+ *     O_RDONLY = c_sftp.O_RDONLY             # <<<<<<<<<<<<<<
+ *     O_WRONLY = c_sftp.O_WRONLY
+ *     O_RDWR = c_sftp.O_RDWR
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_RDONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_RDONLY, __pyx_t_4) < 0) __PYX_ERR(0, 419, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":420
+ * class SFTP_AT(enum.Enum):
+ *     O_RDONLY = c_sftp.O_RDONLY
+ *     O_WRONLY = c_sftp.O_WRONLY             # <<<<<<<<<<<<<<
+ *     O_RDWR = c_sftp.O_RDWR
+ *     O_CLOEXEC = c_sftp.O_CLOEXEC
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_WRONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_WRONLY, __pyx_t_4) < 0) __PYX_ERR(0, 420, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":421
+ *     O_RDONLY = c_sftp.O_RDONLY
+ *     O_WRONLY = c_sftp.O_WRONLY
+ *     O_RDWR = c_sftp.O_RDWR             # <<<<<<<<<<<<<<
+ *     O_CLOEXEC = c_sftp.O_CLOEXEC
+ *     O_CREAT = c_sftp.O_CREAT
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_RDWR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_RDWR, __pyx_t_4) < 0) __PYX_ERR(0, 421, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":422
+ *     O_WRONLY = c_sftp.O_WRONLY
+ *     O_RDWR = c_sftp.O_RDWR
+ *     O_CLOEXEC = c_sftp.O_CLOEXEC             # <<<<<<<<<<<<<<
+ *     O_CREAT = c_sftp.O_CREAT
+ *     O_DIRECTORY = c_sftp.O_DIRECTORY
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_CLOEXEC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 422, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_CLOEXEC, __pyx_t_4) < 0) __PYX_ERR(0, 422, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":423
+ *     O_RDWR = c_sftp.O_RDWR
+ *     O_CLOEXEC = c_sftp.O_CLOEXEC
+ *     O_CREAT = c_sftp.O_CREAT             # <<<<<<<<<<<<<<
+ *     O_DIRECTORY = c_sftp.O_DIRECTORY
+ *     O_EXCL = c_sftp.O_EXCL
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_CREAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_CREAT, __pyx_t_4) < 0) __PYX_ERR(0, 423, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":424
+ *     O_CLOEXEC = c_sftp.O_CLOEXEC
+ *     O_CREAT = c_sftp.O_CREAT
+ *     O_DIRECTORY = c_sftp.O_DIRECTORY             # <<<<<<<<<<<<<<
+ *     O_EXCL = c_sftp.O_EXCL
+ *     O_NOCTTY = c_sftp.O_NOCTTY
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_DIRECTORY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_DIRECTORY, __pyx_t_4) < 0) __PYX_ERR(0, 424, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":425
+ *     O_CREAT = c_sftp.O_CREAT
+ *     O_DIRECTORY = c_sftp.O_DIRECTORY
+ *     O_EXCL = c_sftp.O_EXCL             # <<<<<<<<<<<<<<
+ *     O_NOCTTY = c_sftp.O_NOCTTY
+ *     O_NOFOLLOW = c_sftp.O_NOFOLLOW
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_EXCL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_EXCL, __pyx_t_4) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":426
+ *     O_DIRECTORY = c_sftp.O_DIRECTORY
+ *     O_EXCL = c_sftp.O_EXCL
+ *     O_NOCTTY = c_sftp.O_NOCTTY             # <<<<<<<<<<<<<<
+ *     O_NOFOLLOW = c_sftp.O_NOFOLLOW
+ *     O_TMPFILE = c_sftp.O_TMPFILE
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_NOCTTY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 426, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_NOCTTY, __pyx_t_4) < 0) __PYX_ERR(0, 426, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":427
+ *     O_EXCL = c_sftp.O_EXCL
+ *     O_NOCTTY = c_sftp.O_NOCTTY
+ *     O_NOFOLLOW = c_sftp.O_NOFOLLOW             # <<<<<<<<<<<<<<
+ *     O_TMPFILE = c_sftp.O_TMPFILE
+ *     O_TRUNC = c_sftp.O_TRUNC
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_NOFOLLOW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 427, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_NOFOLLOW, __pyx_t_4) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":428
+ *     O_NOCTTY = c_sftp.O_NOCTTY
+ *     O_NOFOLLOW = c_sftp.O_NOFOLLOW
+ *     O_TMPFILE = c_sftp.O_TMPFILE             # <<<<<<<<<<<<<<
+ *     O_TRUNC = c_sftp.O_TRUNC
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_TMPFILE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_TMPFILE, __pyx_t_4) < 0) __PYX_ERR(0, 428, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":429
+ *     O_NOFOLLOW = c_sftp.O_NOFOLLOW
+ *     O_TMPFILE = c_sftp.O_TMPFILE
+ *     O_TRUNC = c_sftp.O_TRUNC             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_TRUNC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_TRUNC, __pyx_t_4) < 0) __PYX_ERR(0, 429, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":418
+ *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
+ *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
+ * class SFTP_AT(enum.Enum):             # <<<<<<<<<<<<<<
+ *     O_RDONLY = c_sftp.O_RDONLY
+ *     O_WRONLY = c_sftp.O_WRONLY
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_AT, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_AT, __pyx_t_4) < 0) __PYX_ERR(0, 418, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;

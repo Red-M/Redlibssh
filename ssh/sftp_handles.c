@@ -681,6 +681,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <sys/types.h>
 #include "libssh/libssh.h"
 #include "poll.h"
+#include "fcntl.h"
 #include "libssh/sftp.h"
 #include <string.h>
 #include <stdlib.h>
@@ -5292,7 +5293,7 @@ static PyObject *__pyx_pf_3ssh_12sftp_handles_8SFTPFile_40__setstate_cython__(CY
  * cdef class SFTPDir:
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if not self.closed:
+ *         if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:
  *             self.closedir()
  */
 
@@ -5310,9 +5311,10 @@ static void __pyx_pw_3ssh_12sftp_handles_7SFTPDir_1__dealloc__(PyObject *__pyx_v
 static void __pyx_pf_3ssh_12sftp_handles_7SFTPDir___dealloc__(struct __pyx_obj_3ssh_12sftp_handles_SFTPDir *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_2;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5321,43 +5323,57 @@ static void __pyx_pf_3ssh_12sftp_handles_7SFTPDir___dealloc__(struct __pyx_obj_3
   /* "ssh/sftp_handles.pyx":197
  * 
  *     def __dealloc__(self):
- *         if not self.closed:             # <<<<<<<<<<<<<<
+ *         if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:             # <<<<<<<<<<<<<<
  *             self.closedir()
  * 
  */
-  __pyx_t_1 = ((!(__pyx_v_self->closed != 0)) != 0);
+  __pyx_t_2 = ((__pyx_v_self->closed == 0) != 0);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_2 = ((__pyx_v_self->sftp->_sftp != NULL) != 0);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_2 = ((__pyx_v_self->sftp->session->_session != NULL) != 0);
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
     /* "ssh/sftp_handles.pyx":198
  *     def __dealloc__(self):
- *         if not self.closed:
+ *         if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:
  *             self.closedir()             # <<<<<<<<<<<<<<
  * 
  *     @staticmethod
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_closedir); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-      if (likely(__pyx_t_4)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_4);
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_closedir); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+      if (likely(__pyx_t_5)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+        __Pyx_INCREF(__pyx_t_5);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_3, function);
+        __Pyx_DECREF_SET(__pyx_t_4, function);
       }
     }
-    __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
     /* "ssh/sftp_handles.pyx":197
  * 
  *     def __dealloc__(self):
- *         if not self.closed:             # <<<<<<<<<<<<<<
+ *         if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:             # <<<<<<<<<<<<<<
  *             self.closedir()
  * 
  */
@@ -5367,16 +5383,16 @@ static void __pyx_pf_3ssh_12sftp_handles_7SFTPDir___dealloc__(struct __pyx_obj_3
  * cdef class SFTPDir:
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if not self.closed:
+ *         if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:
  *             self.closedir()
  */
 
   /* function exit code */
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_WriteUnraisable("ssh.sftp_handles.SFTPDir.__dealloc__", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
