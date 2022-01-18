@@ -35,6 +35,11 @@ cdef class SFTPFile:
         _fh.sftp = sftp
         return _fh
 
+    def __dealloc__(self):
+        if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:
+            c_sftp.sftp_close(self._file)
+        self.closed = True
+
     def __enter__(self):
         return self
 
@@ -193,16 +198,16 @@ cdef class SFTPFile:
 
 cdef class SFTPDir:
 
-    def __dealloc__(self):
-        if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:
-            self.closedir()
-
     @staticmethod
     cdef SFTPDir from_ptr(c_sftp.sftp_dir _dir, SFTP sftp):
         cdef SFTPDir _fh = SFTPDir.__new__(SFTPDir, sftp)
         _fh._dir = _dir
         _fh.sftp = sftp
         return _fh
+
+    def __dealloc__(self):
+        if self.closed==False and self.sftp._sftp is not NULL and self.sftp.session._session is not NULL:
+            self.closedir()
 
     def __enter__(self):
         return self

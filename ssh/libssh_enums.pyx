@@ -22,7 +22,7 @@ from . cimport c_ssh2
 from . cimport c_callbacks
 
 #ssh
-class SSH(enum.Enum):
+class SSH(enum.IntEnum):
     MD5_DIGEST_LEN = c_ssh.MD5_DIGEST_LEN
     CRYPT = c_ssh.SSH_CRYPT
     MAC = c_ssh.SSH_MAC
@@ -40,7 +40,7 @@ class SSH(enum.Enum):
     CLOSED_ERROR = c_ssh.SSH_CLOSED_ERROR
     WRITE_PENDING = c_ssh.SSH_WRITE_PENDING
 
-class Kex(enum.Enum):
+class Kex(enum.IntEnum):
     KEX = c_ssh.SSH_KEX
     HOSTKEYS = c_ssh.SSH_HOSTKEYS
     CRYPT_C_S = c_ssh.SSH_CRYPT_C_S
@@ -52,7 +52,7 @@ class Kex(enum.Enum):
     LANG_C_S = c_ssh.SSH_LANG_C_S
     LANG_S_C = c_ssh.SSH_LANG_S_C
 
-class Auth(enum.Enum):
+class Auth(enum.IntEnum):
     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
     DENIED = c_ssh.SSH_AUTH_DENIED
     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
@@ -60,7 +60,7 @@ class Auth(enum.Enum):
     AGAIN = c_ssh.SSH_AUTH_AGAIN
     ERROR = c_ssh.SSH_AUTH_ERROR
 
-class Auth_Method(enum.Enum):
+class Auth_Method(enum.IntEnum):
     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
     NONE = c_ssh.SSH_AUTH_METHOD_NONE
     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
@@ -70,7 +70,7 @@ class Auth_Method(enum.Enum):
     GSSAPI_MIC = c_ssh.SSH_AUTH_METHOD_GSSAPI_MIC
 
     # enum ssh_requests_e:
-class Request(enum.Enum):
+class Request(enum.IntEnum):
     AUTH = c_ssh.SSH_REQUEST_AUTH
     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
@@ -78,7 +78,7 @@ class Request(enum.Enum):
     GLOBAL = c_ssh.SSH_REQUEST_GLOBAL
 
     # enum ssh_channel_type_e:
-class Channel(enum.Enum):
+class Channel(enum.IntEnum):
     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
     SESSION = c_ssh.SSH_CHANNEL_SESSION
     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
@@ -87,7 +87,7 @@ class Channel(enum.Enum):
     AUTH_AGENT = c_ssh.SSH_CHANNEL_AUTH_AGENT
 
 # enum ssh_channel_requests_e:
-class Channel_Request(enum.Enum):
+class Channel_Request(enum.IntEnum):
     UNKNOWN = c_ssh.SSH_CHANNEL_REQUEST_UNKNOWN
     PTY = c_ssh.SSH_CHANNEL_REQUEST_PTY
     EXEC = c_ssh.SSH_CHANNEL_REQUEST_EXEC
@@ -98,21 +98,21 @@ class Channel_Request(enum.Enum):
     X11 = c_ssh.SSH_CHANNEL_REQUEST_X11
 
     # enum ssh_global_requests_e:
-class Global_Request(enum.Enum):
+class Global_Request(enum.IntEnum):
     UNKNOWN = c_ssh.SSH_GLOBAL_REQUEST_UNKNOWN
     TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_TCPIP_FORWARD
     CANCEL_TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD
     KEEPALIVE = c_ssh.SSH_GLOBAL_REQUEST_KEEPALIVE
 
     # enum ssh_publickey_state_e:
-class PublicKeyState(enum.Enum):
+class PublicKeyState(enum.IntEnum):
     ERROR = c_ssh.SSH_PUBLICKEY_STATE_ERROR
     NONE = c_ssh.SSH_PUBLICKEY_STATE_NONE
     VALID = c_ssh.SSH_PUBLICKEY_STATE_VALID
     WRONG = c_ssh.SSH_PUBLICKEY_STATE_WRONG
 
     # enum ssh_server_known_e:
-class Server(enum.Enum):
+class Server(enum.IntEnum):
     ERROR = c_ssh.SSH_SERVER_ERROR
     NOT_KNOWN = c_ssh.SSH_SERVER_NOT_KNOWN
     KNOWN_OK = c_ssh.SSH_SERVER_KNOWN_OK
@@ -122,14 +122,14 @@ class Server(enum.Enum):
 
     # Errors
     # enum ssh_error_types_e:
-class ErrorTypes(enum.Enum):
+class ErrorTypes(enum.IntEnum):
     NO_ERROR = c_ssh.SSH_NO_ERROR
     REQUEST_DENIED = c_ssh.SSH_REQUEST_DENIED
     FATAL = c_ssh.SSH_FATAL
     EINTR = c_ssh.SSH_EINTR
 
     # enum ssh_keytypes_e:
-class KeyType(enum.Enum):
+class KeyType(enum.IntEnum):
     UNKNOWN = c_ssh.SSH_KEYTYPE_UNKNOWN
     DSS = c_ssh.SSH_KEYTYPE_DSS
     RSA = c_ssh.SSH_KEYTYPE_RSA
@@ -147,11 +147,11 @@ class KeyType(enum.Enum):
     ED25519_CERT01 = c_ssh.SSH_KEYTYPE_ED25519_CERT01
 
     # enum ssh_keycmp_e:
-class KeyCMP(enum.Enum):
+class KeyCMP(enum.IntEnum):
     PUBLIC = c_ssh.SSH_KEY_CMP_PUBLIC
     PRIVATE = c_ssh.SSH_KEY_CMP_PRIVATE
 
-class Log(enum.Enum):
+class Log(enum.IntEnum):
     NOLOG = c_ssh.SSH_LOG_NOLOG
     PROTOCOL = c_ssh.SSH_LOG_PROTOCOL
     PACKET = c_ssh.SSH_LOG_PACKET
@@ -164,7 +164,7 @@ class Log(enum.Enum):
     TRACE = c_ssh.SSH_LOG_TRACE
 
     # enum ssh_options_e:
-class Options(enum.Enum):
+class Options(enum.IntEnum):
     HOST = c_ssh.SSH_OPTIONS_HOST
     PORT = c_ssh.SSH_OPTIONS_PORT
     PORT_STR = c_ssh.SSH_OPTIONS_PORT_STR
@@ -203,12 +203,12 @@ class Options(enum.Enum):
     GLOBAL_KNOWNHOSTS = c_ssh.SSH_OPTIONS_GLOBAL_KNOWNHOSTS
     NODELAY = c_ssh.SSH_OPTIONS_NODELAY
 
-class SCP(enum.Enum):
+class SCP(enum.IntEnum):
     WRITE = c_ssh.SSH_SCP_WRITE
     READ = c_ssh.SSH_SCP_READ
     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE
         # enum ssh_scp_request_types:
-class SCP_Request(enum.Enum):
+class SCP_Request(enum.IntEnum):
     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
     EOF = c_ssh.SSH_SCP_REQUEST_EOF
@@ -216,12 +216,12 @@ class SCP_Request(enum.Enum):
     WARNING = c_ssh.SSH_SCP_REQUEST_WARNING
 
     # enum ssh_connector_flags_e:
-class Connector(enum.Enum):
+class Connector(enum.IntEnum):
     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
     STDERR = c_ssh.SSH_CONNECTOR_STDERR
     BOTH = c_ssh.SSH_CONNECTOR_BOTH
 #callbacks
-class Callbacks_Socket(enum.Enum):
+class Callbacks_Socket(enum.IntEnum):
     FLOW_WRITEWILLBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWILLBLOCK
     FLOW_WRITEWONTBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWONTBLOCK
     EXCEPTION_EOF = c_callbacks.SSH_SOCKET_EXCEPTION_EOF
@@ -231,7 +231,7 @@ class Callbacks_Socket(enum.Enum):
     CONNECTED_TIMEOUT = c_callbacks.SSH_SOCKET_CONNECTED_TIMEOUT
 
 #ssh2
-class SSH2_Msg(enum.Enum):
+class SSH2_Msg(enum.IntEnum):
     DISCONNECT = c_ssh2.SSH2_MSG_DISCONNECT
     IGNORE = c_ssh2.SSH2_MSG_IGNORE
     UNIMPLEMENTED = c_ssh2.SSH2_MSG_UNIMPLEMENTED
@@ -244,7 +244,7 @@ class SSH2_Msg(enum.Enum):
     ECMQV_REPLY = c_ssh2.SSH2_MSG_ECMQV_REPLY
     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
-class SSH2_Msg_Kex(enum.Enum):
+class SSH2_Msg_Kex(enum.IntEnum):
     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
@@ -252,7 +252,7 @@ class SSH2_Msg_Kex(enum.Enum):
     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
-class SSH2_Msg_UserAuth(enum.Enum):
+class SSH2_Msg_UserAuth(enum.IntEnum):
     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
@@ -267,12 +267,12 @@ class SSH2_Msg_UserAuth(enum.Enum):
     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
-class SSH2_Msg_Global(enum.Enum):
+class SSH2_Msg_Global(enum.IntEnum):
     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
-class SSH2_Msg_Request(enum.Enum):
+class SSH2_Msg_Request(enum.IntEnum):
     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS
     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE
-class SSH2_Msg_Channel(enum.Enum):
+class SSH2_Msg_Channel(enum.IntEnum):
     OPEN = c_ssh2.SSH2_MSG_CHANNEL_OPEN
     OPEN_CONFIRMATION = c_ssh2.SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
     OPEN_FAILURE = c_ssh2.SSH2_MSG_CHANNEL_OPEN_FAILURE
@@ -284,7 +284,7 @@ class SSH2_Msg_Channel(enum.Enum):
     REQUEST = c_ssh2.SSH2_MSG_CHANNEL_REQUEST
     SUCCESS = c_ssh2.SSH2_MSG_CHANNEL_SUCCESS
     FAILURE = c_ssh2.SSH2_MSG_CHANNEL_FAILURE
-class SSH2_Disconnect(enum.Enum):
+class SSH2_Disconnect(enum.IntEnum):
     HOST_NOT_ALLOWED_TO_CONNECT = c_ssh2.SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT
     PROTOCOL_ERROR = c_ssh2.SSH2_DISCONNECT_PROTOCOL_ERROR
     KEY_EXCHANGE_FAILED = c_ssh2.SSH2_DISCONNECT_KEY_EXCHANGE_FAILED
@@ -301,16 +301,16 @@ class SSH2_Disconnect(enum.Enum):
     AUTH_CANCELLED_BY_USER = c_ssh2.SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER
     NO_MORE_AUTH_METHODS_AVAILABLE = c_ssh2.SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE
     ILLEGAL_USER_NAME = c_ssh2.SSH2_DISCONNECT_ILLEGAL_USER_NAME
-class SSH2_Open(enum.Enum):
+class SSH2_Open(enum.IntEnum):
     ADMINISTRATIVELY_PROHIBITED = c_ssh2.SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED
     CONNECT_FAILED = c_ssh2.SSH2_OPEN_CONNECT_FAILED
     UNKNOWN_CHANNEL_TYPE = c_ssh2.SSH2_OPEN_UNKNOWN_CHANNEL_TYPE
     RESOURCE_SHORTAGE = c_ssh2.SSH2_OPEN_RESOURCE_SHORTAGE
-class SSH2_ExtendedData(enum.Enum):
+class SSH2_ExtendedData(enum.IntEnum):
     STDERR = c_ssh2.SSH2_EXTENDED_DATA_STDERR
 
 #sftp
-class SFTP(enum.Enum):
+class SFTP(enum.IntEnum):
     OPEN = c_sftp.SFTP_OPEN
     CLOSE = c_sftp.SFTP_CLOSE
     READ = c_sftp.SFTP_READ
@@ -329,7 +329,7 @@ class SFTP(enum.Enum):
     RENAME = c_sftp.SFTP_RENAME
     READLINK = c_sftp.SFTP_READLINK
     SYMLINK = c_sftp.SFTP_SYMLINK
-class SFTP_FXP(enum.Enum):
+class SFTP_FXP(enum.IntEnum):
     INIT = c_sftp.SSH_FXP_INIT
     VERSION = c_sftp.SSH_FXP_VERSION
     OPEN = c_sftp.SSH_FXP_OPEN
@@ -357,7 +357,7 @@ class SFTP_FXP(enum.Enum):
     ATTRS = c_sftp.SSH_FXP_ATTRS
     EXTENDED = c_sftp.SSH_FXP_EXTENDED
     EXTENDED_REPLY = c_sftp.SSH_FXP_EXTENDED_REPLY
-class SFTP_FileXfer_Attr(enum.Enum):
+class SFTP_FileXfer_Attr(enum.IntEnum):
     SIZE = c_sftp.SSH_FILEXFER_ATTR_SIZE
     PERMISSIONS = c_sftp.SSH_FILEXFER_ATTR_PERMISSIONS
     ACCESSTIME = c_sftp.SSH_FILEXFER_ATTR_ACCESSTIME
@@ -370,13 +370,13 @@ class SFTP_FileXfer_Attr(enum.Enum):
     EXTENDED = c_sftp.SSH_FILEXFER_ATTR_EXTENDED
     UIDGID = c_sftp.SSH_FILEXFER_ATTR_UIDGID
 # Types
-class SFTP_FileXfer_Type(enum.Enum):
+class SFTP_FileXfer_Type(enum.IntEnum):
     REGULAR = c_sftp.SSH_FILEXFER_TYPE_REGULAR
     DIRECTORY = c_sftp.SSH_FILEXFER_TYPE_DIRECTORY
     SYMLINK = c_sftp.SSH_FILEXFER_TYPE_SYMLINK
     SPECIAL = c_sftp.SSH_FILEXFER_TYPE_SPECIAL
     UNKNOWN = c_sftp.SSH_FILEXFER_TYPE_UNKNOWN
-class SFTP_FX(enum.Enum):
+class SFTP_FX(enum.IntEnum):
     OK = c_sftp.SSH_FX_OK
     EOF = c_sftp.SSH_FX_EOF
     NO_SUCH_FILE = c_sftp.SSH_FX_NO_SUCH_FILE
@@ -391,7 +391,7 @@ class SFTP_FX(enum.Enum):
     FILE_ALREADY_EXISTS = c_sftp.SSH_FX_FILE_ALREADY_EXISTS
     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
-class SFTP_FXF(enum.Enum):
+class SFTP_FXF(enum.IntEnum):
     READ = c_sftp.SSH_FXF_READ
     WRITE = c_sftp.SSH_FXF_WRITE
     APPEND = c_sftp.SSH_FXF_APPEND
@@ -399,11 +399,11 @@ class SFTP_FXF(enum.Enum):
     TRUNC = c_sftp.SSH_FXF_TRUNC
     EXCL = c_sftp.SSH_FXF_EXCL
     TEXT = c_sftp.SSH_FXF_TEXT
-class SFTP_FXF_Rename(enum.Enum):
+class SFTP_FXF_Rename(enum.IntEnum):
     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
-class SFTP_S(enum.Enum):
+class SFTP_S(enum.IntEnum):
     IFMT = c_sftp.SSH_S_IFMT
     IFSOCK = c_sftp.SSH_S_IFSOCK
     IFLNK = c_sftp.SSH_S_IFLNK
@@ -412,10 +412,10 @@ class SFTP_S(enum.Enum):
     IFDIR = c_sftp.SSH_S_IFDIR
     IFCHR = c_sftp.SSH_S_IFCHR
     IFIFO = c_sftp.SSH_S_IFIFO
-class SFTP_FXE(enum.Enum):
+class SFTP_FXE(enum.IntEnum):
     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
-class SFTP_AT(enum.Enum):
+class SFTP_AT(enum.IntEnum):
     O_RDONLY = c_sftp.O_RDONLY
     O_WRONLY = c_sftp.O_WRONLY
     O_RDWR = c_sftp.O_RDWR
