@@ -256,6 +256,13 @@ cdef extern from "libssh/libssh.h" nogil:
         SSH_CONNECTOR_STDOUT,
         SSH_CONNECTOR_STDERR,
         SSH_CONNECTOR_BOTH
+    enum ssh_known_hosts_e:
+        SSH_KNOWN_HOSTS_ERROR
+        SSH_KNOWN_HOSTS_NOT_FOUND
+        SSH_KNOWN_HOSTS_UNKNOWN
+        SSH_KNOWN_HOSTS_OK
+        SSH_KNOWN_HOSTS_CHANGED
+        SSH_KNOWN_HOSTS_OTHER
     int ssh_blocking_flush(ssh_session session, int timeout)
     ssh_channel ssh_channel_accept_x11(ssh_channel channel, int timeout_ms)
     int ssh_channel_change_pty_size(ssh_channel channel, int cols, int rows)
@@ -334,14 +341,6 @@ cdef extern from "libssh/libssh.h" nogil:
         SSH_PUBLICKEY_HASH_MD5
     int ssh_get_publickey_hash(const ssh_key key, ssh_publickey_hash_type type, unsigned char **hash, size_t *hlen)
 
-    # deprecated functions
-    int ssh_get_pubkey_hash(ssh_session session, unsigned char **hash)
-    ssh_channel ssh_forward_accept(ssh_session session, int timeout_ms)
-    int ssh_forward_cancel(ssh_session session, const char *address, int port)
-    int ssh_forward_listen(ssh_session session, const char *address, int port, int *bound_port)
-    int ssh_get_publickey(ssh_session session, ssh_key *key)
-    # End deprecated
-
     int ssh_get_random(void *where, int len, int strong)
     int ssh_get_version(ssh_session session)
     int ssh_get_status(ssh_session session)
@@ -356,9 +355,6 @@ cdef extern from "libssh/libssh.h" nogil:
     void *ssh_get_log_userdata()
     int ssh_set_log_userdata(void *data)
     _ssh_log(int verbosity, const char *function, const char *format, int, int)
-
-    # legacy
-    ssh_log(ssh_session session, int prioriry, const char *format, int, int)
 
     ssh_channel ssh_message_channel_request_open_reply_accept(ssh_message msg)
     int ssh_message_channel_request_reply_success(ssh_message msg)
@@ -508,3 +504,5 @@ cdef extern from "libssh/libssh.h" nogil:
     uint32_t ssh_buffer_get_data(ssh_buffer buffer, void *data, uint32_t requestedlen)
     void *ssh_buffer_get(ssh_buffer buffer)
     uint32_t ssh_buffer_get_len(ssh_buffer buffer)
+    int ssh_session_update_known_hosts(ssh_session session)
+    ssh_known_hosts_e ssh_session_is_known_server(ssh_session session)

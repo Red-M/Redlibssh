@@ -52,6 +52,14 @@ class Kex(enum.IntEnum):
     LANG_C_S = c_ssh.SSH_LANG_C_S
     LANG_S_C = c_ssh.SSH_LANG_S_C
 
+class Known_Hosts(enum.IntEnum):
+    ERROR = c_ssh.SSH_KNOWN_HOSTS_ERROR
+    NOT_FOUND = c_ssh.SSH_KNOWN_HOSTS_NOT_FOUND
+    UNKNOWN = c_ssh.SSH_KNOWN_HOSTS_UNKNOWN
+    OK = c_ssh.SSH_KNOWN_HOSTS_OK
+    CHANGED = c_ssh.SSH_KNOWN_HOSTS_CHANGED
+    OTHER = c_ssh.SSH_KNOWN_HOSTS_OTHER
+
 class Auth(enum.IntEnum):
     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
     DENIED = c_ssh.SSH_AUTH_DENIED

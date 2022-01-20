@@ -1116,6 +1116,9 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_enum__ssh_kex_types_e(enum ssh_kex_types_e value);
 
 /* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_enum__ssh_known_hosts_e(enum ssh_known_hosts_e value);
+
+/* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_enum__ssh_auth_e(enum ssh_auth_e value);
 
 /* CIntToPy.proto */
@@ -1272,6 +1275,7 @@ static const char __pyx_k_IFREG[] = "IFREG";
 static const char __pyx_k_LSTAT[] = "LSTAT";
 static const char __pyx_k_MKDIR[] = "MKDIR";
 static const char __pyx_k_NOLOG[] = "NOLOG";
+static const char __pyx_k_OTHER[] = "OTHER";
 static const char __pyx_k_PK_OK[] = "PK_OK";
 static const char __pyx_k_RMDIR[] = "RMDIR";
 static const char __pyx_k_SHELL[] = "SHELL";
@@ -1307,6 +1311,7 @@ static const char __pyx_k_Server[] = "Server";
 static const char __pyx_k_UIDGID[] = "UIDGID";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_module[] = "__module__";
+static const char __pyx_k_CHANGED[] = "CHANGED";
 static const char __pyx_k_CHANNEL[] = "CHANNEL";
 static const char __pyx_k_Channel[] = "Channel";
 static const char __pyx_k_ED25519[] = "ED25519";
@@ -1381,6 +1386,7 @@ static const char __pyx_k_FUNCTIONS[] = "FUNCTIONS";
 static const char __pyx_k_HOSTBASED[] = "HOSTBASED";
 static const char __pyx_k_KEEPALIVE[] = "KEEPALIVE";
 static const char __pyx_k_MAC_ERROR[] = "MAC_ERROR";
+static const char __pyx_k_NOT_FOUND[] = "NOT_FOUND";
 static const char __pyx_k_NOT_KNOWN[] = "NOT_KNOWN";
 static const char __pyx_k_OVERWRITE[] = "OVERWRITE";
 static const char __pyx_k_PUBLICKEY[] = "PUBLICKEY";
@@ -1418,6 +1424,7 @@ static const char __pyx_k_GSSAPI_AUTH[] = "GSSAPI_AUTH";
 static const char __pyx_k_INTERACTIVE[] = "INTERACTIVE";
 static const char __pyx_k_KBDINT_AUTH[] = "KBDINT_AUTH";
 static const char __pyx_k_KEXDH_REPLY[] = "KEXDH_REPLY";
+static const char __pyx_k_Known_Hosts[] = "Known_Hosts";
 static const char __pyx_k_PERMISSIONS[] = "PERMISSIONS";
 static const char __pyx_k_PUBKEY_AUTH[] = "PUBKEY_AUTH";
 static const char __pyx_k_SCP_Request[] = "SCP_Request";
@@ -1546,6 +1553,7 @@ static PyObject *__pyx_n_s_BINDADDR;
 static PyObject *__pyx_n_s_BOTH;
 static PyObject *__pyx_n_s_BY_APPLICATION;
 static PyObject *__pyx_n_s_CANCEL_TCPIP_FORWARD;
+static PyObject *__pyx_n_s_CHANGED;
 static PyObject *__pyx_n_s_CHANNEL;
 static PyObject *__pyx_n_s_CHANNEL_OPEN;
 static PyObject *__pyx_n_s_CIPHERS_C_S;
@@ -1681,6 +1689,7 @@ static PyObject *__pyx_n_s_KNOWN_OK;
 static PyObject *__pyx_n_s_Kex;
 static PyObject *__pyx_n_s_KeyCMP;
 static PyObject *__pyx_n_s_KeyType;
+static PyObject *__pyx_n_s_Known_Hosts;
 static PyObject *__pyx_n_s_LANG;
 static PyObject *__pyx_n_s_LANG_C_S;
 static PyObject *__pyx_n_s_LANG_S_C;
@@ -1703,6 +1712,7 @@ static PyObject *__pyx_n_s_NEWKEYS;
 static PyObject *__pyx_n_s_NODELAY;
 static PyObject *__pyx_n_s_NOLOG;
 static PyObject *__pyx_n_s_NONE;
+static PyObject *__pyx_n_s_NOT_FOUND;
 static PyObject *__pyx_n_s_NOT_KNOWN;
 static PyObject *__pyx_n_s_NO_CONNECTION;
 static PyObject *__pyx_n_s_NO_ERROR;
@@ -1716,6 +1726,7 @@ static PyObject *__pyx_n_s_OPENDIR;
 static PyObject *__pyx_n_s_OPEN_CONFIRMATION;
 static PyObject *__pyx_n_s_OPEN_FAILURE;
 static PyObject *__pyx_n_s_OP_UNSUPPORTED;
+static PyObject *__pyx_n_s_OTHER;
 static PyObject *__pyx_n_s_OVERWRITE;
 static PyObject *__pyx_n_s_OWNERGROUP;
 static PyObject *__pyx_n_s_O_CREAT;
@@ -1915,6 +1926,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_BOTH, __pyx_k_BOTH, sizeof(__pyx_k_BOTH), 0, 0, 1, 1},
   {&__pyx_n_s_BY_APPLICATION, __pyx_k_BY_APPLICATION, sizeof(__pyx_k_BY_APPLICATION), 0, 0, 1, 1},
   {&__pyx_n_s_CANCEL_TCPIP_FORWARD, __pyx_k_CANCEL_TCPIP_FORWARD, sizeof(__pyx_k_CANCEL_TCPIP_FORWARD), 0, 0, 1, 1},
+  {&__pyx_n_s_CHANGED, __pyx_k_CHANGED, sizeof(__pyx_k_CHANGED), 0, 0, 1, 1},
   {&__pyx_n_s_CHANNEL, __pyx_k_CHANNEL, sizeof(__pyx_k_CHANNEL), 0, 0, 1, 1},
   {&__pyx_n_s_CHANNEL_OPEN, __pyx_k_CHANNEL_OPEN, sizeof(__pyx_k_CHANNEL_OPEN), 0, 0, 1, 1},
   {&__pyx_n_s_CIPHERS_C_S, __pyx_k_CIPHERS_C_S, sizeof(__pyx_k_CIPHERS_C_S), 0, 0, 1, 1},
@@ -2050,6 +2062,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_Kex, __pyx_k_Kex, sizeof(__pyx_k_Kex), 0, 0, 1, 1},
   {&__pyx_n_s_KeyCMP, __pyx_k_KeyCMP, sizeof(__pyx_k_KeyCMP), 0, 0, 1, 1},
   {&__pyx_n_s_KeyType, __pyx_k_KeyType, sizeof(__pyx_k_KeyType), 0, 0, 1, 1},
+  {&__pyx_n_s_Known_Hosts, __pyx_k_Known_Hosts, sizeof(__pyx_k_Known_Hosts), 0, 0, 1, 1},
   {&__pyx_n_s_LANG, __pyx_k_LANG, sizeof(__pyx_k_LANG), 0, 0, 1, 1},
   {&__pyx_n_s_LANG_C_S, __pyx_k_LANG_C_S, sizeof(__pyx_k_LANG_C_S), 0, 0, 1, 1},
   {&__pyx_n_s_LANG_S_C, __pyx_k_LANG_S_C, sizeof(__pyx_k_LANG_S_C), 0, 0, 1, 1},
@@ -2072,6 +2085,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_NODELAY, __pyx_k_NODELAY, sizeof(__pyx_k_NODELAY), 0, 0, 1, 1},
   {&__pyx_n_s_NOLOG, __pyx_k_NOLOG, sizeof(__pyx_k_NOLOG), 0, 0, 1, 1},
   {&__pyx_n_s_NONE, __pyx_k_NONE, sizeof(__pyx_k_NONE), 0, 0, 1, 1},
+  {&__pyx_n_s_NOT_FOUND, __pyx_k_NOT_FOUND, sizeof(__pyx_k_NOT_FOUND), 0, 0, 1, 1},
   {&__pyx_n_s_NOT_KNOWN, __pyx_k_NOT_KNOWN, sizeof(__pyx_k_NOT_KNOWN), 0, 0, 1, 1},
   {&__pyx_n_s_NO_CONNECTION, __pyx_k_NO_CONNECTION, sizeof(__pyx_k_NO_CONNECTION), 0, 0, 1, 1},
   {&__pyx_n_s_NO_ERROR, __pyx_k_NO_ERROR, sizeof(__pyx_k_NO_ERROR), 0, 0, 1, 1},
@@ -2085,6 +2099,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_OPEN_CONFIRMATION, __pyx_k_OPEN_CONFIRMATION, sizeof(__pyx_k_OPEN_CONFIRMATION), 0, 0, 1, 1},
   {&__pyx_n_s_OPEN_FAILURE, __pyx_k_OPEN_FAILURE, sizeof(__pyx_k_OPEN_FAILURE), 0, 0, 1, 1},
   {&__pyx_n_s_OP_UNSUPPORTED, __pyx_k_OP_UNSUPPORTED, sizeof(__pyx_k_OP_UNSUPPORTED), 0, 0, 1, 1},
+  {&__pyx_n_s_OTHER, __pyx_k_OTHER, sizeof(__pyx_k_OTHER), 0, 0, 1, 1},
   {&__pyx_n_s_OVERWRITE, __pyx_k_OVERWRITE, sizeof(__pyx_k_OVERWRITE), 0, 0, 1, 1},
   {&__pyx_n_s_OWNERGROUP, __pyx_k_OWNERGROUP, sizeof(__pyx_k_OWNERGROUP), 0, 0, 1, 1},
   {&__pyx_n_s_O_CREAT, __pyx_k_O_CREAT, sizeof(__pyx_k_O_CREAT), 0, 0, 1, 1},
@@ -2855,7 +2870,7 @@ if (!__Pyx_RefNanny) {
  *     LANG_C_S = c_ssh.SSH_LANG_C_S
  *     LANG_S_C = c_ssh.SSH_LANG_S_C             # <<<<<<<<<<<<<<
  * 
- * class Auth(enum.IntEnum):
+ * class Known_Hosts(enum.IntEnum):
  */
   __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_kex_types_e(SSH_LANG_S_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -2880,9 +2895,9 @@ if (!__Pyx_RefNanny) {
   /* "ssh/libssh_enums.pyx":55
  *     LANG_S_C = c_ssh.SSH_LANG_S_C
  * 
- * class Auth(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
- *     DENIED = c_ssh.SSH_AUTH_DENIED
+ * class Known_Hosts(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     ERROR = c_ssh.SSH_KNOWN_HOSTS_ERROR
+ *     NOT_FOUND = c_ssh.SSH_KNOWN_HOSTS_NOT_FOUND
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2896,102 +2911,102 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Auth, __pyx_n_s_Auth, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Known_Hosts, __pyx_n_s_Known_Hosts, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "ssh/libssh_enums.pyx":56
  * 
- * class Auth(enum.IntEnum):
- *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS             # <<<<<<<<<<<<<<
- *     DENIED = c_ssh.SSH_AUTH_DENIED
- *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
+ * class Known_Hosts(enum.IntEnum):
+ *     ERROR = c_ssh.SSH_KNOWN_HOSTS_ERROR             # <<<<<<<<<<<<<<
+ *     NOT_FOUND = c_ssh.SSH_KNOWN_HOSTS_NOT_FOUND
+ *     UNKNOWN = c_ssh.SSH_KNOWN_HOSTS_UNKNOWN
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_known_hosts_e(SSH_KNOWN_HOSTS_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":57
- * class Auth(enum.IntEnum):
- *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
- *     DENIED = c_ssh.SSH_AUTH_DENIED             # <<<<<<<<<<<<<<
- *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
- *     INFO = c_ssh.SSH_AUTH_INFO
+ * class Known_Hosts(enum.IntEnum):
+ *     ERROR = c_ssh.SSH_KNOWN_HOSTS_ERROR
+ *     NOT_FOUND = c_ssh.SSH_KNOWN_HOSTS_NOT_FOUND             # <<<<<<<<<<<<<<
+ *     UNKNOWN = c_ssh.SSH_KNOWN_HOSTS_UNKNOWN
+ *     OK = c_ssh.SSH_KNOWN_HOSTS_OK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_DENIED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_known_hosts_e(SSH_KNOWN_HOSTS_NOT_FOUND); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DENIED, __pyx_t_4) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NOT_FOUND, __pyx_t_4) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":58
- *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
- *     DENIED = c_ssh.SSH_AUTH_DENIED
- *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL             # <<<<<<<<<<<<<<
- *     INFO = c_ssh.SSH_AUTH_INFO
- *     AGAIN = c_ssh.SSH_AUTH_AGAIN
+ *     ERROR = c_ssh.SSH_KNOWN_HOSTS_ERROR
+ *     NOT_FOUND = c_ssh.SSH_KNOWN_HOSTS_NOT_FOUND
+ *     UNKNOWN = c_ssh.SSH_KNOWN_HOSTS_UNKNOWN             # <<<<<<<<<<<<<<
+ *     OK = c_ssh.SSH_KNOWN_HOSTS_OK
+ *     CHANGED = c_ssh.SSH_KNOWN_HOSTS_CHANGED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_PARTIAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_known_hosts_e(SSH_KNOWN_HOSTS_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PARTIAL, __pyx_t_4) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":59
- *     DENIED = c_ssh.SSH_AUTH_DENIED
- *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
- *     INFO = c_ssh.SSH_AUTH_INFO             # <<<<<<<<<<<<<<
- *     AGAIN = c_ssh.SSH_AUTH_AGAIN
- *     ERROR = c_ssh.SSH_AUTH_ERROR
+ *     NOT_FOUND = c_ssh.SSH_KNOWN_HOSTS_NOT_FOUND
+ *     UNKNOWN = c_ssh.SSH_KNOWN_HOSTS_UNKNOWN
+ *     OK = c_ssh.SSH_KNOWN_HOSTS_OK             # <<<<<<<<<<<<<<
+ *     CHANGED = c_ssh.SSH_KNOWN_HOSTS_CHANGED
+ *     OTHER = c_ssh.SSH_KNOWN_HOSTS_OTHER
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_INFO); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_known_hosts_e(SSH_KNOWN_HOSTS_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO, __pyx_t_4) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OK, __pyx_t_4) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":60
- *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
- *     INFO = c_ssh.SSH_AUTH_INFO
- *     AGAIN = c_ssh.SSH_AUTH_AGAIN             # <<<<<<<<<<<<<<
- *     ERROR = c_ssh.SSH_AUTH_ERROR
+ *     UNKNOWN = c_ssh.SSH_KNOWN_HOSTS_UNKNOWN
+ *     OK = c_ssh.SSH_KNOWN_HOSTS_OK
+ *     CHANGED = c_ssh.SSH_KNOWN_HOSTS_CHANGED             # <<<<<<<<<<<<<<
+ *     OTHER = c_ssh.SSH_KNOWN_HOSTS_OTHER
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_AGAIN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_known_hosts_e(SSH_KNOWN_HOSTS_CHANGED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AGAIN, __pyx_t_4) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CHANGED, __pyx_t_4) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":61
- *     INFO = c_ssh.SSH_AUTH_INFO
- *     AGAIN = c_ssh.SSH_AUTH_AGAIN
- *     ERROR = c_ssh.SSH_AUTH_ERROR             # <<<<<<<<<<<<<<
+ *     OK = c_ssh.SSH_KNOWN_HOSTS_OK
+ *     CHANGED = c_ssh.SSH_KNOWN_HOSTS_CHANGED
+ *     OTHER = c_ssh.SSH_KNOWN_HOSTS_OTHER             # <<<<<<<<<<<<<<
  * 
- * class Auth_Method(enum.IntEnum):
+ * class Auth(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_known_hosts_e(SSH_KNOWN_HOSTS_OTHER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OTHER, __pyx_t_4) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":55
  *     LANG_S_C = c_ssh.SSH_LANG_S_C
  * 
- * class Auth(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
- *     DENIED = c_ssh.SSH_AUTH_DENIED
+ * class Known_Hosts(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     ERROR = c_ssh.SSH_KNOWN_HOSTS_ERROR
+ *     NOT_FOUND = c_ssh.SSH_KNOWN_HOSTS_NOT_FOUND
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Auth, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Known_Hosts, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Auth, __pyx_t_4) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Known_Hosts, __pyx_t_4) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh/libssh_enums.pyx":63
- *     ERROR = c_ssh.SSH_AUTH_ERROR
+ *     OTHER = c_ssh.SSH_KNOWN_HOSTS_OTHER
  * 
- * class Auth_Method(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
- *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
+ * class Auth(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
+ *     DENIED = c_ssh.SSH_AUTH_DENIED
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3005,200 +3020,212 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Auth_Method, __pyx_n_s_Auth_Method, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Auth, __pyx_n_s_Auth, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "ssh/libssh_enums.pyx":64
  * 
- * class Auth_Method(enum.IntEnum):
- *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN             # <<<<<<<<<<<<<<
- *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
- *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
+ * class Auth(enum.IntEnum):
+ *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS             # <<<<<<<<<<<<<<
+ *     DENIED = c_ssh.SSH_AUTH_DENIED
+ *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":65
- * class Auth_Method(enum.IntEnum):
- *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
- *     NONE = c_ssh.SSH_AUTH_METHOD_NONE             # <<<<<<<<<<<<<<
- *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
- *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
+ * class Auth(enum.IntEnum):
+ *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
+ *     DENIED = c_ssh.SSH_AUTH_DENIED             # <<<<<<<<<<<<<<
+ *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
+ *     INFO = c_ssh.SSH_AUTH_INFO
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_NONE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_DENIED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NONE, __pyx_t_4) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DENIED, __pyx_t_4) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":66
- *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
- *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
- *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD             # <<<<<<<<<<<<<<
- *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
- *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
+ *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
+ *     DENIED = c_ssh.SSH_AUTH_DENIED
+ *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL             # <<<<<<<<<<<<<<
+ *     INFO = c_ssh.SSH_AUTH_INFO
+ *     AGAIN = c_ssh.SSH_AUTH_AGAIN
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_PASSWORD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_PARTIAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PASSWORD, __pyx_t_4) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PARTIAL, __pyx_t_4) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":67
- *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
- *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
- *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY             # <<<<<<<<<<<<<<
- *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
- *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE
+ *     DENIED = c_ssh.SSH_AUTH_DENIED
+ *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
+ *     INFO = c_ssh.SSH_AUTH_INFO             # <<<<<<<<<<<<<<
+ *     AGAIN = c_ssh.SSH_AUTH_AGAIN
+ *     ERROR = c_ssh.SSH_AUTH_ERROR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_PUBLICKEY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_INFO); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PUBLICKEY, __pyx_t_4) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO, __pyx_t_4) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":68
- *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
- *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
- *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED             # <<<<<<<<<<<<<<
- *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE
- *     GSSAPI_MIC = c_ssh.SSH_AUTH_METHOD_GSSAPI_MIC
+ *     PARTIAL = c_ssh.SSH_AUTH_PARTIAL
+ *     INFO = c_ssh.SSH_AUTH_INFO
+ *     AGAIN = c_ssh.SSH_AUTH_AGAIN             # <<<<<<<<<<<<<<
+ *     ERROR = c_ssh.SSH_AUTH_ERROR
+ * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_HOSTBASED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_AGAIN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOSTBASED, __pyx_t_4) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AGAIN, __pyx_t_4) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":69
- *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
- *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
- *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE             # <<<<<<<<<<<<<<
- *     GSSAPI_MIC = c_ssh.SSH_AUTH_METHOD_GSSAPI_MIC
+ *     INFO = c_ssh.SSH_AUTH_INFO
+ *     AGAIN = c_ssh.SSH_AUTH_AGAIN
+ *     ERROR = c_ssh.SSH_AUTH_ERROR             # <<<<<<<<<<<<<<
  * 
+ * class Auth_Method(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_INTERACTIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_auth_e(SSH_AUTH_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INTERACTIVE, __pyx_t_4) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":70
- *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
- *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE
- *     GSSAPI_MIC = c_ssh.SSH_AUTH_METHOD_GSSAPI_MIC             # <<<<<<<<<<<<<<
- * 
- *     # enum ssh_requests_e:
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_GSSAPI_MIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_MIC, __pyx_t_4) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":63
+ *     OTHER = c_ssh.SSH_KNOWN_HOSTS_OTHER
+ * 
+ * class Auth(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     SUCCESS = c_ssh.SSH_AUTH_SUCCESS
+ *     DENIED = c_ssh.SSH_AUTH_DENIED
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Auth, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Auth, __pyx_t_4) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh/libssh_enums.pyx":71
  *     ERROR = c_ssh.SSH_AUTH_ERROR
  * 
  * class Auth_Method(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
  *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Auth_Method, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Auth_Method, __pyx_t_4) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "ssh/libssh_enums.pyx":73
- * 
- *     # enum ssh_requests_e:
- * class Request(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     AUTH = c_ssh.SSH_REQUEST_AUTH
- *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Request, __pyx_n_s_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Auth_Method, __pyx_n_s_Auth_Method, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":74
- *     # enum ssh_requests_e:
- * class Request(enum.IntEnum):
- *     AUTH = c_ssh.SSH_REQUEST_AUTH             # <<<<<<<<<<<<<<
- *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
- *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":75
- * class Request(enum.IntEnum):
- *     AUTH = c_ssh.SSH_REQUEST_AUTH
- *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN             # <<<<<<<<<<<<<<
- *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
- *     SERVICE = c_ssh.SSH_REQUEST_SERVICE
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_CHANNEL_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CHANNEL_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":76
- *     AUTH = c_ssh.SSH_REQUEST_AUTH
- *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
- *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL             # <<<<<<<<<<<<<<
- *     SERVICE = c_ssh.SSH_REQUEST_SERVICE
- *     GLOBAL = c_ssh.SSH_REQUEST_GLOBAL
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_CHANNEL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CHANNEL, __pyx_t_4) < 0) __PYX_ERR(0, 76, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":77
- *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
- *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
- *     SERVICE = c_ssh.SSH_REQUEST_SERVICE             # <<<<<<<<<<<<<<
- *     GLOBAL = c_ssh.SSH_REQUEST_GLOBAL
+  /* "ssh/libssh_enums.pyx":72
  * 
+ * class Auth_Method(enum.IntEnum):
+ *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN             # <<<<<<<<<<<<<<
+ *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
+ *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_SERVICE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE, __pyx_t_4) < 0) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":78
- *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
- *     SERVICE = c_ssh.SSH_REQUEST_SERVICE
- *     GLOBAL = c_ssh.SSH_REQUEST_GLOBAL             # <<<<<<<<<<<<<<
- * 
- *     # enum ssh_channel_type_e:
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_GLOBAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 78, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GLOBAL, __pyx_t_4) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":73
+ * class Auth_Method(enum.IntEnum):
+ *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
+ *     NONE = c_ssh.SSH_AUTH_METHOD_NONE             # <<<<<<<<<<<<<<
+ *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
+ *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_NONE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NONE, __pyx_t_4) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":74
+ *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
+ *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
+ *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD             # <<<<<<<<<<<<<<
+ *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
+ *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_PASSWORD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PASSWORD, __pyx_t_4) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":75
+ *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
+ *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
+ *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY             # <<<<<<<<<<<<<<
+ *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
+ *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_PUBLICKEY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PUBLICKEY, __pyx_t_4) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":76
+ *     PASSWORD = c_ssh.SSH_AUTH_METHOD_PASSWORD
+ *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
+ *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED             # <<<<<<<<<<<<<<
+ *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE
+ *     GSSAPI_MIC = c_ssh.SSH_AUTH_METHOD_GSSAPI_MIC
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_HOSTBASED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOSTBASED, __pyx_t_4) < 0) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":77
+ *     PUBLICKEY = c_ssh.SSH_AUTH_METHOD_PUBLICKEY
+ *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
+ *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE             # <<<<<<<<<<<<<<
+ *     GSSAPI_MIC = c_ssh.SSH_AUTH_METHOD_GSSAPI_MIC
+ * 
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_INTERACTIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INTERACTIVE, __pyx_t_4) < 0) __PYX_ERR(0, 77, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":78
+ *     HOSTBASED = c_ssh.SSH_AUTH_METHOD_HOSTBASED
+ *     INTERACTIVE = c_ssh.SSH_AUTH_METHOD_INTERACTIVE
+ *     GSSAPI_MIC = c_ssh.SSH_AUTH_METHOD_GSSAPI_MIC             # <<<<<<<<<<<<<<
  * 
  *     # enum ssh_requests_e:
- * class Request(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     AUTH = c_ssh.SSH_REQUEST_AUTH
- *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_AUTH_METHOD_GSSAPI_MIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Request, __pyx_t_4) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_MIC, __pyx_t_4) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":71
+ *     ERROR = c_ssh.SSH_AUTH_ERROR
+ * 
+ * class Auth_Method(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     UNKNOWN = c_ssh.SSH_AUTH_METHOD_UNKNOWN
+ *     NONE = c_ssh.SSH_AUTH_METHOD_NONE
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Auth_Method, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Auth_Method, __pyx_t_4) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3206,10 +3233,10 @@ if (!__Pyx_RefNanny) {
 
   /* "ssh/libssh_enums.pyx":81
  * 
- *     # enum ssh_channel_type_e:
- * class Channel(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
- *     SESSION = c_ssh.SSH_CHANNEL_SESSION
+ *     # enum ssh_requests_e:
+ * class Request(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     AUTH = c_ssh.SSH_REQUEST_AUTH
+ *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3223,1685 +3250,1685 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Channel, __pyx_n_s_Channel, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Request, __pyx_n_s_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "ssh/libssh_enums.pyx":82
- *     # enum ssh_channel_type_e:
- * class Channel(enum.IntEnum):
- *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN             # <<<<<<<<<<<<<<
- *     SESSION = c_ssh.SSH_CHANNEL_SESSION
- *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
+ *     # enum ssh_requests_e:
+ * class Request(enum.IntEnum):
+ *     AUTH = c_ssh.SSH_REQUEST_AUTH             # <<<<<<<<<<<<<<
+ *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
+ *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":83
- * class Channel(enum.IntEnum):
- *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
- *     SESSION = c_ssh.SSH_CHANNEL_SESSION             # <<<<<<<<<<<<<<
- *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
- *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
+ * class Request(enum.IntEnum):
+ *     AUTH = c_ssh.SSH_REQUEST_AUTH
+ *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN             # <<<<<<<<<<<<<<
+ *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
+ *     SERVICE = c_ssh.SSH_REQUEST_SERVICE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_SESSION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_CHANNEL_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SESSION, __pyx_t_4) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CHANNEL_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":84
- *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
- *     SESSION = c_ssh.SSH_CHANNEL_SESSION
- *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP             # <<<<<<<<<<<<<<
- *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
- *     X11 = c_ssh.SSH_CHANNEL_X11
+ *     AUTH = c_ssh.SSH_REQUEST_AUTH
+ *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
+ *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL             # <<<<<<<<<<<<<<
+ *     SERVICE = c_ssh.SSH_REQUEST_SERVICE
+ *     GLOBAL = c_ssh.SSH_REQUEST_GLOBAL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_DIRECT_TCPIP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_CHANNEL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DIRECT_TCPIP, __pyx_t_4) < 0) __PYX_ERR(0, 84, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CHANNEL, __pyx_t_4) < 0) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":85
- *     SESSION = c_ssh.SSH_CHANNEL_SESSION
- *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
- *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP             # <<<<<<<<<<<<<<
- *     X11 = c_ssh.SSH_CHANNEL_X11
- *     AUTH_AGENT = c_ssh.SSH_CHANNEL_AUTH_AGENT
+ *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
+ *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
+ *     SERVICE = c_ssh.SSH_REQUEST_SERVICE             # <<<<<<<<<<<<<<
+ *     GLOBAL = c_ssh.SSH_REQUEST_GLOBAL
+ * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_FORWARDED_TCPIP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_SERVICE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FORWARDED_TCPIP, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE, __pyx_t_4) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":86
- *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
- *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
- *     X11 = c_ssh.SSH_CHANNEL_X11             # <<<<<<<<<<<<<<
- *     AUTH_AGENT = c_ssh.SSH_CHANNEL_AUTH_AGENT
+ *     CHANNEL = c_ssh.SSH_REQUEST_CHANNEL
+ *     SERVICE = c_ssh.SSH_REQUEST_SERVICE
+ *     GLOBAL = c_ssh.SSH_REQUEST_GLOBAL             # <<<<<<<<<<<<<<
  * 
+ *     # enum ssh_channel_type_e:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_X11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_requests_e(SSH_REQUEST_GLOBAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_X11, __pyx_t_4) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":87
- *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
- *     X11 = c_ssh.SSH_CHANNEL_X11
- *     AUTH_AGENT = c_ssh.SSH_CHANNEL_AUTH_AGENT             # <<<<<<<<<<<<<<
- * 
- * # enum ssh_channel_requests_e:
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_AUTH_AGENT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AUTH_AGENT, __pyx_t_4) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GLOBAL, __pyx_t_4) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":81
+ * 
+ *     # enum ssh_requests_e:
+ * class Request(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     AUTH = c_ssh.SSH_REQUEST_AUTH
+ *     CHANNEL_OPEN = c_ssh.SSH_REQUEST_CHANNEL_OPEN
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Request, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh/libssh_enums.pyx":89
  * 
  *     # enum ssh_channel_type_e:
  * class Channel(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
  *     SESSION = c_ssh.SSH_CHANNEL_SESSION
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Channel, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Channel, __pyx_n_s_Channel, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "ssh/libssh_enums.pyx":90
+ *     # enum ssh_channel_type_e:
+ * class Channel(enum.IntEnum):
+ *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN             # <<<<<<<<<<<<<<
+ *     SESSION = c_ssh.SSH_CHANNEL_SESSION
+ *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Channel, __pyx_t_4) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":91
+ * class Channel(enum.IntEnum):
+ *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
+ *     SESSION = c_ssh.SSH_CHANNEL_SESSION             # <<<<<<<<<<<<<<
+ *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
+ *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_SESSION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SESSION, __pyx_t_4) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":92
+ *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
+ *     SESSION = c_ssh.SSH_CHANNEL_SESSION
+ *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP             # <<<<<<<<<<<<<<
+ *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
+ *     X11 = c_ssh.SSH_CHANNEL_X11
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_DIRECT_TCPIP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DIRECT_TCPIP, __pyx_t_4) < 0) __PYX_ERR(0, 92, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":93
+ *     SESSION = c_ssh.SSH_CHANNEL_SESSION
+ *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
+ *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP             # <<<<<<<<<<<<<<
+ *     X11 = c_ssh.SSH_CHANNEL_X11
+ *     AUTH_AGENT = c_ssh.SSH_CHANNEL_AUTH_AGENT
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_FORWARDED_TCPIP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FORWARDED_TCPIP, __pyx_t_4) < 0) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":94
+ *     DIRECT_TCPIP = c_ssh.SSH_CHANNEL_DIRECT_TCPIP
+ *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
+ *     X11 = c_ssh.SSH_CHANNEL_X11             # <<<<<<<<<<<<<<
+ *     AUTH_AGENT = c_ssh.SSH_CHANNEL_AUTH_AGENT
+ * 
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_X11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_X11, __pyx_t_4) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":95
+ *     FORWARDED_TCPIP = c_ssh.SSH_CHANNEL_FORWARDED_TCPIP
+ *     X11 = c_ssh.SSH_CHANNEL_X11
+ *     AUTH_AGENT = c_ssh.SSH_CHANNEL_AUTH_AGENT             # <<<<<<<<<<<<<<
+ * 
+ * # enum ssh_channel_requests_e:
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_type_e(SSH_CHANNEL_AUTH_AGENT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AUTH_AGENT, __pyx_t_4) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":89
+ * 
+ *     # enum ssh_channel_type_e:
+ * class Channel(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     UNKNOWN = c_ssh.SSH_CHANNEL_UNKNOWN
+ *     SESSION = c_ssh.SSH_CHANNEL_SESSION
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Channel, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Channel, __pyx_t_4) < 0) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":90
+  /* "ssh/libssh_enums.pyx":98
  * 
  * # enum ssh_channel_requests_e:
  * class Channel_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_CHANNEL_REQUEST_UNKNOWN
  *     PTY = c_ssh.SSH_CHANNEL_REQUEST_PTY
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Channel_Request, __pyx_n_s_Channel_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Channel_Request, __pyx_n_s_Channel_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":91
+  /* "ssh/libssh_enums.pyx":99
  * # enum ssh_channel_requests_e:
  * class Channel_Request(enum.IntEnum):
  *     UNKNOWN = c_ssh.SSH_CHANNEL_REQUEST_UNKNOWN             # <<<<<<<<<<<<<<
  *     PTY = c_ssh.SSH_CHANNEL_REQUEST_PTY
  *     EXEC = c_ssh.SSH_CHANNEL_REQUEST_EXEC
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":92
+  /* "ssh/libssh_enums.pyx":100
  * class Channel_Request(enum.IntEnum):
  *     UNKNOWN = c_ssh.SSH_CHANNEL_REQUEST_UNKNOWN
  *     PTY = c_ssh.SSH_CHANNEL_REQUEST_PTY             # <<<<<<<<<<<<<<
  *     EXEC = c_ssh.SSH_CHANNEL_REQUEST_EXEC
  *     SHELL = c_ssh.SSH_CHANNEL_REQUEST_SHELL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_PTY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_PTY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PTY, __pyx_t_4) < 0) __PYX_ERR(0, 92, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PTY, __pyx_t_4) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":93
+  /* "ssh/libssh_enums.pyx":101
  *     UNKNOWN = c_ssh.SSH_CHANNEL_REQUEST_UNKNOWN
  *     PTY = c_ssh.SSH_CHANNEL_REQUEST_PTY
  *     EXEC = c_ssh.SSH_CHANNEL_REQUEST_EXEC             # <<<<<<<<<<<<<<
  *     SHELL = c_ssh.SSH_CHANNEL_REQUEST_SHELL
  *     ENV = c_ssh.SSH_CHANNEL_REQUEST_ENV
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_EXEC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_EXEC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXEC, __pyx_t_4) < 0) __PYX_ERR(0, 93, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXEC, __pyx_t_4) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":94
+  /* "ssh/libssh_enums.pyx":102
  *     PTY = c_ssh.SSH_CHANNEL_REQUEST_PTY
  *     EXEC = c_ssh.SSH_CHANNEL_REQUEST_EXEC
  *     SHELL = c_ssh.SSH_CHANNEL_REQUEST_SHELL             # <<<<<<<<<<<<<<
  *     ENV = c_ssh.SSH_CHANNEL_REQUEST_ENV
  *     SUBSYSTEM = c_ssh.SSH_CHANNEL_REQUEST_SUBSYSTEM
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_SHELL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_SHELL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SHELL, __pyx_t_4) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SHELL, __pyx_t_4) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":95
+  /* "ssh/libssh_enums.pyx":103
  *     EXEC = c_ssh.SSH_CHANNEL_REQUEST_EXEC
  *     SHELL = c_ssh.SSH_CHANNEL_REQUEST_SHELL
  *     ENV = c_ssh.SSH_CHANNEL_REQUEST_ENV             # <<<<<<<<<<<<<<
  *     SUBSYSTEM = c_ssh.SSH_CHANNEL_REQUEST_SUBSYSTEM
  *     WINDOW_CHANGE = c_ssh.SSH_CHANNEL_REQUEST_WINDOW_CHANGE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_ENV); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_ENV); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ENV, __pyx_t_4) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ENV, __pyx_t_4) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":96
+  /* "ssh/libssh_enums.pyx":104
  *     SHELL = c_ssh.SSH_CHANNEL_REQUEST_SHELL
  *     ENV = c_ssh.SSH_CHANNEL_REQUEST_ENV
  *     SUBSYSTEM = c_ssh.SSH_CHANNEL_REQUEST_SUBSYSTEM             # <<<<<<<<<<<<<<
  *     WINDOW_CHANGE = c_ssh.SSH_CHANNEL_REQUEST_WINDOW_CHANGE
  *     X11 = c_ssh.SSH_CHANNEL_REQUEST_X11
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_SUBSYSTEM); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_SUBSYSTEM); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUBSYSTEM, __pyx_t_4) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUBSYSTEM, __pyx_t_4) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":97
+  /* "ssh/libssh_enums.pyx":105
  *     ENV = c_ssh.SSH_CHANNEL_REQUEST_ENV
  *     SUBSYSTEM = c_ssh.SSH_CHANNEL_REQUEST_SUBSYSTEM
  *     WINDOW_CHANGE = c_ssh.SSH_CHANNEL_REQUEST_WINDOW_CHANGE             # <<<<<<<<<<<<<<
  *     X11 = c_ssh.SSH_CHANNEL_REQUEST_X11
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_WINDOW_CHANGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_WINDOW_CHANGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WINDOW_CHANGE, __pyx_t_4) < 0) __PYX_ERR(0, 97, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WINDOW_CHANGE, __pyx_t_4) < 0) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":98
+  /* "ssh/libssh_enums.pyx":106
  *     SUBSYSTEM = c_ssh.SSH_CHANNEL_REQUEST_SUBSYSTEM
  *     WINDOW_CHANGE = c_ssh.SSH_CHANNEL_REQUEST_WINDOW_CHANGE
  *     X11 = c_ssh.SSH_CHANNEL_REQUEST_X11             # <<<<<<<<<<<<<<
  * 
  *     # enum ssh_global_requests_e:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_X11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_channel_requests_e(SSH_CHANNEL_REQUEST_X11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_X11, __pyx_t_4) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_X11, __pyx_t_4) < 0) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":90
+  /* "ssh/libssh_enums.pyx":98
  * 
  * # enum ssh_channel_requests_e:
  * class Channel_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_CHANNEL_REQUEST_UNKNOWN
  *     PTY = c_ssh.SSH_CHANNEL_REQUEST_PTY
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Channel_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Channel_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Channel_Request, __pyx_t_4) < 0) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Channel_Request, __pyx_t_4) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":101
+  /* "ssh/libssh_enums.pyx":109
  * 
  *     # enum ssh_global_requests_e:
  * class Global_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_GLOBAL_REQUEST_UNKNOWN
  *     TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_TCPIP_FORWARD
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Global_Request, __pyx_n_s_Global_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Global_Request, __pyx_n_s_Global_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":102
+  /* "ssh/libssh_enums.pyx":110
  *     # enum ssh_global_requests_e:
  * class Global_Request(enum.IntEnum):
  *     UNKNOWN = c_ssh.SSH_GLOBAL_REQUEST_UNKNOWN             # <<<<<<<<<<<<<<
  *     TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_TCPIP_FORWARD
  *     CANCEL_TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":103
+  /* "ssh/libssh_enums.pyx":111
  * class Global_Request(enum.IntEnum):
  *     UNKNOWN = c_ssh.SSH_GLOBAL_REQUEST_UNKNOWN
  *     TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_TCPIP_FORWARD             # <<<<<<<<<<<<<<
  *     CANCEL_TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD
  *     KEEPALIVE = c_ssh.SSH_GLOBAL_REQUEST_KEEPALIVE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_TCPIP_FORWARD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_TCPIP_FORWARD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TCPIP_FORWARD, __pyx_t_4) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TCPIP_FORWARD, __pyx_t_4) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":104
+  /* "ssh/libssh_enums.pyx":112
  *     UNKNOWN = c_ssh.SSH_GLOBAL_REQUEST_UNKNOWN
  *     TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_TCPIP_FORWARD
  *     CANCEL_TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD             # <<<<<<<<<<<<<<
  *     KEEPALIVE = c_ssh.SSH_GLOBAL_REQUEST_KEEPALIVE
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CANCEL_TCPIP_FORWARD, __pyx_t_4) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CANCEL_TCPIP_FORWARD, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":105
+  /* "ssh/libssh_enums.pyx":113
  *     TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_TCPIP_FORWARD
  *     CANCEL_TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD
  *     KEEPALIVE = c_ssh.SSH_GLOBAL_REQUEST_KEEPALIVE             # <<<<<<<<<<<<<<
  * 
  *     # enum ssh_publickey_state_e:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_KEEPALIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_global_requests_e(SSH_GLOBAL_REQUEST_KEEPALIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEEPALIVE, __pyx_t_4) < 0) __PYX_ERR(0, 105, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEEPALIVE, __pyx_t_4) < 0) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":101
+  /* "ssh/libssh_enums.pyx":109
  * 
  *     # enum ssh_global_requests_e:
  * class Global_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_GLOBAL_REQUEST_UNKNOWN
  *     TCPIP_FORWARD = c_ssh.SSH_GLOBAL_REQUEST_TCPIP_FORWARD
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Global_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Global_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Global_Request, __pyx_t_4) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Global_Request, __pyx_t_4) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":108
+  /* "ssh/libssh_enums.pyx":116
  * 
  *     # enum ssh_publickey_state_e:
  * class PublicKeyState(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     ERROR = c_ssh.SSH_PUBLICKEY_STATE_ERROR
  *     NONE = c_ssh.SSH_PUBLICKEY_STATE_NONE
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_PublicKeyState, __pyx_n_s_PublicKeyState, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_PublicKeyState, __pyx_n_s_PublicKeyState, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":109
+  /* "ssh/libssh_enums.pyx":117
  *     # enum ssh_publickey_state_e:
  * class PublicKeyState(enum.IntEnum):
  *     ERROR = c_ssh.SSH_PUBLICKEY_STATE_ERROR             # <<<<<<<<<<<<<<
  *     NONE = c_ssh.SSH_PUBLICKEY_STATE_NONE
  *     VALID = c_ssh.SSH_PUBLICKEY_STATE_VALID
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":110
+  /* "ssh/libssh_enums.pyx":118
  * class PublicKeyState(enum.IntEnum):
  *     ERROR = c_ssh.SSH_PUBLICKEY_STATE_ERROR
  *     NONE = c_ssh.SSH_PUBLICKEY_STATE_NONE             # <<<<<<<<<<<<<<
  *     VALID = c_ssh.SSH_PUBLICKEY_STATE_VALID
  *     WRONG = c_ssh.SSH_PUBLICKEY_STATE_WRONG
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_NONE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_NONE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NONE, __pyx_t_4) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NONE, __pyx_t_4) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":111
+  /* "ssh/libssh_enums.pyx":119
  *     ERROR = c_ssh.SSH_PUBLICKEY_STATE_ERROR
  *     NONE = c_ssh.SSH_PUBLICKEY_STATE_NONE
  *     VALID = c_ssh.SSH_PUBLICKEY_STATE_VALID             # <<<<<<<<<<<<<<
  *     WRONG = c_ssh.SSH_PUBLICKEY_STATE_WRONG
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_VALID); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_VALID); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_VALID, __pyx_t_4) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_VALID, __pyx_t_4) < 0) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":112
+  /* "ssh/libssh_enums.pyx":120
  *     NONE = c_ssh.SSH_PUBLICKEY_STATE_NONE
  *     VALID = c_ssh.SSH_PUBLICKEY_STATE_VALID
  *     WRONG = c_ssh.SSH_PUBLICKEY_STATE_WRONG             # <<<<<<<<<<<<<<
  * 
  *     # enum ssh_server_known_e:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_WRONG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_publickey_state_e(SSH_PUBLICKEY_STATE_WRONG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRONG, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRONG, __pyx_t_4) < 0) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":108
+  /* "ssh/libssh_enums.pyx":116
  * 
  *     # enum ssh_publickey_state_e:
  * class PublicKeyState(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     ERROR = c_ssh.SSH_PUBLICKEY_STATE_ERROR
  *     NONE = c_ssh.SSH_PUBLICKEY_STATE_NONE
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_PublicKeyState, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_PublicKeyState, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PublicKeyState, __pyx_t_4) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PublicKeyState, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":115
+  /* "ssh/libssh_enums.pyx":123
  * 
  *     # enum ssh_server_known_e:
  * class Server(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     ERROR = c_ssh.SSH_SERVER_ERROR
  *     NOT_KNOWN = c_ssh.SSH_SERVER_NOT_KNOWN
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Server, __pyx_n_s_Server, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Server, __pyx_n_s_Server, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":116
+  /* "ssh/libssh_enums.pyx":124
  *     # enum ssh_server_known_e:
  * class Server(enum.IntEnum):
  *     ERROR = c_ssh.SSH_SERVER_ERROR             # <<<<<<<<<<<<<<
  *     NOT_KNOWN = c_ssh.SSH_SERVER_NOT_KNOWN
  *     KNOWN_OK = c_ssh.SSH_SERVER_KNOWN_OK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":117
+  /* "ssh/libssh_enums.pyx":125
  * class Server(enum.IntEnum):
  *     ERROR = c_ssh.SSH_SERVER_ERROR
  *     NOT_KNOWN = c_ssh.SSH_SERVER_NOT_KNOWN             # <<<<<<<<<<<<<<
  *     KNOWN_OK = c_ssh.SSH_SERVER_KNOWN_OK
  *     KNOWN_CHANGED = c_ssh.SSH_SERVER_KNOWN_CHANGED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_NOT_KNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_NOT_KNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NOT_KNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NOT_KNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":118
+  /* "ssh/libssh_enums.pyx":126
  *     ERROR = c_ssh.SSH_SERVER_ERROR
  *     NOT_KNOWN = c_ssh.SSH_SERVER_NOT_KNOWN
  *     KNOWN_OK = c_ssh.SSH_SERVER_KNOWN_OK             # <<<<<<<<<<<<<<
  *     KNOWN_CHANGED = c_ssh.SSH_SERVER_KNOWN_CHANGED
  *     FOUND_OTHER = c_ssh.SSH_SERVER_FOUND_OTHER
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_KNOWN_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_KNOWN_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KNOWN_OK, __pyx_t_4) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KNOWN_OK, __pyx_t_4) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":119
+  /* "ssh/libssh_enums.pyx":127
  *     NOT_KNOWN = c_ssh.SSH_SERVER_NOT_KNOWN
  *     KNOWN_OK = c_ssh.SSH_SERVER_KNOWN_OK
  *     KNOWN_CHANGED = c_ssh.SSH_SERVER_KNOWN_CHANGED             # <<<<<<<<<<<<<<
  *     FOUND_OTHER = c_ssh.SSH_SERVER_FOUND_OTHER
  *     FILE_NOT_FOUND = c_ssh.SSH_SERVER_FILE_NOT_FOUND
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_KNOWN_CHANGED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_KNOWN_CHANGED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KNOWN_CHANGED, __pyx_t_4) < 0) __PYX_ERR(0, 119, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KNOWN_CHANGED, __pyx_t_4) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":120
+  /* "ssh/libssh_enums.pyx":128
  *     KNOWN_OK = c_ssh.SSH_SERVER_KNOWN_OK
  *     KNOWN_CHANGED = c_ssh.SSH_SERVER_KNOWN_CHANGED
  *     FOUND_OTHER = c_ssh.SSH_SERVER_FOUND_OTHER             # <<<<<<<<<<<<<<
  *     FILE_NOT_FOUND = c_ssh.SSH_SERVER_FILE_NOT_FOUND
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_FOUND_OTHER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_FOUND_OTHER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FOUND_OTHER, __pyx_t_4) < 0) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FOUND_OTHER, __pyx_t_4) < 0) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":121
+  /* "ssh/libssh_enums.pyx":129
  *     KNOWN_CHANGED = c_ssh.SSH_SERVER_KNOWN_CHANGED
  *     FOUND_OTHER = c_ssh.SSH_SERVER_FOUND_OTHER
  *     FILE_NOT_FOUND = c_ssh.SSH_SERVER_FILE_NOT_FOUND             # <<<<<<<<<<<<<<
  * 
  *     # Errors
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_FILE_NOT_FOUND); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_server_known_e(SSH_SERVER_FILE_NOT_FOUND); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FILE_NOT_FOUND, __pyx_t_4) < 0) __PYX_ERR(0, 121, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FILE_NOT_FOUND, __pyx_t_4) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":115
+  /* "ssh/libssh_enums.pyx":123
  * 
  *     # enum ssh_server_known_e:
  * class Server(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     ERROR = c_ssh.SSH_SERVER_ERROR
  *     NOT_KNOWN = c_ssh.SSH_SERVER_NOT_KNOWN
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Server, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Server, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Server, __pyx_t_4) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Server, __pyx_t_4) < 0) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":125
+  /* "ssh/libssh_enums.pyx":133
  *     # Errors
  *     # enum ssh_error_types_e:
  * class ErrorTypes(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     NO_ERROR = c_ssh.SSH_NO_ERROR
  *     REQUEST_DENIED = c_ssh.SSH_REQUEST_DENIED
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_ErrorTypes, __pyx_n_s_ErrorTypes, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_ErrorTypes, __pyx_n_s_ErrorTypes, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":126
+  /* "ssh/libssh_enums.pyx":134
  *     # enum ssh_error_types_e:
  * class ErrorTypes(enum.IntEnum):
  *     NO_ERROR = c_ssh.SSH_NO_ERROR             # <<<<<<<<<<<<<<
  *     REQUEST_DENIED = c_ssh.SSH_REQUEST_DENIED
  *     FATAL = c_ssh.SSH_FATAL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_NO_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_NO_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":127
+  /* "ssh/libssh_enums.pyx":135
  * class ErrorTypes(enum.IntEnum):
  *     NO_ERROR = c_ssh.SSH_NO_ERROR
  *     REQUEST_DENIED = c_ssh.SSH_REQUEST_DENIED             # <<<<<<<<<<<<<<
  *     FATAL = c_ssh.SSH_FATAL
  *     EINTR = c_ssh.SSH_EINTR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_REQUEST_DENIED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_REQUEST_DENIED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST_DENIED, __pyx_t_4) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST_DENIED, __pyx_t_4) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":128
+  /* "ssh/libssh_enums.pyx":136
  *     NO_ERROR = c_ssh.SSH_NO_ERROR
  *     REQUEST_DENIED = c_ssh.SSH_REQUEST_DENIED
  *     FATAL = c_ssh.SSH_FATAL             # <<<<<<<<<<<<<<
  *     EINTR = c_ssh.SSH_EINTR
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_FATAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_FATAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FATAL, __pyx_t_4) < 0) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FATAL, __pyx_t_4) < 0) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":129
+  /* "ssh/libssh_enums.pyx":137
  *     REQUEST_DENIED = c_ssh.SSH_REQUEST_DENIED
  *     FATAL = c_ssh.SSH_FATAL
  *     EINTR = c_ssh.SSH_EINTR             # <<<<<<<<<<<<<<
  * 
  *     # enum ssh_keytypes_e:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_EINTR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_error_types_e(SSH_EINTR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EINTR, __pyx_t_4) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EINTR, __pyx_t_4) < 0) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":125
+  /* "ssh/libssh_enums.pyx":133
  *     # Errors
  *     # enum ssh_error_types_e:
  * class ErrorTypes(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     NO_ERROR = c_ssh.SSH_NO_ERROR
  *     REQUEST_DENIED = c_ssh.SSH_REQUEST_DENIED
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_ErrorTypes, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_ErrorTypes, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ErrorTypes, __pyx_t_4) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ErrorTypes, __pyx_t_4) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":132
+  /* "ssh/libssh_enums.pyx":140
  * 
  *     # enum ssh_keytypes_e:
  * class KeyType(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_KEYTYPE_UNKNOWN
  *     DSS = c_ssh.SSH_KEYTYPE_DSS
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KeyType, __pyx_n_s_KeyType, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KeyType, __pyx_n_s_KeyType, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":133
+  /* "ssh/libssh_enums.pyx":141
  *     # enum ssh_keytypes_e:
  * class KeyType(enum.IntEnum):
  *     UNKNOWN = c_ssh.SSH_KEYTYPE_UNKNOWN             # <<<<<<<<<<<<<<
  *     DSS = c_ssh.SSH_KEYTYPE_DSS
  *     RSA = c_ssh.SSH_KEYTYPE_RSA
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":134
+  /* "ssh/libssh_enums.pyx":142
  * class KeyType(enum.IntEnum):
  *     UNKNOWN = c_ssh.SSH_KEYTYPE_UNKNOWN
  *     DSS = c_ssh.SSH_KEYTYPE_DSS             # <<<<<<<<<<<<<<
  *     RSA = c_ssh.SSH_KEYTYPE_RSA
  *     RSA1 = c_ssh.SSH_KEYTYPE_RSA1
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_DSS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_DSS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DSS, __pyx_t_4) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DSS, __pyx_t_4) < 0) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":135
+  /* "ssh/libssh_enums.pyx":143
  *     UNKNOWN = c_ssh.SSH_KEYTYPE_UNKNOWN
  *     DSS = c_ssh.SSH_KEYTYPE_DSS
  *     RSA = c_ssh.SSH_KEYTYPE_RSA             # <<<<<<<<<<<<<<
  *     RSA1 = c_ssh.SSH_KEYTYPE_RSA1
  *     ECDSA = c_ssh.SSH_KEYTYPE_ECDSA  # Deprecated
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_RSA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_RSA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RSA, __pyx_t_4) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RSA, __pyx_t_4) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":136
+  /* "ssh/libssh_enums.pyx":144
  *     DSS = c_ssh.SSH_KEYTYPE_DSS
  *     RSA = c_ssh.SSH_KEYTYPE_RSA
  *     RSA1 = c_ssh.SSH_KEYTYPE_RSA1             # <<<<<<<<<<<<<<
  *     ECDSA = c_ssh.SSH_KEYTYPE_ECDSA  # Deprecated
  *     ED25519 = c_ssh.SSH_KEYTYPE_ED25519
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_RSA1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_RSA1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RSA1, __pyx_t_4) < 0) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RSA1, __pyx_t_4) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":137
+  /* "ssh/libssh_enums.pyx":145
  *     RSA = c_ssh.SSH_KEYTYPE_RSA
  *     RSA1 = c_ssh.SSH_KEYTYPE_RSA1
  *     ECDSA = c_ssh.SSH_KEYTYPE_ECDSA  # Deprecated             # <<<<<<<<<<<<<<
  *     ED25519 = c_ssh.SSH_KEYTYPE_ED25519
  *     DSS_CERT01 = c_ssh.SSH_KEYTYPE_DSS_CERT01
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA, __pyx_t_4) < 0) __PYX_ERR(0, 137, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA, __pyx_t_4) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":138
+  /* "ssh/libssh_enums.pyx":146
  *     RSA1 = c_ssh.SSH_KEYTYPE_RSA1
  *     ECDSA = c_ssh.SSH_KEYTYPE_ECDSA  # Deprecated
  *     ED25519 = c_ssh.SSH_KEYTYPE_ED25519             # <<<<<<<<<<<<<<
  *     DSS_CERT01 = c_ssh.SSH_KEYTYPE_DSS_CERT01
  *     RSA_CERT01 = c_ssh.SSH_KEYTYPE_RSA_CERT01
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ED25519); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ED25519); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ED25519, __pyx_t_4) < 0) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ED25519, __pyx_t_4) < 0) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":139
+  /* "ssh/libssh_enums.pyx":147
  *     ECDSA = c_ssh.SSH_KEYTYPE_ECDSA  # Deprecated
  *     ED25519 = c_ssh.SSH_KEYTYPE_ED25519
  *     DSS_CERT01 = c_ssh.SSH_KEYTYPE_DSS_CERT01             # <<<<<<<<<<<<<<
  *     RSA_CERT01 = c_ssh.SSH_KEYTYPE_RSA_CERT01
  *     ECDSA_P256 = c_ssh.SSH_KEYTYPE_ECDSA_P256
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_DSS_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_DSS_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DSS_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 139, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DSS_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":140
+  /* "ssh/libssh_enums.pyx":148
  *     ED25519 = c_ssh.SSH_KEYTYPE_ED25519
  *     DSS_CERT01 = c_ssh.SSH_KEYTYPE_DSS_CERT01
  *     RSA_CERT01 = c_ssh.SSH_KEYTYPE_RSA_CERT01             # <<<<<<<<<<<<<<
  *     ECDSA_P256 = c_ssh.SSH_KEYTYPE_ECDSA_P256
  *     ECDSA_P384 = c_ssh.SSH_KEYTYPE_ECDSA_P384
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_RSA_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_RSA_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RSA_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RSA_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":141
+  /* "ssh/libssh_enums.pyx":149
  *     DSS_CERT01 = c_ssh.SSH_KEYTYPE_DSS_CERT01
  *     RSA_CERT01 = c_ssh.SSH_KEYTYPE_RSA_CERT01
  *     ECDSA_P256 = c_ssh.SSH_KEYTYPE_ECDSA_P256             # <<<<<<<<<<<<<<
  *     ECDSA_P384 = c_ssh.SSH_KEYTYPE_ECDSA_P384
  *     ECDSA_P521 = c_ssh.SSH_KEYTYPE_ECDSA_P521
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P256); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P256); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P256, __pyx_t_4) < 0) __PYX_ERR(0, 141, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P256, __pyx_t_4) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":142
+  /* "ssh/libssh_enums.pyx":150
  *     RSA_CERT01 = c_ssh.SSH_KEYTYPE_RSA_CERT01
  *     ECDSA_P256 = c_ssh.SSH_KEYTYPE_ECDSA_P256
  *     ECDSA_P384 = c_ssh.SSH_KEYTYPE_ECDSA_P384             # <<<<<<<<<<<<<<
  *     ECDSA_P521 = c_ssh.SSH_KEYTYPE_ECDSA_P521
  *     ECDSA_P256_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P256_CERT01
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P384); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P384); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P384, __pyx_t_4) < 0) __PYX_ERR(0, 142, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P384, __pyx_t_4) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":143
+  /* "ssh/libssh_enums.pyx":151
  *     ECDSA_P256 = c_ssh.SSH_KEYTYPE_ECDSA_P256
  *     ECDSA_P384 = c_ssh.SSH_KEYTYPE_ECDSA_P384
  *     ECDSA_P521 = c_ssh.SSH_KEYTYPE_ECDSA_P521             # <<<<<<<<<<<<<<
  *     ECDSA_P256_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P256_CERT01
  *     ECDSA_P384_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P384_CERT01
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P521); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P521); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P521, __pyx_t_4) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P521, __pyx_t_4) < 0) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":144
+  /* "ssh/libssh_enums.pyx":152
  *     ECDSA_P384 = c_ssh.SSH_KEYTYPE_ECDSA_P384
  *     ECDSA_P521 = c_ssh.SSH_KEYTYPE_ECDSA_P521
  *     ECDSA_P256_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P256_CERT01             # <<<<<<<<<<<<<<
  *     ECDSA_P384_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P384_CERT01
  *     ECDSA_P521_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P521_CERT01
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P256_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P256_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P256_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P256_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":145
+  /* "ssh/libssh_enums.pyx":153
  *     ECDSA_P521 = c_ssh.SSH_KEYTYPE_ECDSA_P521
  *     ECDSA_P256_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P256_CERT01
  *     ECDSA_P384_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P384_CERT01             # <<<<<<<<<<<<<<
  *     ECDSA_P521_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P521_CERT01
  *     ED25519_CERT01 = c_ssh.SSH_KEYTYPE_ED25519_CERT01
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P384_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P384_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P384_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P384_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":146
+  /* "ssh/libssh_enums.pyx":154
  *     ECDSA_P256_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P256_CERT01
  *     ECDSA_P384_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P384_CERT01
  *     ECDSA_P521_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P521_CERT01             # <<<<<<<<<<<<<<
  *     ED25519_CERT01 = c_ssh.SSH_KEYTYPE_ED25519_CERT01
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P521_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ECDSA_P521_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P521_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 146, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDSA_P521_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":147
+  /* "ssh/libssh_enums.pyx":155
  *     ECDSA_P384_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P384_CERT01
  *     ECDSA_P521_CERT01 = c_ssh.SSH_KEYTYPE_ECDSA_P521_CERT01
  *     ED25519_CERT01 = c_ssh.SSH_KEYTYPE_ED25519_CERT01             # <<<<<<<<<<<<<<
  * 
  *     # enum ssh_keycmp_e:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ED25519_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keytypes_e(SSH_KEYTYPE_ED25519_CERT01); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ED25519_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 147, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ED25519_CERT01, __pyx_t_4) < 0) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":132
+  /* "ssh/libssh_enums.pyx":140
  * 
  *     # enum ssh_keytypes_e:
  * class KeyType(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_ssh.SSH_KEYTYPE_UNKNOWN
  *     DSS = c_ssh.SSH_KEYTYPE_DSS
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KeyType, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KeyType, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KeyType, __pyx_t_4) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KeyType, __pyx_t_4) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":150
+  /* "ssh/libssh_enums.pyx":158
  * 
  *     # enum ssh_keycmp_e:
  * class KeyCMP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     PUBLIC = c_ssh.SSH_KEY_CMP_PUBLIC
  *     PRIVATE = c_ssh.SSH_KEY_CMP_PRIVATE
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KeyCMP, __pyx_n_s_KeyCMP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_KeyCMP, __pyx_n_s_KeyCMP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":151
+  /* "ssh/libssh_enums.pyx":159
  *     # enum ssh_keycmp_e:
  * class KeyCMP(enum.IntEnum):
  *     PUBLIC = c_ssh.SSH_KEY_CMP_PUBLIC             # <<<<<<<<<<<<<<
  *     PRIVATE = c_ssh.SSH_KEY_CMP_PRIVATE
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keycmp_e(SSH_KEY_CMP_PUBLIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keycmp_e(SSH_KEY_CMP_PUBLIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PUBLIC, __pyx_t_4) < 0) __PYX_ERR(0, 151, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PUBLIC, __pyx_t_4) < 0) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":152
+  /* "ssh/libssh_enums.pyx":160
  * class KeyCMP(enum.IntEnum):
  *     PUBLIC = c_ssh.SSH_KEY_CMP_PUBLIC
  *     PRIVATE = c_ssh.SSH_KEY_CMP_PRIVATE             # <<<<<<<<<<<<<<
  * 
  * class Log(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keycmp_e(SSH_KEY_CMP_PRIVATE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_keycmp_e(SSH_KEY_CMP_PRIVATE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PRIVATE, __pyx_t_4) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PRIVATE, __pyx_t_4) < 0) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":150
+  /* "ssh/libssh_enums.pyx":158
  * 
  *     # enum ssh_keycmp_e:
  * class KeyCMP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     PUBLIC = c_ssh.SSH_KEY_CMP_PUBLIC
  *     PRIVATE = c_ssh.SSH_KEY_CMP_PRIVATE
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KeyCMP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_KeyCMP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KeyCMP, __pyx_t_4) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_KeyCMP, __pyx_t_4) < 0) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":154
+  /* "ssh/libssh_enums.pyx":162
  *     PRIVATE = c_ssh.SSH_KEY_CMP_PRIVATE
  * 
  * class Log(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     NOLOG = c_ssh.SSH_LOG_NOLOG
  *     PROTOCOL = c_ssh.SSH_LOG_PROTOCOL
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Log, __pyx_n_s_Log, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Log, __pyx_n_s_Log, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":155
+  /* "ssh/libssh_enums.pyx":163
  * 
  * class Log(enum.IntEnum):
  *     NOLOG = c_ssh.SSH_LOG_NOLOG             # <<<<<<<<<<<<<<
  *     PROTOCOL = c_ssh.SSH_LOG_PROTOCOL
  *     PACKET = c_ssh.SSH_LOG_PACKET
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_NOLOG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_NOLOG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NOLOG, __pyx_t_4) < 0) __PYX_ERR(0, 155, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NOLOG, __pyx_t_4) < 0) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":156
+  /* "ssh/libssh_enums.pyx":164
  * class Log(enum.IntEnum):
  *     NOLOG = c_ssh.SSH_LOG_NOLOG
  *     PROTOCOL = c_ssh.SSH_LOG_PROTOCOL             # <<<<<<<<<<<<<<
  *     PACKET = c_ssh.SSH_LOG_PACKET
  *     FUNCTIONS = c_ssh.SSH_LOG_FUNCTIONS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_PROTOCOL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_PROTOCOL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROTOCOL, __pyx_t_4) < 0) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROTOCOL, __pyx_t_4) < 0) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":157
+  /* "ssh/libssh_enums.pyx":165
  *     NOLOG = c_ssh.SSH_LOG_NOLOG
  *     PROTOCOL = c_ssh.SSH_LOG_PROTOCOL
  *     PACKET = c_ssh.SSH_LOG_PACKET             # <<<<<<<<<<<<<<
  *     FUNCTIONS = c_ssh.SSH_LOG_FUNCTIONS
  *     RARE = c_ssh.SSH_LOG_RARE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_PACKET); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_PACKET); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PACKET, __pyx_t_4) < 0) __PYX_ERR(0, 157, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PACKET, __pyx_t_4) < 0) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":158
+  /* "ssh/libssh_enums.pyx":166
  *     PROTOCOL = c_ssh.SSH_LOG_PROTOCOL
  *     PACKET = c_ssh.SSH_LOG_PACKET
  *     FUNCTIONS = c_ssh.SSH_LOG_FUNCTIONS             # <<<<<<<<<<<<<<
  *     RARE = c_ssh.SSH_LOG_RARE
  *     NONE = c_ssh.SSH_LOG_NONE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_FUNCTIONS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_FUNCTIONS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FUNCTIONS, __pyx_t_4) < 0) __PYX_ERR(0, 158, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FUNCTIONS, __pyx_t_4) < 0) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":159
+  /* "ssh/libssh_enums.pyx":167
  *     PACKET = c_ssh.SSH_LOG_PACKET
  *     FUNCTIONS = c_ssh.SSH_LOG_FUNCTIONS
  *     RARE = c_ssh.SSH_LOG_RARE             # <<<<<<<<<<<<<<
  *     NONE = c_ssh.SSH_LOG_NONE
  *     WARN = c_ssh.SSH_LOG_WARN
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_RARE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_RARE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RARE, __pyx_t_4) < 0) __PYX_ERR(0, 159, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RARE, __pyx_t_4) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":160
+  /* "ssh/libssh_enums.pyx":168
  *     FUNCTIONS = c_ssh.SSH_LOG_FUNCTIONS
  *     RARE = c_ssh.SSH_LOG_RARE
  *     NONE = c_ssh.SSH_LOG_NONE             # <<<<<<<<<<<<<<
  *     WARN = c_ssh.SSH_LOG_WARN
  *     INFO = c_ssh.SSH_LOG_INFO
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_NONE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_NONE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NONE, __pyx_t_4) < 0) __PYX_ERR(0, 160, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NONE, __pyx_t_4) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":161
+  /* "ssh/libssh_enums.pyx":169
  *     RARE = c_ssh.SSH_LOG_RARE
  *     NONE = c_ssh.SSH_LOG_NONE
  *     WARN = c_ssh.SSH_LOG_WARN             # <<<<<<<<<<<<<<
  *     INFO = c_ssh.SSH_LOG_INFO
  *     DEBUG = c_ssh.SSH_LOG_DEBUG
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_WARN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_WARN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WARN, __pyx_t_4) < 0) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WARN, __pyx_t_4) < 0) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":162
+  /* "ssh/libssh_enums.pyx":170
  *     NONE = c_ssh.SSH_LOG_NONE
  *     WARN = c_ssh.SSH_LOG_WARN
  *     INFO = c_ssh.SSH_LOG_INFO             # <<<<<<<<<<<<<<
  *     DEBUG = c_ssh.SSH_LOG_DEBUG
  *     TRACE = c_ssh.SSH_LOG_TRACE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_INFO); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_INFO); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO, __pyx_t_4) < 0) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO, __pyx_t_4) < 0) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":163
+  /* "ssh/libssh_enums.pyx":171
  *     WARN = c_ssh.SSH_LOG_WARN
  *     INFO = c_ssh.SSH_LOG_INFO
  *     DEBUG = c_ssh.SSH_LOG_DEBUG             # <<<<<<<<<<<<<<
  *     TRACE = c_ssh.SSH_LOG_TRACE
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_DEBUG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_DEBUG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DEBUG, __pyx_t_4) < 0) __PYX_ERR(0, 163, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DEBUG, __pyx_t_4) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":164
+  /* "ssh/libssh_enums.pyx":172
  *     INFO = c_ssh.SSH_LOG_INFO
  *     DEBUG = c_ssh.SSH_LOG_DEBUG
  *     TRACE = c_ssh.SSH_LOG_TRACE             # <<<<<<<<<<<<<<
  * 
  *     # enum ssh_options_e:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_TRACE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_LOG_TRACE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TRACE, __pyx_t_4) < 0) __PYX_ERR(0, 164, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TRACE, __pyx_t_4) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":154
+  /* "ssh/libssh_enums.pyx":162
  *     PRIVATE = c_ssh.SSH_KEY_CMP_PRIVATE
  * 
  * class Log(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     NOLOG = c_ssh.SSH_LOG_NOLOG
  *     PROTOCOL = c_ssh.SSH_LOG_PROTOCOL
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Log, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Log, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Log, __pyx_t_4) < 0) __PYX_ERR(0, 154, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Log, __pyx_t_4) < 0) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":167
+  /* "ssh/libssh_enums.pyx":175
  * 
  *     # enum ssh_options_e:
  * class Options(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     HOST = c_ssh.SSH_OPTIONS_HOST
  *     PORT = c_ssh.SSH_OPTIONS_PORT
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Options, __pyx_n_s_Options, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Options, __pyx_n_s_Options, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":168
+  /* "ssh/libssh_enums.pyx":176
  *     # enum ssh_options_e:
  * class Options(enum.IntEnum):
  *     HOST = c_ssh.SSH_OPTIONS_HOST             # <<<<<<<<<<<<<<
  *     PORT = c_ssh.SSH_OPTIONS_PORT
  *     PORT_STR = c_ssh.SSH_OPTIONS_PORT_STR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HOST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HOST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST, __pyx_t_4) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST, __pyx_t_4) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":169
+  /* "ssh/libssh_enums.pyx":177
  * class Options(enum.IntEnum):
  *     HOST = c_ssh.SSH_OPTIONS_HOST
  *     PORT = c_ssh.SSH_OPTIONS_PORT             # <<<<<<<<<<<<<<
  *     PORT_STR = c_ssh.SSH_OPTIONS_PORT_STR
  *     FD = c_ssh.SSH_OPTIONS_FD
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PORT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 169, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PORT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PORT, __pyx_t_4) < 0) __PYX_ERR(0, 169, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PORT, __pyx_t_4) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":170
+  /* "ssh/libssh_enums.pyx":178
  *     HOST = c_ssh.SSH_OPTIONS_HOST
  *     PORT = c_ssh.SSH_OPTIONS_PORT
  *     PORT_STR = c_ssh.SSH_OPTIONS_PORT_STR             # <<<<<<<<<<<<<<
  *     FD = c_ssh.SSH_OPTIONS_FD
  *     USER = c_ssh.SSH_OPTIONS_USER
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PORT_STR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PORT_STR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PORT_STR, __pyx_t_4) < 0) __PYX_ERR(0, 170, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PORT_STR, __pyx_t_4) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":171
+  /* "ssh/libssh_enums.pyx":179
  *     PORT = c_ssh.SSH_OPTIONS_PORT
  *     PORT_STR = c_ssh.SSH_OPTIONS_PORT_STR
  *     FD = c_ssh.SSH_OPTIONS_FD             # <<<<<<<<<<<<<<
  *     USER = c_ssh.SSH_OPTIONS_USER
  *     SSH_DIR = c_ssh.SSH_OPTIONS_SSH_DIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_FD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_FD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FD, __pyx_t_4) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FD, __pyx_t_4) < 0) __PYX_ERR(0, 179, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":172
+  /* "ssh/libssh_enums.pyx":180
  *     PORT_STR = c_ssh.SSH_OPTIONS_PORT_STR
  *     FD = c_ssh.SSH_OPTIONS_FD
  *     USER = c_ssh.SSH_OPTIONS_USER             # <<<<<<<<<<<<<<
  *     SSH_DIR = c_ssh.SSH_OPTIONS_SSH_DIR
  *     IDENTITY = c_ssh.SSH_OPTIONS_IDENTITY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_USER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_USER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_USER, __pyx_t_4) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_USER, __pyx_t_4) < 0) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":173
+  /* "ssh/libssh_enums.pyx":181
  *     FD = c_ssh.SSH_OPTIONS_FD
  *     USER = c_ssh.SSH_OPTIONS_USER
  *     SSH_DIR = c_ssh.SSH_OPTIONS_SSH_DIR             # <<<<<<<<<<<<<<
  *     IDENTITY = c_ssh.SSH_OPTIONS_IDENTITY
  *     ADD_IDENTITY = c_ssh.SSH_OPTIONS_ADD_IDENTITY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_SSH_DIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_SSH_DIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SSH_DIR, __pyx_t_4) < 0) __PYX_ERR(0, 173, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SSH_DIR, __pyx_t_4) < 0) __PYX_ERR(0, 181, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":174
+  /* "ssh/libssh_enums.pyx":182
  *     USER = c_ssh.SSH_OPTIONS_USER
  *     SSH_DIR = c_ssh.SSH_OPTIONS_SSH_DIR
  *     IDENTITY = c_ssh.SSH_OPTIONS_IDENTITY             # <<<<<<<<<<<<<<
  *     ADD_IDENTITY = c_ssh.SSH_OPTIONS_ADD_IDENTITY
  *     KNOWNHOSTS = c_ssh.SSH_OPTIONS_KNOWNHOSTS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":175
+  /* "ssh/libssh_enums.pyx":183
  *     SSH_DIR = c_ssh.SSH_OPTIONS_SSH_DIR
  *     IDENTITY = c_ssh.SSH_OPTIONS_IDENTITY
  *     ADD_IDENTITY = c_ssh.SSH_OPTIONS_ADD_IDENTITY             # <<<<<<<<<<<<<<
  *     KNOWNHOSTS = c_ssh.SSH_OPTIONS_KNOWNHOSTS
  *     TIMEOUT = c_ssh.SSH_OPTIONS_TIMEOUT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_ADD_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_ADD_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ADD_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 175, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ADD_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":176
+  /* "ssh/libssh_enums.pyx":184
  *     IDENTITY = c_ssh.SSH_OPTIONS_IDENTITY
  *     ADD_IDENTITY = c_ssh.SSH_OPTIONS_ADD_IDENTITY
  *     KNOWNHOSTS = c_ssh.SSH_OPTIONS_KNOWNHOSTS             # <<<<<<<<<<<<<<
  *     TIMEOUT = c_ssh.SSH_OPTIONS_TIMEOUT
  *     TIMEOUT_USEC = c_ssh.SSH_OPTIONS_TIMEOUT_USEC
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_KNOWNHOSTS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_KNOWNHOSTS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KNOWNHOSTS, __pyx_t_4) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KNOWNHOSTS, __pyx_t_4) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":177
+  /* "ssh/libssh_enums.pyx":185
  *     ADD_IDENTITY = c_ssh.SSH_OPTIONS_ADD_IDENTITY
  *     KNOWNHOSTS = c_ssh.SSH_OPTIONS_KNOWNHOSTS
  *     TIMEOUT = c_ssh.SSH_OPTIONS_TIMEOUT             # <<<<<<<<<<<<<<
  *     TIMEOUT_USEC = c_ssh.SSH_OPTIONS_TIMEOUT_USEC
  *     SSH1 = c_ssh.SSH_OPTIONS_SSH1
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_TIMEOUT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_TIMEOUT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TIMEOUT, __pyx_t_4) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TIMEOUT, __pyx_t_4) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":178
+  /* "ssh/libssh_enums.pyx":186
  *     KNOWNHOSTS = c_ssh.SSH_OPTIONS_KNOWNHOSTS
  *     TIMEOUT = c_ssh.SSH_OPTIONS_TIMEOUT
  *     TIMEOUT_USEC = c_ssh.SSH_OPTIONS_TIMEOUT_USEC             # <<<<<<<<<<<<<<
  *     SSH1 = c_ssh.SSH_OPTIONS_SSH1
  *     SSH2 = c_ssh.SSH_OPTIONS_SSH2
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_TIMEOUT_USEC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_TIMEOUT_USEC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TIMEOUT_USEC, __pyx_t_4) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TIMEOUT_USEC, __pyx_t_4) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":179
+  /* "ssh/libssh_enums.pyx":187
  *     TIMEOUT = c_ssh.SSH_OPTIONS_TIMEOUT
  *     TIMEOUT_USEC = c_ssh.SSH_OPTIONS_TIMEOUT_USEC
  *     SSH1 = c_ssh.SSH_OPTIONS_SSH1             # <<<<<<<<<<<<<<
  *     SSH2 = c_ssh.SSH_OPTIONS_SSH2
  *     LOG_VERBOSITY = c_ssh.SSH_OPTIONS_LOG_VERBOSITY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_SSH1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_SSH1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SSH1, __pyx_t_4) < 0) __PYX_ERR(0, 179, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SSH1, __pyx_t_4) < 0) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":180
+  /* "ssh/libssh_enums.pyx":188
  *     TIMEOUT_USEC = c_ssh.SSH_OPTIONS_TIMEOUT_USEC
  *     SSH1 = c_ssh.SSH_OPTIONS_SSH1
  *     SSH2 = c_ssh.SSH_OPTIONS_SSH2             # <<<<<<<<<<<<<<
  *     LOG_VERBOSITY = c_ssh.SSH_OPTIONS_LOG_VERBOSITY
  *     LOG_VERBOSITY_STR = c_ssh.SSH_OPTIONS_LOG_VERBOSITY_STR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_SSH2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_SSH2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SSH2, __pyx_t_4) < 0) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SSH2, __pyx_t_4) < 0) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":181
+  /* "ssh/libssh_enums.pyx":189
  *     SSH1 = c_ssh.SSH_OPTIONS_SSH1
  *     SSH2 = c_ssh.SSH_OPTIONS_SSH2
  *     LOG_VERBOSITY = c_ssh.SSH_OPTIONS_LOG_VERBOSITY             # <<<<<<<<<<<<<<
  *     LOG_VERBOSITY_STR = c_ssh.SSH_OPTIONS_LOG_VERBOSITY_STR
  *     CIPHERS_C_S = c_ssh.SSH_OPTIONS_CIPHERS_C_S
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_LOG_VERBOSITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_LOG_VERBOSITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LOG_VERBOSITY, __pyx_t_4) < 0) __PYX_ERR(0, 181, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LOG_VERBOSITY, __pyx_t_4) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":182
+  /* "ssh/libssh_enums.pyx":190
  *     SSH2 = c_ssh.SSH_OPTIONS_SSH2
  *     LOG_VERBOSITY = c_ssh.SSH_OPTIONS_LOG_VERBOSITY
  *     LOG_VERBOSITY_STR = c_ssh.SSH_OPTIONS_LOG_VERBOSITY_STR             # <<<<<<<<<<<<<<
  *     CIPHERS_C_S = c_ssh.SSH_OPTIONS_CIPHERS_C_S
  *     CIPHERS_S_C = c_ssh.SSH_OPTIONS_CIPHERS_S_C
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_LOG_VERBOSITY_STR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_LOG_VERBOSITY_STR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LOG_VERBOSITY_STR, __pyx_t_4) < 0) __PYX_ERR(0, 182, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LOG_VERBOSITY_STR, __pyx_t_4) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":183
+  /* "ssh/libssh_enums.pyx":191
  *     LOG_VERBOSITY = c_ssh.SSH_OPTIONS_LOG_VERBOSITY
  *     LOG_VERBOSITY_STR = c_ssh.SSH_OPTIONS_LOG_VERBOSITY_STR
  *     CIPHERS_C_S = c_ssh.SSH_OPTIONS_CIPHERS_C_S             # <<<<<<<<<<<<<<
  *     CIPHERS_S_C = c_ssh.SSH_OPTIONS_CIPHERS_S_C
  *     COMPRESSION_C_S = c_ssh.SSH_OPTIONS_COMPRESSION_C_S
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_CIPHERS_C_S); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_CIPHERS_C_S); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CIPHERS_C_S, __pyx_t_4) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CIPHERS_C_S, __pyx_t_4) < 0) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":184
+  /* "ssh/libssh_enums.pyx":192
  *     LOG_VERBOSITY_STR = c_ssh.SSH_OPTIONS_LOG_VERBOSITY_STR
  *     CIPHERS_C_S = c_ssh.SSH_OPTIONS_CIPHERS_C_S
  *     CIPHERS_S_C = c_ssh.SSH_OPTIONS_CIPHERS_S_C             # <<<<<<<<<<<<<<
  *     COMPRESSION_C_S = c_ssh.SSH_OPTIONS_COMPRESSION_C_S
  *     COMPRESSION_S_C = c_ssh.SSH_OPTIONS_COMPRESSION_S_C
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_CIPHERS_S_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_CIPHERS_S_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CIPHERS_S_C, __pyx_t_4) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CIPHERS_S_C, __pyx_t_4) < 0) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":185
+  /* "ssh/libssh_enums.pyx":193
  *     CIPHERS_C_S = c_ssh.SSH_OPTIONS_CIPHERS_C_S
  *     CIPHERS_S_C = c_ssh.SSH_OPTIONS_CIPHERS_S_C
  *     COMPRESSION_C_S = c_ssh.SSH_OPTIONS_COMPRESSION_C_S             # <<<<<<<<<<<<<<
  *     COMPRESSION_S_C = c_ssh.SSH_OPTIONS_COMPRESSION_S_C
  *     PROXYCOMMAND = c_ssh.SSH_OPTIONS_PROXYCOMMAND
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION_C_S); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION_C_S); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_C_S, __pyx_t_4) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_C_S, __pyx_t_4) < 0) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":186
+  /* "ssh/libssh_enums.pyx":194
  *     CIPHERS_S_C = c_ssh.SSH_OPTIONS_CIPHERS_S_C
  *     COMPRESSION_C_S = c_ssh.SSH_OPTIONS_COMPRESSION_C_S
  *     COMPRESSION_S_C = c_ssh.SSH_OPTIONS_COMPRESSION_S_C             # <<<<<<<<<<<<<<
  *     PROXYCOMMAND = c_ssh.SSH_OPTIONS_PROXYCOMMAND
  *     BINDADDR = c_ssh.SSH_OPTIONS_BINDADDR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION_S_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION_S_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_S_C, __pyx_t_4) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_S_C, __pyx_t_4) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":187
+  /* "ssh/libssh_enums.pyx":195
  *     COMPRESSION_C_S = c_ssh.SSH_OPTIONS_COMPRESSION_C_S
  *     COMPRESSION_S_C = c_ssh.SSH_OPTIONS_COMPRESSION_S_C
  *     PROXYCOMMAND = c_ssh.SSH_OPTIONS_PROXYCOMMAND             # <<<<<<<<<<<<<<
  *     BINDADDR = c_ssh.SSH_OPTIONS_BINDADDR
  *     STRICTHOSTKEYCHECK = c_ssh.SSH_OPTIONS_STRICTHOSTKEYCHECK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PROXYCOMMAND); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 187, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PROXYCOMMAND); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROXYCOMMAND, __pyx_t_4) < 0) __PYX_ERR(0, 187, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROXYCOMMAND, __pyx_t_4) < 0) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":188
+  /* "ssh/libssh_enums.pyx":196
  *     COMPRESSION_S_C = c_ssh.SSH_OPTIONS_COMPRESSION_S_C
  *     PROXYCOMMAND = c_ssh.SSH_OPTIONS_PROXYCOMMAND
  *     BINDADDR = c_ssh.SSH_OPTIONS_BINDADDR             # <<<<<<<<<<<<<<
  *     STRICTHOSTKEYCHECK = c_ssh.SSH_OPTIONS_STRICTHOSTKEYCHECK
  *     COMPRESSION = c_ssh.SSH_OPTIONS_COMPRESSION
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_BINDADDR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_BINDADDR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BINDADDR, __pyx_t_4) < 0) __PYX_ERR(0, 188, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BINDADDR, __pyx_t_4) < 0) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":189
+  /* "ssh/libssh_enums.pyx":197
  *     PROXYCOMMAND = c_ssh.SSH_OPTIONS_PROXYCOMMAND
  *     BINDADDR = c_ssh.SSH_OPTIONS_BINDADDR
  *     STRICTHOSTKEYCHECK = c_ssh.SSH_OPTIONS_STRICTHOSTKEYCHECK             # <<<<<<<<<<<<<<
  *     COMPRESSION = c_ssh.SSH_OPTIONS_COMPRESSION
  *     COMPRESSION_LEVEL = c_ssh.SSH_OPTIONS_COMPRESSION_LEVEL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_STRICTHOSTKEYCHECK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_STRICTHOSTKEYCHECK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STRICTHOSTKEYCHECK, __pyx_t_4) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STRICTHOSTKEYCHECK, __pyx_t_4) < 0) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":190
+  /* "ssh/libssh_enums.pyx":198
  *     BINDADDR = c_ssh.SSH_OPTIONS_BINDADDR
  *     STRICTHOSTKEYCHECK = c_ssh.SSH_OPTIONS_STRICTHOSTKEYCHECK
  *     COMPRESSION = c_ssh.SSH_OPTIONS_COMPRESSION             # <<<<<<<<<<<<<<
  *     COMPRESSION_LEVEL = c_ssh.SSH_OPTIONS_COMPRESSION_LEVEL
  *     KEY_EXCHANGE = c_ssh.SSH_OPTIONS_KEY_EXCHANGE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION, __pyx_t_4) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION, __pyx_t_4) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":191
+  /* "ssh/libssh_enums.pyx":199
  *     STRICTHOSTKEYCHECK = c_ssh.SSH_OPTIONS_STRICTHOSTKEYCHECK
  *     COMPRESSION = c_ssh.SSH_OPTIONS_COMPRESSION
  *     COMPRESSION_LEVEL = c_ssh.SSH_OPTIONS_COMPRESSION_LEVEL             # <<<<<<<<<<<<<<
  *     KEY_EXCHANGE = c_ssh.SSH_OPTIONS_KEY_EXCHANGE
  *     HOSTKEYS = c_ssh.SSH_OPTIONS_HOSTKEYS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION_LEVEL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_COMPRESSION_LEVEL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_LEVEL, __pyx_t_4) < 0) __PYX_ERR(0, 191, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_LEVEL, __pyx_t_4) < 0) __PYX_ERR(0, 199, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":192
+  /* "ssh/libssh_enums.pyx":200
  *     COMPRESSION = c_ssh.SSH_OPTIONS_COMPRESSION
  *     COMPRESSION_LEVEL = c_ssh.SSH_OPTIONS_COMPRESSION_LEVEL
  *     KEY_EXCHANGE = c_ssh.SSH_OPTIONS_KEY_EXCHANGE             # <<<<<<<<<<<<<<
  *     HOSTKEYS = c_ssh.SSH_OPTIONS_HOSTKEYS
  *     GSSAPI_SERVER_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_SERVER_IDENTITY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_KEY_EXCHANGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_KEY_EXCHANGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEY_EXCHANGE, __pyx_t_4) < 0) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEY_EXCHANGE, __pyx_t_4) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":193
+  /* "ssh/libssh_enums.pyx":201
  *     COMPRESSION_LEVEL = c_ssh.SSH_OPTIONS_COMPRESSION_LEVEL
  *     KEY_EXCHANGE = c_ssh.SSH_OPTIONS_KEY_EXCHANGE
  *     HOSTKEYS = c_ssh.SSH_OPTIONS_HOSTKEYS             # <<<<<<<<<<<<<<
  *     GSSAPI_SERVER_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_SERVER_IDENTITY
  *     GSSAPI_CLIENT_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HOSTKEYS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HOSTKEYS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOSTKEYS, __pyx_t_4) < 0) __PYX_ERR(0, 193, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOSTKEYS, __pyx_t_4) < 0) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":194
+  /* "ssh/libssh_enums.pyx":202
  *     KEY_EXCHANGE = c_ssh.SSH_OPTIONS_KEY_EXCHANGE
  *     HOSTKEYS = c_ssh.SSH_OPTIONS_HOSTKEYS
  *     GSSAPI_SERVER_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_SERVER_IDENTITY             # <<<<<<<<<<<<<<
  *     GSSAPI_CLIENT_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY
  *     GSSAPI_DELEGATE_CREDENTIALS = c_ssh.SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_SERVER_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_SERVER_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_SERVER_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_SERVER_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":195
+  /* "ssh/libssh_enums.pyx":203
  *     HOSTKEYS = c_ssh.SSH_OPTIONS_HOSTKEYS
  *     GSSAPI_SERVER_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_SERVER_IDENTITY
  *     GSSAPI_CLIENT_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY             # <<<<<<<<<<<<<<
  *     GSSAPI_DELEGATE_CREDENTIALS = c_ssh.SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS
  *     HMAC_C_S = c_ssh.SSH_OPTIONS_HMAC_C_S
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_CLIENT_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 195, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_CLIENT_IDENTITY, __pyx_t_4) < 0) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":196
+  /* "ssh/libssh_enums.pyx":204
  *     GSSAPI_SERVER_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_SERVER_IDENTITY
  *     GSSAPI_CLIENT_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY
  *     GSSAPI_DELEGATE_CREDENTIALS = c_ssh.SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS             # <<<<<<<<<<<<<<
  *     HMAC_C_S = c_ssh.SSH_OPTIONS_HMAC_C_S
  *     HMAC_S_C = c_ssh.SSH_OPTIONS_HMAC_S_C
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_DELEGATE_CREDENTIALS, __pyx_t_4) < 0) __PYX_ERR(0, 196, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_DELEGATE_CREDENTIALS, __pyx_t_4) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":197
+  /* "ssh/libssh_enums.pyx":205
  *     GSSAPI_CLIENT_IDENTITY = c_ssh.SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY
  *     GSSAPI_DELEGATE_CREDENTIALS = c_ssh.SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS
  *     HMAC_C_S = c_ssh.SSH_OPTIONS_HMAC_C_S             # <<<<<<<<<<<<<<
  *     HMAC_S_C = c_ssh.SSH_OPTIONS_HMAC_S_C
  *     PASSWORD_AUTH = c_ssh.SSH_OPTIONS_PASSWORD_AUTH
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HMAC_C_S); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HMAC_C_S); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HMAC_C_S, __pyx_t_4) < 0) __PYX_ERR(0, 197, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HMAC_C_S, __pyx_t_4) < 0) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":198
+  /* "ssh/libssh_enums.pyx":206
  *     GSSAPI_DELEGATE_CREDENTIALS = c_ssh.SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS
  *     HMAC_C_S = c_ssh.SSH_OPTIONS_HMAC_C_S
  *     HMAC_S_C = c_ssh.SSH_OPTIONS_HMAC_S_C             # <<<<<<<<<<<<<<
  *     PASSWORD_AUTH = c_ssh.SSH_OPTIONS_PASSWORD_AUTH
  *     PUBKEY_AUTH = c_ssh.SSH_OPTIONS_PUBKEY_AUTH
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HMAC_S_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_HMAC_S_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HMAC_S_C, __pyx_t_4) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HMAC_S_C, __pyx_t_4) < 0) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":199
+  /* "ssh/libssh_enums.pyx":207
  *     HMAC_C_S = c_ssh.SSH_OPTIONS_HMAC_C_S
  *     HMAC_S_C = c_ssh.SSH_OPTIONS_HMAC_S_C
  *     PASSWORD_AUTH = c_ssh.SSH_OPTIONS_PASSWORD_AUTH             # <<<<<<<<<<<<<<
  *     PUBKEY_AUTH = c_ssh.SSH_OPTIONS_PUBKEY_AUTH
  *     KBDINT_AUTH = c_ssh.SSH_OPTIONS_KBDINT_AUTH
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PASSWORD_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PASSWORD_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PASSWORD_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 199, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PASSWORD_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":200
+  /* "ssh/libssh_enums.pyx":208
  *     HMAC_S_C = c_ssh.SSH_OPTIONS_HMAC_S_C
  *     PASSWORD_AUTH = c_ssh.SSH_OPTIONS_PASSWORD_AUTH
  *     PUBKEY_AUTH = c_ssh.SSH_OPTIONS_PUBKEY_AUTH             # <<<<<<<<<<<<<<
  *     KBDINT_AUTH = c_ssh.SSH_OPTIONS_KBDINT_AUTH
  *     GSSAPI_AUTH = c_ssh.SSH_OPTIONS_GSSAPI_AUTH
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PUBKEY_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_PUBKEY_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PUBKEY_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PUBKEY_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":201
+  /* "ssh/libssh_enums.pyx":209
  *     PASSWORD_AUTH = c_ssh.SSH_OPTIONS_PASSWORD_AUTH
  *     PUBKEY_AUTH = c_ssh.SSH_OPTIONS_PUBKEY_AUTH
  *     KBDINT_AUTH = c_ssh.SSH_OPTIONS_KBDINT_AUTH             # <<<<<<<<<<<<<<
  *     GSSAPI_AUTH = c_ssh.SSH_OPTIONS_GSSAPI_AUTH
  *     GLOBAL_KNOWNHOSTS = c_ssh.SSH_OPTIONS_GLOBAL_KNOWNHOSTS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_KBDINT_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_KBDINT_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KBDINT_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 201, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KBDINT_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":202
+  /* "ssh/libssh_enums.pyx":210
  *     PUBKEY_AUTH = c_ssh.SSH_OPTIONS_PUBKEY_AUTH
  *     KBDINT_AUTH = c_ssh.SSH_OPTIONS_KBDINT_AUTH
  *     GSSAPI_AUTH = c_ssh.SSH_OPTIONS_GSSAPI_AUTH             # <<<<<<<<<<<<<<
  *     GLOBAL_KNOWNHOSTS = c_ssh.SSH_OPTIONS_GLOBAL_KNOWNHOSTS
  *     NODELAY = c_ssh.SSH_OPTIONS_NODELAY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GSSAPI_AUTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_AUTH, __pyx_t_4) < 0) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":203
+  /* "ssh/libssh_enums.pyx":211
  *     KBDINT_AUTH = c_ssh.SSH_OPTIONS_KBDINT_AUTH
  *     GSSAPI_AUTH = c_ssh.SSH_OPTIONS_GSSAPI_AUTH
  *     GLOBAL_KNOWNHOSTS = c_ssh.SSH_OPTIONS_GLOBAL_KNOWNHOSTS             # <<<<<<<<<<<<<<
  *     NODELAY = c_ssh.SSH_OPTIONS_NODELAY
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GLOBAL_KNOWNHOSTS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_GLOBAL_KNOWNHOSTS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GLOBAL_KNOWNHOSTS, __pyx_t_4) < 0) __PYX_ERR(0, 203, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GLOBAL_KNOWNHOSTS, __pyx_t_4) < 0) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":204
+  /* "ssh/libssh_enums.pyx":212
  *     GSSAPI_AUTH = c_ssh.SSH_OPTIONS_GSSAPI_AUTH
  *     GLOBAL_KNOWNHOSTS = c_ssh.SSH_OPTIONS_GLOBAL_KNOWNHOSTS
  *     NODELAY = c_ssh.SSH_OPTIONS_NODELAY             # <<<<<<<<<<<<<<
  * 
  * class SCP(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_NODELAY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_options_e(SSH_OPTIONS_NODELAY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NODELAY, __pyx_t_4) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NODELAY, __pyx_t_4) < 0) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":167
+  /* "ssh/libssh_enums.pyx":175
  * 
  *     # enum ssh_options_e:
  * class Options(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     HOST = c_ssh.SSH_OPTIONS_HOST
  *     PORT = c_ssh.SSH_OPTIONS_PORT
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Options, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Options, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Options, __pyx_t_4) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Options, __pyx_t_4) < 0) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":206
+  /* "ssh/libssh_enums.pyx":214
  *     NODELAY = c_ssh.SSH_OPTIONS_NODELAY
  * 
  * class SCP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     WRITE = c_ssh.SSH_SCP_WRITE
  *     READ = c_ssh.SSH_SCP_READ
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SCP, __pyx_n_s_SCP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SCP, __pyx_n_s_SCP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":207
+  /* "ssh/libssh_enums.pyx":215
  * 
  * class SCP(enum.IntEnum):
  *     WRITE = c_ssh.SSH_SCP_WRITE             # <<<<<<<<<<<<<<
  *     READ = c_ssh.SSH_SCP_READ
  *     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SCP_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SCP_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 207, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":208
+  /* "ssh/libssh_enums.pyx":216
  * class SCP(enum.IntEnum):
  *     WRITE = c_ssh.SSH_SCP_WRITE
  *     READ = c_ssh.SSH_SCP_READ             # <<<<<<<<<<<<<<
  *     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE
  *         # enum ssh_scp_request_types:
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SCP_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SCP_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 208, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":209
+  /* "ssh/libssh_enums.pyx":217
  *     WRITE = c_ssh.SSH_SCP_WRITE
  *     READ = c_ssh.SSH_SCP_READ
  *     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE             # <<<<<<<<<<<<<<
  *         # enum ssh_scp_request_types:
  * class SCP_Request(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SCP_RECURSIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SCP_RECURSIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RECURSIVE, __pyx_t_4) < 0) __PYX_ERR(0, 209, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RECURSIVE, __pyx_t_4) < 0) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":206
+  /* "ssh/libssh_enums.pyx":214
  *     NODELAY = c_ssh.SSH_OPTIONS_NODELAY
  * 
  * class SCP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     WRITE = c_ssh.SSH_SCP_WRITE
  *     READ = c_ssh.SSH_SCP_READ
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SCP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SCP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SCP, __pyx_t_4) < 0) __PYX_ERR(0, 206, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "ssh/libssh_enums.pyx":211
- *     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE
- *         # enum ssh_scp_request_types:
- * class SCP_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
- *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SCP_Request, __pyx_n_s_SCP_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-
-  /* "ssh/libssh_enums.pyx":212
- *         # enum ssh_scp_request_types:
- * class SCP_Request(enum.IntEnum):
- *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR             # <<<<<<<<<<<<<<
- *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
- *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_NEWDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NEWDIR, __pyx_t_4) < 0) __PYX_ERR(0, 212, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":213
- * class SCP_Request(enum.IntEnum):
- *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
- *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE             # <<<<<<<<<<<<<<
- *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
- *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_NEWFILE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NEWFILE, __pyx_t_4) < 0) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":214
- *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
- *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
- *     EOF = c_ssh.SSH_SCP_REQUEST_EOF             # <<<<<<<<<<<<<<
- *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR
- *     WARNING = c_ssh.SSH_SCP_REQUEST_WARNING
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 214, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":215
- *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
- *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
- *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR             # <<<<<<<<<<<<<<
- *     WARNING = c_ssh.SSH_SCP_REQUEST_WARNING
- * 
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_ENDDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 215, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ENDDIR, __pyx_t_4) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":216
- *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
- *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR
- *     WARNING = c_ssh.SSH_SCP_REQUEST_WARNING             # <<<<<<<<<<<<<<
- * 
- *     # enum ssh_connector_flags_e:
- */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_WARNING); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WARNING, __pyx_t_4) < 0) __PYX_ERR(0, 216, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":211
- *     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE
- *         # enum ssh_scp_request_types:
- * class SCP_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
- *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
- */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SCP_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 211, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SCP_Request, __pyx_t_4) < 0) __PYX_ERR(0, 211, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SCP, __pyx_t_4) < 0) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh/libssh_enums.pyx":219
- * 
- *     # enum ssh_connector_flags_e:
- * class Connector(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
- *     STDERR = c_ssh.SSH_CONNECTOR_STDERR
+ *     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE
+ *         # enum ssh_scp_request_types:
+ * class SCP_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
+ *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4915,489 +4942,465 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Connector, __pyx_n_s_Connector, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SCP_Request, __pyx_n_s_SCP_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "ssh/libssh_enums.pyx":220
- *     # enum ssh_connector_flags_e:
- * class Connector(enum.IntEnum):
- *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT             # <<<<<<<<<<<<<<
- *     STDERR = c_ssh.SSH_CONNECTOR_STDERR
- *     BOTH = c_ssh.SSH_CONNECTOR_BOTH
+ *         # enum ssh_scp_request_types:
+ * class SCP_Request(enum.IntEnum):
+ *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR             # <<<<<<<<<<<<<<
+ *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
+ *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_connector_flags_e(SSH_CONNECTOR_STDOUT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_NEWDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STDOUT, __pyx_t_4) < 0) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NEWDIR, __pyx_t_4) < 0) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":221
- * class Connector(enum.IntEnum):
- *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
- *     STDERR = c_ssh.SSH_CONNECTOR_STDERR             # <<<<<<<<<<<<<<
- *     BOTH = c_ssh.SSH_CONNECTOR_BOTH
- * #callbacks
+ * class SCP_Request(enum.IntEnum):
+ *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
+ *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE             # <<<<<<<<<<<<<<
+ *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
+ *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_connector_flags_e(SSH_CONNECTOR_STDERR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_NEWFILE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STDERR, __pyx_t_4) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NEWFILE, __pyx_t_4) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":222
- *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
- *     STDERR = c_ssh.SSH_CONNECTOR_STDERR
- *     BOTH = c_ssh.SSH_CONNECTOR_BOTH             # <<<<<<<<<<<<<<
- * #callbacks
- * class Callbacks_Socket(enum.IntEnum):
+ *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
+ *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
+ *     EOF = c_ssh.SSH_SCP_REQUEST_EOF             # <<<<<<<<<<<<<<
+ *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR
+ *     WARNING = c_ssh.SSH_SCP_REQUEST_WARNING
  */
-  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_connector_flags_e(SSH_CONNECTOR_BOTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BOTH, __pyx_t_4) < 0) __PYX_ERR(0, 222, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 222, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":223
+ *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
+ *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
+ *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR             # <<<<<<<<<<<<<<
+ *     WARNING = c_ssh.SSH_SCP_REQUEST_WARNING
+ * 
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_ENDDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 223, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ENDDIR, __pyx_t_4) < 0) __PYX_ERR(0, 223, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":224
+ *     EOF = c_ssh.SSH_SCP_REQUEST_EOF
+ *     ENDDIR = c_ssh.SSH_SCP_REQUEST_ENDDIR
+ *     WARNING = c_ssh.SSH_SCP_REQUEST_WARNING             # <<<<<<<<<<<<<<
+ * 
+ *     # enum ssh_connector_flags_e:
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_scp_request_types(SSH_SCP_REQUEST_WARNING); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WARNING, __pyx_t_4) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":219
+ *     RECURSIVE = c_ssh.SSH_SCP_RECURSIVE
+ *         # enum ssh_scp_request_types:
+ * class SCP_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     NEWDIR = c_ssh.SSH_SCP_REQUEST_NEWDIR
+ *     NEWFILE = c_ssh.SSH_SCP_REQUEST_NEWFILE
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SCP_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SCP_Request, __pyx_t_4) < 0) __PYX_ERR(0, 219, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh/libssh_enums.pyx":227
  * 
  *     # enum ssh_connector_flags_e:
  * class Connector(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
  *     STDERR = c_ssh.SSH_CONNECTOR_STDERR
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Connector, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Connector, __pyx_n_s_Connector, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "ssh/libssh_enums.pyx":228
+ *     # enum ssh_connector_flags_e:
+ * class Connector(enum.IntEnum):
+ *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT             # <<<<<<<<<<<<<<
+ *     STDERR = c_ssh.SSH_CONNECTOR_STDERR
+ *     BOTH = c_ssh.SSH_CONNECTOR_BOTH
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_connector_flags_e(SSH_CONNECTOR_STDOUT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Connector, __pyx_t_4) < 0) __PYX_ERR(0, 219, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STDOUT, __pyx_t_4) < 0) __PYX_ERR(0, 228, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":229
+ * class Connector(enum.IntEnum):
+ *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
+ *     STDERR = c_ssh.SSH_CONNECTOR_STDERR             # <<<<<<<<<<<<<<
+ *     BOTH = c_ssh.SSH_CONNECTOR_BOTH
+ * #callbacks
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_connector_flags_e(SSH_CONNECTOR_STDERR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STDERR, __pyx_t_4) < 0) __PYX_ERR(0, 229, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":230
+ *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
+ *     STDERR = c_ssh.SSH_CONNECTOR_STDERR
+ *     BOTH = c_ssh.SSH_CONNECTOR_BOTH             # <<<<<<<<<<<<<<
+ * #callbacks
+ * class Callbacks_Socket(enum.IntEnum):
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_enum__ssh_connector_flags_e(SSH_CONNECTOR_BOTH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BOTH, __pyx_t_4) < 0) __PYX_ERR(0, 230, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":227
+ * 
+ *     # enum ssh_connector_flags_e:
+ * class Connector(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     STDOUT = c_ssh.SSH_CONNECTOR_STDOUT
+ *     STDERR = c_ssh.SSH_CONNECTOR_STDERR
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Connector, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Connector, __pyx_t_4) < 0) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":224
+  /* "ssh/libssh_enums.pyx":232
  *     BOTH = c_ssh.SSH_CONNECTOR_BOTH
  * #callbacks
  * class Callbacks_Socket(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     FLOW_WRITEWILLBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWILLBLOCK
  *     FLOW_WRITEWONTBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWONTBLOCK
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Callbacks_Socket, __pyx_n_s_Callbacks_Socket, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Callbacks_Socket, __pyx_n_s_Callbacks_Socket, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":225
+  /* "ssh/libssh_enums.pyx":233
  * #callbacks
  * class Callbacks_Socket(enum.IntEnum):
  *     FLOW_WRITEWILLBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWILLBLOCK             # <<<<<<<<<<<<<<
  *     FLOW_WRITEWONTBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWONTBLOCK
  *     EXCEPTION_EOF = c_callbacks.SSH_SOCKET_EXCEPTION_EOF
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_FLOW_WRITEWILLBLOCK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_FLOW_WRITEWILLBLOCK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FLOW_WRITEWILLBLOCK, __pyx_t_4) < 0) __PYX_ERR(0, 225, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FLOW_WRITEWILLBLOCK, __pyx_t_4) < 0) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":226
+  /* "ssh/libssh_enums.pyx":234
  * class Callbacks_Socket(enum.IntEnum):
  *     FLOW_WRITEWILLBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWILLBLOCK
  *     FLOW_WRITEWONTBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWONTBLOCK             # <<<<<<<<<<<<<<
  *     EXCEPTION_EOF = c_callbacks.SSH_SOCKET_EXCEPTION_EOF
  *     EXCEPTION_ERROR = c_callbacks.SSH_SOCKET_EXCEPTION_ERROR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_FLOW_WRITEWONTBLOCK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_FLOW_WRITEWONTBLOCK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FLOW_WRITEWONTBLOCK, __pyx_t_4) < 0) __PYX_ERR(0, 226, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FLOW_WRITEWONTBLOCK, __pyx_t_4) < 0) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":227
+  /* "ssh/libssh_enums.pyx":235
  *     FLOW_WRITEWILLBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWILLBLOCK
  *     FLOW_WRITEWONTBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWONTBLOCK
  *     EXCEPTION_EOF = c_callbacks.SSH_SOCKET_EXCEPTION_EOF             # <<<<<<<<<<<<<<
  *     EXCEPTION_ERROR = c_callbacks.SSH_SOCKET_EXCEPTION_ERROR
  *     CONNECTED_OK = c_callbacks.SSH_SOCKET_CONNECTED_OK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_EXCEPTION_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_EXCEPTION_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXCEPTION_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 227, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXCEPTION_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":228
+  /* "ssh/libssh_enums.pyx":236
  *     FLOW_WRITEWONTBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWONTBLOCK
  *     EXCEPTION_EOF = c_callbacks.SSH_SOCKET_EXCEPTION_EOF
  *     EXCEPTION_ERROR = c_callbacks.SSH_SOCKET_EXCEPTION_ERROR             # <<<<<<<<<<<<<<
  *     CONNECTED_OK = c_callbacks.SSH_SOCKET_CONNECTED_OK
  *     CONNECTED_ERROR = c_callbacks.SSH_SOCKET_CONNECTED_ERROR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_EXCEPTION_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_EXCEPTION_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXCEPTION_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 228, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXCEPTION_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":229
+  /* "ssh/libssh_enums.pyx":237
  *     EXCEPTION_EOF = c_callbacks.SSH_SOCKET_EXCEPTION_EOF
  *     EXCEPTION_ERROR = c_callbacks.SSH_SOCKET_EXCEPTION_ERROR
  *     CONNECTED_OK = c_callbacks.SSH_SOCKET_CONNECTED_OK             # <<<<<<<<<<<<<<
  *     CONNECTED_ERROR = c_callbacks.SSH_SOCKET_CONNECTED_ERROR
  *     CONNECTED_TIMEOUT = c_callbacks.SSH_SOCKET_CONNECTED_TIMEOUT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_CONNECTED_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_CONNECTED_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 237, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTED_OK, __pyx_t_4) < 0) __PYX_ERR(0, 229, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTED_OK, __pyx_t_4) < 0) __PYX_ERR(0, 237, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":230
+  /* "ssh/libssh_enums.pyx":238
  *     EXCEPTION_ERROR = c_callbacks.SSH_SOCKET_EXCEPTION_ERROR
  *     CONNECTED_OK = c_callbacks.SSH_SOCKET_CONNECTED_OK
  *     CONNECTED_ERROR = c_callbacks.SSH_SOCKET_CONNECTED_ERROR             # <<<<<<<<<<<<<<
  *     CONNECTED_TIMEOUT = c_callbacks.SSH_SOCKET_CONNECTED_TIMEOUT
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_CONNECTED_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_CONNECTED_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTED_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 230, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTED_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":231
+  /* "ssh/libssh_enums.pyx":239
  *     CONNECTED_OK = c_callbacks.SSH_SOCKET_CONNECTED_OK
  *     CONNECTED_ERROR = c_callbacks.SSH_SOCKET_CONNECTED_ERROR
  *     CONNECTED_TIMEOUT = c_callbacks.SSH_SOCKET_CONNECTED_TIMEOUT             # <<<<<<<<<<<<<<
  * 
  * #ssh2
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_CONNECTED_TIMEOUT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_SOCKET_CONNECTED_TIMEOUT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTED_TIMEOUT, __pyx_t_4) < 0) __PYX_ERR(0, 231, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTED_TIMEOUT, __pyx_t_4) < 0) __PYX_ERR(0, 239, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":224
+  /* "ssh/libssh_enums.pyx":232
  *     BOTH = c_ssh.SSH_CONNECTOR_BOTH
  * #callbacks
  * class Callbacks_Socket(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     FLOW_WRITEWILLBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWILLBLOCK
  *     FLOW_WRITEWONTBLOCK = c_callbacks.SSH_SOCKET_FLOW_WRITEWONTBLOCK
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Callbacks_Socket, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Callbacks_Socket, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Callbacks_Socket, __pyx_t_4) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Callbacks_Socket, __pyx_t_4) < 0) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":234
+  /* "ssh/libssh_enums.pyx":242
  * 
  * #ssh2
  * class SSH2_Msg(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     DISCONNECT = c_ssh2.SSH2_MSG_DISCONNECT
  *     IGNORE = c_ssh2.SSH2_MSG_IGNORE
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg, __pyx_n_s_SSH2_Msg, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg, __pyx_n_s_SSH2_Msg, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":235
+  /* "ssh/libssh_enums.pyx":243
  * #ssh2
  * class SSH2_Msg(enum.IntEnum):
  *     DISCONNECT = c_ssh2.SSH2_MSG_DISCONNECT             # <<<<<<<<<<<<<<
  *     IGNORE = c_ssh2.SSH2_MSG_IGNORE
  *     UNIMPLEMENTED = c_ssh2.SSH2_MSG_UNIMPLEMENTED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_DISCONNECT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_DISCONNECT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DISCONNECT, __pyx_t_4) < 0) __PYX_ERR(0, 235, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DISCONNECT, __pyx_t_4) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":236
+  /* "ssh/libssh_enums.pyx":244
  * class SSH2_Msg(enum.IntEnum):
  *     DISCONNECT = c_ssh2.SSH2_MSG_DISCONNECT
  *     IGNORE = c_ssh2.SSH2_MSG_IGNORE             # <<<<<<<<<<<<<<
  *     UNIMPLEMENTED = c_ssh2.SSH2_MSG_UNIMPLEMENTED
  *     DEBUG = c_ssh2.SSH2_MSG_DEBUG
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_IGNORE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_IGNORE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IGNORE, __pyx_t_4) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IGNORE, __pyx_t_4) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":237
+  /* "ssh/libssh_enums.pyx":245
  *     DISCONNECT = c_ssh2.SSH2_MSG_DISCONNECT
  *     IGNORE = c_ssh2.SSH2_MSG_IGNORE
  *     UNIMPLEMENTED = c_ssh2.SSH2_MSG_UNIMPLEMENTED             # <<<<<<<<<<<<<<
  *     DEBUG = c_ssh2.SSH2_MSG_DEBUG
  *     SERVICE_REQUEST = c_ssh2.SSH2_MSG_SERVICE_REQUEST
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_UNIMPLEMENTED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_UNIMPLEMENTED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNIMPLEMENTED, __pyx_t_4) < 0) __PYX_ERR(0, 237, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNIMPLEMENTED, __pyx_t_4) < 0) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":238
+  /* "ssh/libssh_enums.pyx":246
  *     IGNORE = c_ssh2.SSH2_MSG_IGNORE
  *     UNIMPLEMENTED = c_ssh2.SSH2_MSG_UNIMPLEMENTED
  *     DEBUG = c_ssh2.SSH2_MSG_DEBUG             # <<<<<<<<<<<<<<
  *     SERVICE_REQUEST = c_ssh2.SSH2_MSG_SERVICE_REQUEST
  *     SERVICE_ACCEPT = c_ssh2.SSH2_MSG_SERVICE_ACCEPT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_DEBUG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 238, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_DEBUG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DEBUG, __pyx_t_4) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DEBUG, __pyx_t_4) < 0) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":239
+  /* "ssh/libssh_enums.pyx":247
  *     UNIMPLEMENTED = c_ssh2.SSH2_MSG_UNIMPLEMENTED
  *     DEBUG = c_ssh2.SSH2_MSG_DEBUG
  *     SERVICE_REQUEST = c_ssh2.SSH2_MSG_SERVICE_REQUEST             # <<<<<<<<<<<<<<
  *     SERVICE_ACCEPT = c_ssh2.SSH2_MSG_SERVICE_ACCEPT
  *     KEXINIT = c_ssh2.SSH2_MSG_KEXINIT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_SERVICE_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_SERVICE_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 239, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 247, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":240
+  /* "ssh/libssh_enums.pyx":248
  *     DEBUG = c_ssh2.SSH2_MSG_DEBUG
  *     SERVICE_REQUEST = c_ssh2.SSH2_MSG_SERVICE_REQUEST
  *     SERVICE_ACCEPT = c_ssh2.SSH2_MSG_SERVICE_ACCEPT             # <<<<<<<<<<<<<<
  *     KEXINIT = c_ssh2.SSH2_MSG_KEXINIT
  *     NEWKEYS = c_ssh2.SSH2_MSG_NEWKEYS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_SERVICE_ACCEPT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_SERVICE_ACCEPT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE_ACCEPT, __pyx_t_4) < 0) __PYX_ERR(0, 240, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE_ACCEPT, __pyx_t_4) < 0) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":241
+  /* "ssh/libssh_enums.pyx":249
  *     SERVICE_REQUEST = c_ssh2.SSH2_MSG_SERVICE_REQUEST
  *     SERVICE_ACCEPT = c_ssh2.SSH2_MSG_SERVICE_ACCEPT
  *     KEXINIT = c_ssh2.SSH2_MSG_KEXINIT             # <<<<<<<<<<<<<<
  *     NEWKEYS = c_ssh2.SSH2_MSG_NEWKEYS
  *     ECMQV_INIT = c_ssh2.SSH2_MSG_ECMQV_INIT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEXINIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 241, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEXINIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEXINIT, __pyx_t_4) < 0) __PYX_ERR(0, 241, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEXINIT, __pyx_t_4) < 0) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":242
+  /* "ssh/libssh_enums.pyx":250
  *     SERVICE_ACCEPT = c_ssh2.SSH2_MSG_SERVICE_ACCEPT
  *     KEXINIT = c_ssh2.SSH2_MSG_KEXINIT
  *     NEWKEYS = c_ssh2.SSH2_MSG_NEWKEYS             # <<<<<<<<<<<<<<
  *     ECMQV_INIT = c_ssh2.SSH2_MSG_ECMQV_INIT
  *     ECMQV_REPLY = c_ssh2.SSH2_MSG_ECMQV_REPLY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_NEWKEYS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_NEWKEYS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NEWKEYS, __pyx_t_4) < 0) __PYX_ERR(0, 242, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NEWKEYS, __pyx_t_4) < 0) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":243
+  /* "ssh/libssh_enums.pyx":251
  *     KEXINIT = c_ssh2.SSH2_MSG_KEXINIT
  *     NEWKEYS = c_ssh2.SSH2_MSG_NEWKEYS
  *     ECMQV_INIT = c_ssh2.SSH2_MSG_ECMQV_INIT             # <<<<<<<<<<<<<<
  *     ECMQV_REPLY = c_ssh2.SSH2_MSG_ECMQV_REPLY
  *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_ECMQV_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_ECMQV_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECMQV_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECMQV_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":244
+  /* "ssh/libssh_enums.pyx":252
  *     NEWKEYS = c_ssh2.SSH2_MSG_NEWKEYS
  *     ECMQV_INIT = c_ssh2.SSH2_MSG_ECMQV_INIT
  *     ECMQV_REPLY = c_ssh2.SSH2_MSG_ECMQV_REPLY             # <<<<<<<<<<<<<<
  *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
  *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_ECMQV_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_ECMQV_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECMQV_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECMQV_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":245
+  /* "ssh/libssh_enums.pyx":253
  *     ECMQV_INIT = c_ssh2.SSH2_MSG_ECMQV_INIT
  *     ECMQV_REPLY = c_ssh2.SSH2_MSG_ECMQV_REPLY
  *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT             # <<<<<<<<<<<<<<
  *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
  * class SSH2_Msg_Kex(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEXDH_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEXDH_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEXDH_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 245, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEXDH_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":246
+  /* "ssh/libssh_enums.pyx":254
  *     ECMQV_REPLY = c_ssh2.SSH2_MSG_ECMQV_REPLY
  *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
  *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY             # <<<<<<<<<<<<<<
  * class SSH2_Msg_Kex(enum.IntEnum):
  *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEXDH_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEXDH_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEXDH_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 246, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEXDH_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":234
+  /* "ssh/libssh_enums.pyx":242
  * 
  * #ssh2
  * class SSH2_Msg(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     DISCONNECT = c_ssh2.SSH2_MSG_DISCONNECT
  *     IGNORE = c_ssh2.SSH2_MSG_IGNORE
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg, __pyx_t_4) < 0) __PYX_ERR(0, 234, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "ssh/libssh_enums.pyx":247
- *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
- *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
- * class SSH2_Msg_Kex(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
- *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Kex, __pyx_n_s_SSH2_Msg_Kex, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-
-  /* "ssh/libssh_enums.pyx":248
- *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
- * class SSH2_Msg_Kex(enum.IntEnum):
- *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT             # <<<<<<<<<<<<<<
- *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
- *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_ECDH_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDH_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 248, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":249
- * class SSH2_Msg_Kex(enum.IntEnum):
- *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
- *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY             # <<<<<<<<<<<<<<
- *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
- *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_ECDH_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDH_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 249, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":250
- *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
- *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
- *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD             # <<<<<<<<<<<<<<
- *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
- *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_REQUEST_OLD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 250, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_REQUEST_OLD, __pyx_t_4) < 0) __PYX_ERR(0, 250, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":251
- *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
- *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
- *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP             # <<<<<<<<<<<<<<
- *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
- *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_GROUP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 251, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_GROUP, __pyx_t_4) < 0) __PYX_ERR(0, 251, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":252
- *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
- *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
- *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT             # <<<<<<<<<<<<<<
- *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
- *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 252, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 252, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":253
- *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
- *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
- *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY             # <<<<<<<<<<<<<<
- *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
- * class SSH2_Msg_UserAuth(enum.IntEnum):
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 253, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":254
- *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
- *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
- *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST             # <<<<<<<<<<<<<<
- * class SSH2_Msg_UserAuth(enum.IntEnum):
- *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 254, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":247
- *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
- *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
- * class SSH2_Msg_Kex(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
- *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
- */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Kex, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 247, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Kex, __pyx_t_4) < 0) __PYX_ERR(0, 247, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg, __pyx_t_4) < 0) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh/libssh_enums.pyx":255
- *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
- *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
- * class SSH2_Msg_UserAuth(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
- *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
+ *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
+ *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
+ * class SSH2_Msg_Kex(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
+ *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5411,2046 +5414,2046 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_UserAuth, __pyx_n_s_SSH2_Msg_UserAuth, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Kex, __pyx_n_s_SSH2_Msg_Kex, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "ssh/libssh_enums.pyx":256
- *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
- * class SSH2_Msg_UserAuth(enum.IntEnum):
- *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST             # <<<<<<<<<<<<<<
- *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
- *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
+ *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
+ * class SSH2_Msg_Kex(enum.IntEnum):
+ *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT             # <<<<<<<<<<<<<<
+ *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
+ *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_ECDH_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 256, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDH_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":257
- * class SSH2_Msg_UserAuth(enum.IntEnum):
- *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
- *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE             # <<<<<<<<<<<<<<
- *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
- *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
+ * class SSH2_Msg_Kex(enum.IntEnum):
+ *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
+ *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY             # <<<<<<<<<<<<<<
+ *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
+ *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_ECDH_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 257, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ECDH_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":258
- *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
- *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
- *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS             # <<<<<<<<<<<<<<
- *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
- *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
+ *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
+ *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
+ *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD             # <<<<<<<<<<<<<<
+ *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
+ *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_REQUEST_OLD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 258, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_REQUEST_OLD, __pyx_t_4) < 0) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":259
- *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
- *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
- *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER             # <<<<<<<<<<<<<<
- *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
- *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
+ *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
+ *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
+ *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP             # <<<<<<<<<<<<<<
+ *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
+ *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_BANNER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_GROUP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BANNER, __pyx_t_4) < 0) __PYX_ERR(0, 259, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_GROUP, __pyx_t_4) < 0) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":260
- *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
- *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
- *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK             # <<<<<<<<<<<<<<
- *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
- *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
+ *     DH_GEX_REQUEST_OLD = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST_OLD
+ *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
+ *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT             # <<<<<<<<<<<<<<
+ *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
+ *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_PK_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PK_OK, __pyx_t_4) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":261
- *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
- *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
- *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ             # <<<<<<<<<<<<<<
- *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
- *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
+ *     DH_GEX_GROUP = c_ssh2.SSH2_MSG_KEX_DH_GEX_GROUP
+ *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
+ *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY             # <<<<<<<<<<<<<<
+ *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
+ * class SSH2_Msg_UserAuth(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PASSWD_CHANGEREQ, __pyx_t_4) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":262
- *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
- *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
- *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST             # <<<<<<<<<<<<<<
- *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
- *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
+ *     DH_GEX_INIT = c_ssh2.SSH2_MSG_KEX_DH_GEX_INIT
+ *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
+ *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST             # <<<<<<<<<<<<<<
+ * class SSH2_Msg_UserAuth(enum.IntEnum):
+ *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_INFO_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_KEX_DH_GEX_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 262, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":263
- *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
- *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
- *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE             # <<<<<<<<<<<<<<
- *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
- *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_RESPONSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 263, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_RESPONSE, __pyx_t_4) < 0) __PYX_ERR(0, 263, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":264
- *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
- *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
- *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE             # <<<<<<<<<<<<<<
- *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
- *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_INFO_RESPONSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO_RESPONSE, __pyx_t_4) < 0) __PYX_ERR(0, 264, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":265
- *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
- *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
- *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN             # <<<<<<<<<<<<<<
- *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
- *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_TOKEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 265, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_TOKEN, __pyx_t_4) < 0) __PYX_ERR(0, 265, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":266
- *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
- *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
- *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE             # <<<<<<<<<<<<<<
- *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
- *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 266, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_EXCHANGE_COMPLETE, __pyx_t_4) < 0) __PYX_ERR(0, 266, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":267
- *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
- *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
- *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR             # <<<<<<<<<<<<<<
- *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
- *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":268
- *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
- *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
- *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK             # <<<<<<<<<<<<<<
- *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
- * class SSH2_Msg_Global(enum.IntEnum):
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_ERRTOK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 268, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_ERRTOK, __pyx_t_4) < 0) __PYX_ERR(0, 268, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":269
- *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
- *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
- *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC             # <<<<<<<<<<<<<<
- * class SSH2_Msg_Global(enum.IntEnum):
- *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_MIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_MIC, __pyx_t_4) < 0) __PYX_ERR(0, 269, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DH_GEX_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":255
+ *     KEXDH_INIT = c_ssh2.SSH2_MSG_KEXDH_INIT
+ *     KEXDH_REPLY = c_ssh2.SSH2_MSG_KEXDH_REPLY
+ * class SSH2_Msg_Kex(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     ECDH_INIT = c_ssh2.SSH2_MSG_KEX_ECDH_INIT
+ *     ECDH_REPLY = c_ssh2.SSH2_MSG_KEX_ECDH_REPLY
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Kex, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Kex, __pyx_t_4) < 0) __PYX_ERR(0, 255, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh/libssh_enums.pyx":263
  *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
  *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
  * class SSH2_Msg_UserAuth(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
  *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_UserAuth, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_UserAuth, __pyx_n_s_SSH2_Msg_UserAuth, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "ssh/libssh_enums.pyx":264
+ *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
+ * class SSH2_Msg_UserAuth(enum.IntEnum):
+ *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST             # <<<<<<<<<<<<<<
+ *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
+ *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_UserAuth, __pyx_t_4) < 0) __PYX_ERR(0, 255, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 264, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":265
+ * class SSH2_Msg_UserAuth(enum.IntEnum):
+ *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
+ *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE             # <<<<<<<<<<<<<<
+ *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
+ *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":266
+ *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
+ *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
+ *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS             # <<<<<<<<<<<<<<
+ *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
+ *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 266, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":267
+ *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
+ *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
+ *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER             # <<<<<<<<<<<<<<
+ *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
+ *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_BANNER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BANNER, __pyx_t_4) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":268
+ *     SUCCESS = c_ssh2.SSH2_MSG_USERAUTH_SUCCESS
+ *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
+ *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK             # <<<<<<<<<<<<<<
+ *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
+ *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_PK_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PK_OK, __pyx_t_4) < 0) __PYX_ERR(0, 268, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":269
+ *     BANNER = c_ssh2.SSH2_MSG_USERAUTH_BANNER
+ *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
+ *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ             # <<<<<<<<<<<<<<
+ *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
+ *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PASSWD_CHANGEREQ, __pyx_t_4) < 0) __PYX_ERR(0, 269, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":270
+ *     PK_OK = c_ssh2.SSH2_MSG_USERAUTH_PK_OK
+ *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
+ *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST             # <<<<<<<<<<<<<<
+ *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
+ *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_INFO_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 270, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":271
+ *     PASSWD_CHANGEREQ = c_ssh2.SSH2_MSG_USERAUTH_PASSWD_CHANGEREQ
+ *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
+ *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE             # <<<<<<<<<<<<<<
+ *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
+ *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_RESPONSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_RESPONSE, __pyx_t_4) < 0) __PYX_ERR(0, 271, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":272
+ *     INFO_REQUEST = c_ssh2.SSH2_MSG_USERAUTH_INFO_REQUEST
+ *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
+ *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE             # <<<<<<<<<<<<<<
+ *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
+ *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_INFO_RESPONSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INFO_RESPONSE, __pyx_t_4) < 0) __PYX_ERR(0, 272, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":273
+ *     GSSAPI_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_RESPONSE
+ *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
+ *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN             # <<<<<<<<<<<<<<
+ *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
+ *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_TOKEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_TOKEN, __pyx_t_4) < 0) __PYX_ERR(0, 273, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":274
+ *     INFO_RESPONSE = c_ssh2.SSH2_MSG_USERAUTH_INFO_RESPONSE
+ *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
+ *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE             # <<<<<<<<<<<<<<
+ *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
+ *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_EXCHANGE_COMPLETE, __pyx_t_4) < 0) __PYX_ERR(0, 274, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":275
+ *     GSSAPI_TOKEN = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_TOKEN
+ *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
+ *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR             # <<<<<<<<<<<<<<
+ *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
+ *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 275, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":276
+ *     GSSAPI_EXCHANGE_COMPLETE = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE
+ *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
+ *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK             # <<<<<<<<<<<<<<
+ *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
+ * class SSH2_Msg_Global(enum.IntEnum):
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_ERRTOK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_ERRTOK, __pyx_t_4) < 0) __PYX_ERR(0, 276, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":277
+ *     GSSAPI_ERROR = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERROR
+ *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
+ *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC             # <<<<<<<<<<<<<<
+ * class SSH2_Msg_Global(enum.IntEnum):
+ *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_USERAUTH_GSSAPI_MIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_GSSAPI_MIC, __pyx_t_4) < 0) __PYX_ERR(0, 277, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":263
+ *     DH_GEX_REPLY = c_ssh2.SSH2_MSG_KEX_DH_GEX_REPLY
+ *     DH_GEX_REQUEST = c_ssh2.SSH2_MSG_KEX_DH_GEX_REQUEST
+ * class SSH2_Msg_UserAuth(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     REQUEST = c_ssh2.SSH2_MSG_USERAUTH_REQUEST
+ *     FAILURE = c_ssh2.SSH2_MSG_USERAUTH_FAILURE
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_UserAuth, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_UserAuth, __pyx_t_4) < 0) __PYX_ERR(0, 263, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":270
+  /* "ssh/libssh_enums.pyx":278
  *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
  *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
  * class SSH2_Msg_Global(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
  * class SSH2_Msg_Request(enum.IntEnum):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Global, __pyx_n_s_SSH2_Msg_Global, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Global, __pyx_n_s_SSH2_Msg_Global, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":271
+  /* "ssh/libssh_enums.pyx":279
  *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
  * class SSH2_Msg_Global(enum.IntEnum):
  *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST             # <<<<<<<<<<<<<<
  * class SSH2_Msg_Request(enum.IntEnum):
  *     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_GLOBAL_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_GLOBAL_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 271, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":270
+  /* "ssh/libssh_enums.pyx":278
  *     GSSAPI_ERRTOK = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_ERRTOK
  *     GSSAPI_MIC = c_ssh2.SSH2_MSG_USERAUTH_GSSAPI_MIC
  * class SSH2_Msg_Global(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
  * class SSH2_Msg_Request(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Global, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Global, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Global, __pyx_t_4) < 0) __PYX_ERR(0, 270, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Global, __pyx_t_4) < 0) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":272
+  /* "ssh/libssh_enums.pyx":280
  * class SSH2_Msg_Global(enum.IntEnum):
  *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
  * class SSH2_Msg_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Request, __pyx_n_s_SSH2_Msg_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Request, __pyx_n_s_SSH2_Msg_Request, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":273
+  /* "ssh/libssh_enums.pyx":281
  *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
  * class SSH2_Msg_Request(enum.IntEnum):
  *     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS             # <<<<<<<<<<<<<<
  *     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE
  * class SSH2_Msg_Channel(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_REQUEST_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_REQUEST_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 273, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":274
+  /* "ssh/libssh_enums.pyx":282
  * class SSH2_Msg_Request(enum.IntEnum):
  *     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE             # <<<<<<<<<<<<<<
  * class SSH2_Msg_Channel(enum.IntEnum):
  *     OPEN = c_ssh2.SSH2_MSG_CHANNEL_OPEN
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_REQUEST_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_REQUEST_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":272
+  /* "ssh/libssh_enums.pyx":280
  * class SSH2_Msg_Global(enum.IntEnum):
  *     REQUEST = c_ssh2.SSH2_MSG_GLOBAL_REQUEST
  * class SSH2_Msg_Request(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Request, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Request, __pyx_t_4) < 0) __PYX_ERR(0, 272, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Request, __pyx_t_4) < 0) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":275
+  /* "ssh/libssh_enums.pyx":283
  *     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE
  * class SSH2_Msg_Channel(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     OPEN = c_ssh2.SSH2_MSG_CHANNEL_OPEN
  *     OPEN_CONFIRMATION = c_ssh2.SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Channel, __pyx_n_s_SSH2_Msg_Channel, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Msg_Channel, __pyx_n_s_SSH2_Msg_Channel, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":276
+  /* "ssh/libssh_enums.pyx":284
  *     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE
  * class SSH2_Msg_Channel(enum.IntEnum):
  *     OPEN = c_ssh2.SSH2_MSG_CHANNEL_OPEN             # <<<<<<<<<<<<<<
  *     OPEN_CONFIRMATION = c_ssh2.SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
  *     OPEN_FAILURE = c_ssh2.SSH2_MSG_CHANNEL_OPEN_FAILURE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 276, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":277
+  /* "ssh/libssh_enums.pyx":285
  * class SSH2_Msg_Channel(enum.IntEnum):
  *     OPEN = c_ssh2.SSH2_MSG_CHANNEL_OPEN
  *     OPEN_CONFIRMATION = c_ssh2.SSH2_MSG_CHANNEL_OPEN_CONFIRMATION             # <<<<<<<<<<<<<<
  *     OPEN_FAILURE = c_ssh2.SSH2_MSG_CHANNEL_OPEN_FAILURE
  *     WINDOW_ADJUST = c_ssh2.SSH2_MSG_CHANNEL_WINDOW_ADJUST
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_OPEN_CONFIRMATION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_OPEN_CONFIRMATION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN_CONFIRMATION, __pyx_t_4) < 0) __PYX_ERR(0, 277, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN_CONFIRMATION, __pyx_t_4) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":278
+  /* "ssh/libssh_enums.pyx":286
  *     OPEN = c_ssh2.SSH2_MSG_CHANNEL_OPEN
  *     OPEN_CONFIRMATION = c_ssh2.SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
  *     OPEN_FAILURE = c_ssh2.SSH2_MSG_CHANNEL_OPEN_FAILURE             # <<<<<<<<<<<<<<
  *     WINDOW_ADJUST = c_ssh2.SSH2_MSG_CHANNEL_WINDOW_ADJUST
  *     DATA = c_ssh2.SSH2_MSG_CHANNEL_DATA
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_OPEN_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_OPEN_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 278, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":279
+  /* "ssh/libssh_enums.pyx":287
  *     OPEN_CONFIRMATION = c_ssh2.SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
  *     OPEN_FAILURE = c_ssh2.SSH2_MSG_CHANNEL_OPEN_FAILURE
  *     WINDOW_ADJUST = c_ssh2.SSH2_MSG_CHANNEL_WINDOW_ADJUST             # <<<<<<<<<<<<<<
  *     DATA = c_ssh2.SSH2_MSG_CHANNEL_DATA
  *     EXTENDED_DATA = c_ssh2.SSH2_MSG_CHANNEL_EXTENDED_DATA
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_WINDOW_ADJUST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_WINDOW_ADJUST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WINDOW_ADJUST, __pyx_t_4) < 0) __PYX_ERR(0, 279, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WINDOW_ADJUST, __pyx_t_4) < 0) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":280
+  /* "ssh/libssh_enums.pyx":288
  *     OPEN_FAILURE = c_ssh2.SSH2_MSG_CHANNEL_OPEN_FAILURE
  *     WINDOW_ADJUST = c_ssh2.SSH2_MSG_CHANNEL_WINDOW_ADJUST
  *     DATA = c_ssh2.SSH2_MSG_CHANNEL_DATA             # <<<<<<<<<<<<<<
  *     EXTENDED_DATA = c_ssh2.SSH2_MSG_CHANNEL_EXTENDED_DATA
  *     EOF = c_ssh2.SSH2_MSG_CHANNEL_EOF
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_DATA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_DATA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DATA, __pyx_t_4) < 0) __PYX_ERR(0, 280, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DATA, __pyx_t_4) < 0) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":281
+  /* "ssh/libssh_enums.pyx":289
  *     WINDOW_ADJUST = c_ssh2.SSH2_MSG_CHANNEL_WINDOW_ADJUST
  *     DATA = c_ssh2.SSH2_MSG_CHANNEL_DATA
  *     EXTENDED_DATA = c_ssh2.SSH2_MSG_CHANNEL_EXTENDED_DATA             # <<<<<<<<<<<<<<
  *     EOF = c_ssh2.SSH2_MSG_CHANNEL_EOF
  *     CLOSE = c_ssh2.SSH2_MSG_CHANNEL_CLOSE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_EXTENDED_DATA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_EXTENDED_DATA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED_DATA, __pyx_t_4) < 0) __PYX_ERR(0, 281, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED_DATA, __pyx_t_4) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":282
+  /* "ssh/libssh_enums.pyx":290
  *     DATA = c_ssh2.SSH2_MSG_CHANNEL_DATA
  *     EXTENDED_DATA = c_ssh2.SSH2_MSG_CHANNEL_EXTENDED_DATA
  *     EOF = c_ssh2.SSH2_MSG_CHANNEL_EOF             # <<<<<<<<<<<<<<
  *     CLOSE = c_ssh2.SSH2_MSG_CHANNEL_CLOSE
  *     REQUEST = c_ssh2.SSH2_MSG_CHANNEL_REQUEST
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":283
+  /* "ssh/libssh_enums.pyx":291
  *     EXTENDED_DATA = c_ssh2.SSH2_MSG_CHANNEL_EXTENDED_DATA
  *     EOF = c_ssh2.SSH2_MSG_CHANNEL_EOF
  *     CLOSE = c_ssh2.SSH2_MSG_CHANNEL_CLOSE             # <<<<<<<<<<<<<<
  *     REQUEST = c_ssh2.SSH2_MSG_CHANNEL_REQUEST
  *     SUCCESS = c_ssh2.SSH2_MSG_CHANNEL_SUCCESS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_CLOSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_CLOSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CLOSE, __pyx_t_4) < 0) __PYX_ERR(0, 283, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CLOSE, __pyx_t_4) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":284
+  /* "ssh/libssh_enums.pyx":292
  *     EOF = c_ssh2.SSH2_MSG_CHANNEL_EOF
  *     CLOSE = c_ssh2.SSH2_MSG_CHANNEL_CLOSE
  *     REQUEST = c_ssh2.SSH2_MSG_CHANNEL_REQUEST             # <<<<<<<<<<<<<<
  *     SUCCESS = c_ssh2.SSH2_MSG_CHANNEL_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_CHANNEL_FAILURE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_REQUEST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REQUEST, __pyx_t_4) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":285
+  /* "ssh/libssh_enums.pyx":293
  *     CLOSE = c_ssh2.SSH2_MSG_CHANNEL_CLOSE
  *     REQUEST = c_ssh2.SSH2_MSG_CHANNEL_REQUEST
  *     SUCCESS = c_ssh2.SSH2_MSG_CHANNEL_SUCCESS             # <<<<<<<<<<<<<<
  *     FAILURE = c_ssh2.SSH2_MSG_CHANNEL_FAILURE
  * class SSH2_Disconnect(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_SUCCESS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUCCESS, __pyx_t_4) < 0) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":286
+  /* "ssh/libssh_enums.pyx":294
  *     REQUEST = c_ssh2.SSH2_MSG_CHANNEL_REQUEST
  *     SUCCESS = c_ssh2.SSH2_MSG_CHANNEL_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_CHANNEL_FAILURE             # <<<<<<<<<<<<<<
  * class SSH2_Disconnect(enum.IntEnum):
  *     HOST_NOT_ALLOWED_TO_CONNECT = c_ssh2.SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_MSG_CHANNEL_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 286, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":275
+  /* "ssh/libssh_enums.pyx":283
  *     SUCCESS = c_ssh2.SSH2_MSG_REQUEST_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_REQUEST_FAILURE
  * class SSH2_Msg_Channel(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     OPEN = c_ssh2.SSH2_MSG_CHANNEL_OPEN
  *     OPEN_CONFIRMATION = c_ssh2.SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Channel, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Msg_Channel, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Channel, __pyx_t_4) < 0) __PYX_ERR(0, 275, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Msg_Channel, __pyx_t_4) < 0) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":287
+  /* "ssh/libssh_enums.pyx":295
  *     SUCCESS = c_ssh2.SSH2_MSG_CHANNEL_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_CHANNEL_FAILURE
  * class SSH2_Disconnect(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     HOST_NOT_ALLOWED_TO_CONNECT = c_ssh2.SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT
  *     PROTOCOL_ERROR = c_ssh2.SSH2_DISCONNECT_PROTOCOL_ERROR
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Disconnect, __pyx_n_s_SSH2_Disconnect, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Disconnect, __pyx_n_s_SSH2_Disconnect, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":288
+  /* "ssh/libssh_enums.pyx":296
  *     FAILURE = c_ssh2.SSH2_MSG_CHANNEL_FAILURE
  * class SSH2_Disconnect(enum.IntEnum):
  *     HOST_NOT_ALLOWED_TO_CONNECT = c_ssh2.SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT             # <<<<<<<<<<<<<<
  *     PROTOCOL_ERROR = c_ssh2.SSH2_DISCONNECT_PROTOCOL_ERROR
  *     KEY_EXCHANGE_FAILED = c_ssh2.SSH2_DISCONNECT_KEY_EXCHANGE_FAILED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST_NOT_ALLOWED_TO_CONNECT, __pyx_t_4) < 0) __PYX_ERR(0, 288, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST_NOT_ALLOWED_TO_CONNECT, __pyx_t_4) < 0) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":289
+  /* "ssh/libssh_enums.pyx":297
  * class SSH2_Disconnect(enum.IntEnum):
  *     HOST_NOT_ALLOWED_TO_CONNECT = c_ssh2.SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT
  *     PROTOCOL_ERROR = c_ssh2.SSH2_DISCONNECT_PROTOCOL_ERROR             # <<<<<<<<<<<<<<
  *     KEY_EXCHANGE_FAILED = c_ssh2.SSH2_DISCONNECT_KEY_EXCHANGE_FAILED
  *     HOST_AUTHENTICATION_FAILED = c_ssh2.SSH2_DISCONNECT_HOST_AUTHENTICATION_FAILED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_PROTOCOL_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 289, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_PROTOCOL_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROTOCOL_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROTOCOL_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":290
+  /* "ssh/libssh_enums.pyx":298
  *     HOST_NOT_ALLOWED_TO_CONNECT = c_ssh2.SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT
  *     PROTOCOL_ERROR = c_ssh2.SSH2_DISCONNECT_PROTOCOL_ERROR
  *     KEY_EXCHANGE_FAILED = c_ssh2.SSH2_DISCONNECT_KEY_EXCHANGE_FAILED             # <<<<<<<<<<<<<<
  *     HOST_AUTHENTICATION_FAILED = c_ssh2.SSH2_DISCONNECT_HOST_AUTHENTICATION_FAILED
  *     RESERVED = c_ssh2.SSH2_DISCONNECT_RESERVED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_KEY_EXCHANGE_FAILED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_KEY_EXCHANGE_FAILED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEY_EXCHANGE_FAILED, __pyx_t_4) < 0) __PYX_ERR(0, 290, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_KEY_EXCHANGE_FAILED, __pyx_t_4) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":291
+  /* "ssh/libssh_enums.pyx":299
  *     PROTOCOL_ERROR = c_ssh2.SSH2_DISCONNECT_PROTOCOL_ERROR
  *     KEY_EXCHANGE_FAILED = c_ssh2.SSH2_DISCONNECT_KEY_EXCHANGE_FAILED
  *     HOST_AUTHENTICATION_FAILED = c_ssh2.SSH2_DISCONNECT_HOST_AUTHENTICATION_FAILED             # <<<<<<<<<<<<<<
  *     RESERVED = c_ssh2.SSH2_DISCONNECT_RESERVED
  *     MAC_ERROR = c_ssh2.SSH2_DISCONNECT_MAC_ERROR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_HOST_AUTHENTICATION_FAILED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_HOST_AUTHENTICATION_FAILED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST_AUTHENTICATION_FAILED, __pyx_t_4) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST_AUTHENTICATION_FAILED, __pyx_t_4) < 0) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":292
+  /* "ssh/libssh_enums.pyx":300
  *     KEY_EXCHANGE_FAILED = c_ssh2.SSH2_DISCONNECT_KEY_EXCHANGE_FAILED
  *     HOST_AUTHENTICATION_FAILED = c_ssh2.SSH2_DISCONNECT_HOST_AUTHENTICATION_FAILED
  *     RESERVED = c_ssh2.SSH2_DISCONNECT_RESERVED             # <<<<<<<<<<<<<<
  *     MAC_ERROR = c_ssh2.SSH2_DISCONNECT_MAC_ERROR
  *     COMPRESSION_ERROR = c_ssh2.SSH2_DISCONNECT_COMPRESSION_ERROR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_RESERVED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_RESERVED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RESERVED, __pyx_t_4) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RESERVED, __pyx_t_4) < 0) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":293
+  /* "ssh/libssh_enums.pyx":301
  *     HOST_AUTHENTICATION_FAILED = c_ssh2.SSH2_DISCONNECT_HOST_AUTHENTICATION_FAILED
  *     RESERVED = c_ssh2.SSH2_DISCONNECT_RESERVED
  *     MAC_ERROR = c_ssh2.SSH2_DISCONNECT_MAC_ERROR             # <<<<<<<<<<<<<<
  *     COMPRESSION_ERROR = c_ssh2.SSH2_DISCONNECT_COMPRESSION_ERROR
  *     SERVICE_NOT_AVAILABLE = c_ssh2.SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_MAC_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_MAC_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MAC_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 293, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MAC_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":294
+  /* "ssh/libssh_enums.pyx":302
  *     RESERVED = c_ssh2.SSH2_DISCONNECT_RESERVED
  *     MAC_ERROR = c_ssh2.SSH2_DISCONNECT_MAC_ERROR
  *     COMPRESSION_ERROR = c_ssh2.SSH2_DISCONNECT_COMPRESSION_ERROR             # <<<<<<<<<<<<<<
  *     SERVICE_NOT_AVAILABLE = c_ssh2.SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE
  *     PROTOCOL_VERSION_NOT_SUPPORTED = c_ssh2.SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_COMPRESSION_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_COMPRESSION_ERROR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_COMPRESSION_ERROR, __pyx_t_4) < 0) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":295
+  /* "ssh/libssh_enums.pyx":303
  *     MAC_ERROR = c_ssh2.SSH2_DISCONNECT_MAC_ERROR
  *     COMPRESSION_ERROR = c_ssh2.SSH2_DISCONNECT_COMPRESSION_ERROR
  *     SERVICE_NOT_AVAILABLE = c_ssh2.SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE             # <<<<<<<<<<<<<<
  *     PROTOCOL_VERSION_NOT_SUPPORTED = c_ssh2.SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED
  *     HOST_KEY_NOT_VERIFIABLE = c_ssh2.SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE_NOT_AVAILABLE, __pyx_t_4) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SERVICE_NOT_AVAILABLE, __pyx_t_4) < 0) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":296
+  /* "ssh/libssh_enums.pyx":304
  *     COMPRESSION_ERROR = c_ssh2.SSH2_DISCONNECT_COMPRESSION_ERROR
  *     SERVICE_NOT_AVAILABLE = c_ssh2.SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE
  *     PROTOCOL_VERSION_NOT_SUPPORTED = c_ssh2.SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED             # <<<<<<<<<<<<<<
  *     HOST_KEY_NOT_VERIFIABLE = c_ssh2.SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE
  *     CONNECTION_LOST = c_ssh2.SSH2_DISCONNECT_CONNECTION_LOST
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 304, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROTOCOL_VERSION_NOT_SUPPORTED, __pyx_t_4) < 0) __PYX_ERR(0, 296, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PROTOCOL_VERSION_NOT_SUPPORTED, __pyx_t_4) < 0) __PYX_ERR(0, 304, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":297
+  /* "ssh/libssh_enums.pyx":305
  *     SERVICE_NOT_AVAILABLE = c_ssh2.SSH2_DISCONNECT_SERVICE_NOT_AVAILABLE
  *     PROTOCOL_VERSION_NOT_SUPPORTED = c_ssh2.SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED
  *     HOST_KEY_NOT_VERIFIABLE = c_ssh2.SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE             # <<<<<<<<<<<<<<
  *     CONNECTION_LOST = c_ssh2.SSH2_DISCONNECT_CONNECTION_LOST
  *     BY_APPLICATION = c_ssh2.SSH2_DISCONNECT_BY_APPLICATION
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST_KEY_NOT_VERIFIABLE, __pyx_t_4) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HOST_KEY_NOT_VERIFIABLE, __pyx_t_4) < 0) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":298
+  /* "ssh/libssh_enums.pyx":306
  *     PROTOCOL_VERSION_NOT_SUPPORTED = c_ssh2.SSH2_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED
  *     HOST_KEY_NOT_VERIFIABLE = c_ssh2.SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE
  *     CONNECTION_LOST = c_ssh2.SSH2_DISCONNECT_CONNECTION_LOST             # <<<<<<<<<<<<<<
  *     BY_APPLICATION = c_ssh2.SSH2_DISCONNECT_BY_APPLICATION
  *     TOO_MANY_CONNECTIONS = c_ssh2.SSH2_DISCONNECT_TOO_MANY_CONNECTIONS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_CONNECTION_LOST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_CONNECTION_LOST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTION_LOST, __pyx_t_4) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTION_LOST, __pyx_t_4) < 0) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":299
+  /* "ssh/libssh_enums.pyx":307
  *     HOST_KEY_NOT_VERIFIABLE = c_ssh2.SSH2_DISCONNECT_HOST_KEY_NOT_VERIFIABLE
  *     CONNECTION_LOST = c_ssh2.SSH2_DISCONNECT_CONNECTION_LOST
  *     BY_APPLICATION = c_ssh2.SSH2_DISCONNECT_BY_APPLICATION             # <<<<<<<<<<<<<<
  *     TOO_MANY_CONNECTIONS = c_ssh2.SSH2_DISCONNECT_TOO_MANY_CONNECTIONS
  *     AUTH_CANCELLED_BY_USER = c_ssh2.SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_BY_APPLICATION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_BY_APPLICATION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 307, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BY_APPLICATION, __pyx_t_4) < 0) __PYX_ERR(0, 299, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BY_APPLICATION, __pyx_t_4) < 0) __PYX_ERR(0, 307, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":300
+  /* "ssh/libssh_enums.pyx":308
  *     CONNECTION_LOST = c_ssh2.SSH2_DISCONNECT_CONNECTION_LOST
  *     BY_APPLICATION = c_ssh2.SSH2_DISCONNECT_BY_APPLICATION
  *     TOO_MANY_CONNECTIONS = c_ssh2.SSH2_DISCONNECT_TOO_MANY_CONNECTIONS             # <<<<<<<<<<<<<<
  *     AUTH_CANCELLED_BY_USER = c_ssh2.SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER
  *     NO_MORE_AUTH_METHODS_AVAILABLE = c_ssh2.SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_TOO_MANY_CONNECTIONS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_TOO_MANY_CONNECTIONS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TOO_MANY_CONNECTIONS, __pyx_t_4) < 0) __PYX_ERR(0, 300, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TOO_MANY_CONNECTIONS, __pyx_t_4) < 0) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":301
+  /* "ssh/libssh_enums.pyx":309
  *     BY_APPLICATION = c_ssh2.SSH2_DISCONNECT_BY_APPLICATION
  *     TOO_MANY_CONNECTIONS = c_ssh2.SSH2_DISCONNECT_TOO_MANY_CONNECTIONS
  *     AUTH_CANCELLED_BY_USER = c_ssh2.SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER             # <<<<<<<<<<<<<<
  *     NO_MORE_AUTH_METHODS_AVAILABLE = c_ssh2.SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE
  *     ILLEGAL_USER_NAME = c_ssh2.SSH2_DISCONNECT_ILLEGAL_USER_NAME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AUTH_CANCELLED_BY_USER, __pyx_t_4) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_AUTH_CANCELLED_BY_USER, __pyx_t_4) < 0) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":302
+  /* "ssh/libssh_enums.pyx":310
  *     TOO_MANY_CONNECTIONS = c_ssh2.SSH2_DISCONNECT_TOO_MANY_CONNECTIONS
  *     AUTH_CANCELLED_BY_USER = c_ssh2.SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER
  *     NO_MORE_AUTH_METHODS_AVAILABLE = c_ssh2.SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE             # <<<<<<<<<<<<<<
  *     ILLEGAL_USER_NAME = c_ssh2.SSH2_DISCONNECT_ILLEGAL_USER_NAME
  * class SSH2_Open(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_MORE_AUTH_METHODS_AVAILABLE, __pyx_t_4) < 0) __PYX_ERR(0, 302, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_MORE_AUTH_METHODS_AVAILABLE, __pyx_t_4) < 0) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":303
+  /* "ssh/libssh_enums.pyx":311
  *     AUTH_CANCELLED_BY_USER = c_ssh2.SSH2_DISCONNECT_AUTH_CANCELLED_BY_USER
  *     NO_MORE_AUTH_METHODS_AVAILABLE = c_ssh2.SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE
  *     ILLEGAL_USER_NAME = c_ssh2.SSH2_DISCONNECT_ILLEGAL_USER_NAME             # <<<<<<<<<<<<<<
  * class SSH2_Open(enum.IntEnum):
  *     ADMINISTRATIVELY_PROHIBITED = c_ssh2.SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_ILLEGAL_USER_NAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_DISCONNECT_ILLEGAL_USER_NAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ILLEGAL_USER_NAME, __pyx_t_4) < 0) __PYX_ERR(0, 303, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ILLEGAL_USER_NAME, __pyx_t_4) < 0) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":287
+  /* "ssh/libssh_enums.pyx":295
  *     SUCCESS = c_ssh2.SSH2_MSG_CHANNEL_SUCCESS
  *     FAILURE = c_ssh2.SSH2_MSG_CHANNEL_FAILURE
  * class SSH2_Disconnect(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     HOST_NOT_ALLOWED_TO_CONNECT = c_ssh2.SSH2_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT
  *     PROTOCOL_ERROR = c_ssh2.SSH2_DISCONNECT_PROTOCOL_ERROR
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Disconnect, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Disconnect, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Disconnect, __pyx_t_4) < 0) __PYX_ERR(0, 287, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Disconnect, __pyx_t_4) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":304
+  /* "ssh/libssh_enums.pyx":312
  *     NO_MORE_AUTH_METHODS_AVAILABLE = c_ssh2.SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE
  *     ILLEGAL_USER_NAME = c_ssh2.SSH2_DISCONNECT_ILLEGAL_USER_NAME
  * class SSH2_Open(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     ADMINISTRATIVELY_PROHIBITED = c_ssh2.SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED
  *     CONNECT_FAILED = c_ssh2.SSH2_OPEN_CONNECT_FAILED
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Open, __pyx_n_s_SSH2_Open, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_Open, __pyx_n_s_SSH2_Open, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":305
+  /* "ssh/libssh_enums.pyx":313
  *     ILLEGAL_USER_NAME = c_ssh2.SSH2_DISCONNECT_ILLEGAL_USER_NAME
  * class SSH2_Open(enum.IntEnum):
  *     ADMINISTRATIVELY_PROHIBITED = c_ssh2.SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED             # <<<<<<<<<<<<<<
  *     CONNECT_FAILED = c_ssh2.SSH2_OPEN_CONNECT_FAILED
  *     UNKNOWN_CHANNEL_TYPE = c_ssh2.SSH2_OPEN_UNKNOWN_CHANNEL_TYPE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 305, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ADMINISTRATIVELY_PROHIBITED, __pyx_t_4) < 0) __PYX_ERR(0, 305, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ADMINISTRATIVELY_PROHIBITED, __pyx_t_4) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":306
+  /* "ssh/libssh_enums.pyx":314
  * class SSH2_Open(enum.IntEnum):
  *     ADMINISTRATIVELY_PROHIBITED = c_ssh2.SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED
  *     CONNECT_FAILED = c_ssh2.SSH2_OPEN_CONNECT_FAILED             # <<<<<<<<<<<<<<
  *     UNKNOWN_CHANNEL_TYPE = c_ssh2.SSH2_OPEN_UNKNOWN_CHANNEL_TYPE
  *     RESOURCE_SHORTAGE = c_ssh2.SSH2_OPEN_RESOURCE_SHORTAGE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_CONNECT_FAILED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_CONNECT_FAILED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECT_FAILED, __pyx_t_4) < 0) __PYX_ERR(0, 306, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECT_FAILED, __pyx_t_4) < 0) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":307
+  /* "ssh/libssh_enums.pyx":315
  *     ADMINISTRATIVELY_PROHIBITED = c_ssh2.SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED
  *     CONNECT_FAILED = c_ssh2.SSH2_OPEN_CONNECT_FAILED
  *     UNKNOWN_CHANNEL_TYPE = c_ssh2.SSH2_OPEN_UNKNOWN_CHANNEL_TYPE             # <<<<<<<<<<<<<<
  *     RESOURCE_SHORTAGE = c_ssh2.SSH2_OPEN_RESOURCE_SHORTAGE
  * class SSH2_ExtendedData(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_UNKNOWN_CHANNEL_TYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 307, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_UNKNOWN_CHANNEL_TYPE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN_CHANNEL_TYPE, __pyx_t_4) < 0) __PYX_ERR(0, 307, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN_CHANNEL_TYPE, __pyx_t_4) < 0) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":308
+  /* "ssh/libssh_enums.pyx":316
  *     CONNECT_FAILED = c_ssh2.SSH2_OPEN_CONNECT_FAILED
  *     UNKNOWN_CHANNEL_TYPE = c_ssh2.SSH2_OPEN_UNKNOWN_CHANNEL_TYPE
  *     RESOURCE_SHORTAGE = c_ssh2.SSH2_OPEN_RESOURCE_SHORTAGE             # <<<<<<<<<<<<<<
  * class SSH2_ExtendedData(enum.IntEnum):
  *     STDERR = c_ssh2.SSH2_EXTENDED_DATA_STDERR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_RESOURCE_SHORTAGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 308, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_OPEN_RESOURCE_SHORTAGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RESOURCE_SHORTAGE, __pyx_t_4) < 0) __PYX_ERR(0, 308, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RESOURCE_SHORTAGE, __pyx_t_4) < 0) __PYX_ERR(0, 316, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":304
+  /* "ssh/libssh_enums.pyx":312
  *     NO_MORE_AUTH_METHODS_AVAILABLE = c_ssh2.SSH2_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE
  *     ILLEGAL_USER_NAME = c_ssh2.SSH2_DISCONNECT_ILLEGAL_USER_NAME
  * class SSH2_Open(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     ADMINISTRATIVELY_PROHIBITED = c_ssh2.SSH2_OPEN_ADMINISTRATIVELY_PROHIBITED
  *     CONNECT_FAILED = c_ssh2.SSH2_OPEN_CONNECT_FAILED
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Open, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_Open, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Open, __pyx_t_4) < 0) __PYX_ERR(0, 304, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_Open, __pyx_t_4) < 0) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":309
+  /* "ssh/libssh_enums.pyx":317
  *     UNKNOWN_CHANNEL_TYPE = c_ssh2.SSH2_OPEN_UNKNOWN_CHANNEL_TYPE
  *     RESOURCE_SHORTAGE = c_ssh2.SSH2_OPEN_RESOURCE_SHORTAGE
  * class SSH2_ExtendedData(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     STDERR = c_ssh2.SSH2_EXTENDED_DATA_STDERR
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_ExtendedData, __pyx_n_s_SSH2_ExtendedData, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SSH2_ExtendedData, __pyx_n_s_SSH2_ExtendedData, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":310
+  /* "ssh/libssh_enums.pyx":318
  *     RESOURCE_SHORTAGE = c_ssh2.SSH2_OPEN_RESOURCE_SHORTAGE
  * class SSH2_ExtendedData(enum.IntEnum):
  *     STDERR = c_ssh2.SSH2_EXTENDED_DATA_STDERR             # <<<<<<<<<<<<<<
  * 
  * #sftp
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_EXTENDED_DATA_STDERR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH2_EXTENDED_DATA_STDERR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STDERR, __pyx_t_4) < 0) __PYX_ERR(0, 310, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STDERR, __pyx_t_4) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":309
+  /* "ssh/libssh_enums.pyx":317
  *     UNKNOWN_CHANNEL_TYPE = c_ssh2.SSH2_OPEN_UNKNOWN_CHANNEL_TYPE
  *     RESOURCE_SHORTAGE = c_ssh2.SSH2_OPEN_RESOURCE_SHORTAGE
  * class SSH2_ExtendedData(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     STDERR = c_ssh2.SSH2_EXTENDED_DATA_STDERR
  * 
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_ExtendedData, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SSH2_ExtendedData, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_ExtendedData, __pyx_t_4) < 0) __PYX_ERR(0, 309, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SSH2_ExtendedData, __pyx_t_4) < 0) __PYX_ERR(0, 317, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":313
+  /* "ssh/libssh_enums.pyx":321
  * 
  * #sftp
  * class SFTP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     OPEN = c_sftp.SFTP_OPEN
  *     CLOSE = c_sftp.SFTP_CLOSE
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP, __pyx_n_s_SFTP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP, __pyx_n_s_SFTP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":314
+  /* "ssh/libssh_enums.pyx":322
  * #sftp
  * class SFTP(enum.IntEnum):
  *     OPEN = c_sftp.SFTP_OPEN             # <<<<<<<<<<<<<<
  *     CLOSE = c_sftp.SFTP_CLOSE
  *     READ = c_sftp.SFTP_READ
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 314, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":315
+  /* "ssh/libssh_enums.pyx":323
  * class SFTP(enum.IntEnum):
  *     OPEN = c_sftp.SFTP_OPEN
  *     CLOSE = c_sftp.SFTP_CLOSE             # <<<<<<<<<<<<<<
  *     READ = c_sftp.SFTP_READ
  *     WRITE = c_sftp.SFTP_WRITE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_CLOSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 315, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_CLOSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CLOSE, __pyx_t_4) < 0) __PYX_ERR(0, 315, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CLOSE, __pyx_t_4) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":316
+  /* "ssh/libssh_enums.pyx":324
  *     OPEN = c_sftp.SFTP_OPEN
  *     CLOSE = c_sftp.SFTP_CLOSE
  *     READ = c_sftp.SFTP_READ             # <<<<<<<<<<<<<<
  *     WRITE = c_sftp.SFTP_WRITE
  *     LSTAT = c_sftp.SFTP_LSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 316, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 324, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":317
+  /* "ssh/libssh_enums.pyx":325
  *     CLOSE = c_sftp.SFTP_CLOSE
  *     READ = c_sftp.SFTP_READ
  *     WRITE = c_sftp.SFTP_WRITE             # <<<<<<<<<<<<<<
  *     LSTAT = c_sftp.SFTP_LSTAT
  *     FSTAT = c_sftp.SFTP_FSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 317, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":318
+  /* "ssh/libssh_enums.pyx":326
  *     READ = c_sftp.SFTP_READ
  *     WRITE = c_sftp.SFTP_WRITE
  *     LSTAT = c_sftp.SFTP_LSTAT             # <<<<<<<<<<<<<<
  *     FSTAT = c_sftp.SFTP_FSTAT
  *     SETSTAT = c_sftp.SFTP_SETSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_LSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_LSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 326, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 326, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":319
+  /* "ssh/libssh_enums.pyx":327
  *     WRITE = c_sftp.SFTP_WRITE
  *     LSTAT = c_sftp.SFTP_LSTAT
  *     FSTAT = c_sftp.SFTP_FSTAT             # <<<<<<<<<<<<<<
  *     SETSTAT = c_sftp.SFTP_SETSTAT
  *     FSETSTAT = c_sftp.SFTP_FSETSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_FSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_FSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":320
+  /* "ssh/libssh_enums.pyx":328
  *     LSTAT = c_sftp.SFTP_LSTAT
  *     FSTAT = c_sftp.SFTP_FSTAT
  *     SETSTAT = c_sftp.SFTP_SETSTAT             # <<<<<<<<<<<<<<
  *     FSETSTAT = c_sftp.SFTP_FSETSTAT
  *     OPENDIR = c_sftp.SFTP_OPENDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_SETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 320, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_SETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 320, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":321
+  /* "ssh/libssh_enums.pyx":329
  *     FSTAT = c_sftp.SFTP_FSTAT
  *     SETSTAT = c_sftp.SFTP_SETSTAT
  *     FSETSTAT = c_sftp.SFTP_FSETSTAT             # <<<<<<<<<<<<<<
  *     OPENDIR = c_sftp.SFTP_OPENDIR
  *     READDIR = c_sftp.SFTP_READDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_FSETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_FSETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 329, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 321, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 329, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":322
+  /* "ssh/libssh_enums.pyx":330
  *     SETSTAT = c_sftp.SFTP_SETSTAT
  *     FSETSTAT = c_sftp.SFTP_FSETSTAT
  *     OPENDIR = c_sftp.SFTP_OPENDIR             # <<<<<<<<<<<<<<
  *     READDIR = c_sftp.SFTP_READDIR
  *     REMOVE = c_sftp.SFTP_REMOVE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_OPENDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 322, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_OPENDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPENDIR, __pyx_t_4) < 0) __PYX_ERR(0, 322, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPENDIR, __pyx_t_4) < 0) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":323
+  /* "ssh/libssh_enums.pyx":331
  *     FSETSTAT = c_sftp.SFTP_FSETSTAT
  *     OPENDIR = c_sftp.SFTP_OPENDIR
  *     READDIR = c_sftp.SFTP_READDIR             # <<<<<<<<<<<<<<
  *     REMOVE = c_sftp.SFTP_REMOVE
  *     MKDIR = c_sftp.SFTP_MKDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_READDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_READDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READDIR, __pyx_t_4) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READDIR, __pyx_t_4) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":324
+  /* "ssh/libssh_enums.pyx":332
  *     OPENDIR = c_sftp.SFTP_OPENDIR
  *     READDIR = c_sftp.SFTP_READDIR
  *     REMOVE = c_sftp.SFTP_REMOVE             # <<<<<<<<<<<<<<
  *     MKDIR = c_sftp.SFTP_MKDIR
  *     RMDIR = c_sftp.SFTP_RMDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_REMOVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_REMOVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REMOVE, __pyx_t_4) < 0) __PYX_ERR(0, 324, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REMOVE, __pyx_t_4) < 0) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":325
+  /* "ssh/libssh_enums.pyx":333
  *     READDIR = c_sftp.SFTP_READDIR
  *     REMOVE = c_sftp.SFTP_REMOVE
  *     MKDIR = c_sftp.SFTP_MKDIR             # <<<<<<<<<<<<<<
  *     RMDIR = c_sftp.SFTP_RMDIR
  *     REALPATH = c_sftp.SFTP_REALPATH
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_MKDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_MKDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MKDIR, __pyx_t_4) < 0) __PYX_ERR(0, 325, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MKDIR, __pyx_t_4) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":326
+  /* "ssh/libssh_enums.pyx":334
  *     REMOVE = c_sftp.SFTP_REMOVE
  *     MKDIR = c_sftp.SFTP_MKDIR
  *     RMDIR = c_sftp.SFTP_RMDIR             # <<<<<<<<<<<<<<
  *     REALPATH = c_sftp.SFTP_REALPATH
  *     STAT = c_sftp.SFTP_STAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_RMDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_RMDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RMDIR, __pyx_t_4) < 0) __PYX_ERR(0, 326, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RMDIR, __pyx_t_4) < 0) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":327
+  /* "ssh/libssh_enums.pyx":335
  *     MKDIR = c_sftp.SFTP_MKDIR
  *     RMDIR = c_sftp.SFTP_RMDIR
  *     REALPATH = c_sftp.SFTP_REALPATH             # <<<<<<<<<<<<<<
  *     STAT = c_sftp.SFTP_STAT
  *     RENAME = c_sftp.SFTP_RENAME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_REALPATH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 327, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_REALPATH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REALPATH, __pyx_t_4) < 0) __PYX_ERR(0, 327, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REALPATH, __pyx_t_4) < 0) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":328
+  /* "ssh/libssh_enums.pyx":336
  *     RMDIR = c_sftp.SFTP_RMDIR
  *     REALPATH = c_sftp.SFTP_REALPATH
  *     STAT = c_sftp.SFTP_STAT             # <<<<<<<<<<<<<<
  *     RENAME = c_sftp.SFTP_RENAME
  *     READLINK = c_sftp.SFTP_READLINK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_STAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_STAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STAT, __pyx_t_4) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STAT, __pyx_t_4) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":329
+  /* "ssh/libssh_enums.pyx":337
  *     REALPATH = c_sftp.SFTP_REALPATH
  *     STAT = c_sftp.SFTP_STAT
  *     RENAME = c_sftp.SFTP_RENAME             # <<<<<<<<<<<<<<
  *     READLINK = c_sftp.SFTP_READLINK
  *     SYMLINK = c_sftp.SFTP_SYMLINK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_RENAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_RENAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 337, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RENAME, __pyx_t_4) < 0) __PYX_ERR(0, 329, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RENAME, __pyx_t_4) < 0) __PYX_ERR(0, 337, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":330
+  /* "ssh/libssh_enums.pyx":338
  *     STAT = c_sftp.SFTP_STAT
  *     RENAME = c_sftp.SFTP_RENAME
  *     READLINK = c_sftp.SFTP_READLINK             # <<<<<<<<<<<<<<
  *     SYMLINK = c_sftp.SFTP_SYMLINK
  * class SFTP_FXP(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_READLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_READLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 338, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READLINK, __pyx_t_4) < 0) __PYX_ERR(0, 330, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READLINK, __pyx_t_4) < 0) __PYX_ERR(0, 338, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":331
+  /* "ssh/libssh_enums.pyx":339
  *     RENAME = c_sftp.SFTP_RENAME
  *     READLINK = c_sftp.SFTP_READLINK
  *     SYMLINK = c_sftp.SFTP_SYMLINK             # <<<<<<<<<<<<<<
  * class SFTP_FXP(enum.IntEnum):
  *     INIT = c_sftp.SSH_FXP_INIT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_SYMLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SFTP_SYMLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SYMLINK, __pyx_t_4) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SYMLINK, __pyx_t_4) < 0) __PYX_ERR(0, 339, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":313
+  /* "ssh/libssh_enums.pyx":321
  * 
  * #sftp
  * class SFTP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     OPEN = c_sftp.SFTP_OPEN
  *     CLOSE = c_sftp.SFTP_CLOSE
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP, __pyx_t_4) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP, __pyx_t_4) < 0) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":332
+  /* "ssh/libssh_enums.pyx":340
  *     READLINK = c_sftp.SFTP_READLINK
  *     SYMLINK = c_sftp.SFTP_SYMLINK
  * class SFTP_FXP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     INIT = c_sftp.SSH_FXP_INIT
  *     VERSION = c_sftp.SSH_FXP_VERSION
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXP, __pyx_n_s_SFTP_FXP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXP, __pyx_n_s_SFTP_FXP, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":333
+  /* "ssh/libssh_enums.pyx":341
  *     SYMLINK = c_sftp.SFTP_SYMLINK
  * class SFTP_FXP(enum.IntEnum):
  *     INIT = c_sftp.SSH_FXP_INIT             # <<<<<<<<<<<<<<
  *     VERSION = c_sftp.SSH_FXP_VERSION
  *     OPEN = c_sftp.SSH_FXP_OPEN
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_INIT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INIT, __pyx_t_4) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":334
+  /* "ssh/libssh_enums.pyx":342
  * class SFTP_FXP(enum.IntEnum):
  *     INIT = c_sftp.SSH_FXP_INIT
  *     VERSION = c_sftp.SSH_FXP_VERSION             # <<<<<<<<<<<<<<
  *     OPEN = c_sftp.SSH_FXP_OPEN
  *     CLOSE = c_sftp.SSH_FXP_CLOSE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_VERSION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_VERSION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 342, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_VERSION, __pyx_t_4) < 0) __PYX_ERR(0, 334, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_VERSION, __pyx_t_4) < 0) __PYX_ERR(0, 342, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":335
+  /* "ssh/libssh_enums.pyx":343
  *     INIT = c_sftp.SSH_FXP_INIT
  *     VERSION = c_sftp.SSH_FXP_VERSION
  *     OPEN = c_sftp.SSH_FXP_OPEN             # <<<<<<<<<<<<<<
  *     CLOSE = c_sftp.SSH_FXP_CLOSE
  *     READ = c_sftp.SSH_FXP_READ
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_OPEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 343, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 335, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPEN, __pyx_t_4) < 0) __PYX_ERR(0, 343, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":336
+  /* "ssh/libssh_enums.pyx":344
  *     VERSION = c_sftp.SSH_FXP_VERSION
  *     OPEN = c_sftp.SSH_FXP_OPEN
  *     CLOSE = c_sftp.SSH_FXP_CLOSE             # <<<<<<<<<<<<<<
  *     READ = c_sftp.SSH_FXP_READ
  *     WRITE = c_sftp.SSH_FXP_WRITE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_CLOSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_CLOSE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 344, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CLOSE, __pyx_t_4) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CLOSE, __pyx_t_4) < 0) __PYX_ERR(0, 344, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":337
+  /* "ssh/libssh_enums.pyx":345
  *     OPEN = c_sftp.SSH_FXP_OPEN
  *     CLOSE = c_sftp.SSH_FXP_CLOSE
  *     READ = c_sftp.SSH_FXP_READ             # <<<<<<<<<<<<<<
  *     WRITE = c_sftp.SSH_FXP_WRITE
  *     LSTAT = c_sftp.SSH_FXP_LSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 337, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":338
+  /* "ssh/libssh_enums.pyx":346
  *     CLOSE = c_sftp.SSH_FXP_CLOSE
  *     READ = c_sftp.SSH_FXP_READ
  *     WRITE = c_sftp.SSH_FXP_WRITE             # <<<<<<<<<<<<<<
  *     LSTAT = c_sftp.SSH_FXP_LSTAT
  *     FSTAT = c_sftp.SSH_FXP_FSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 338, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 346, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 338, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 346, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":339
+  /* "ssh/libssh_enums.pyx":347
  *     READ = c_sftp.SSH_FXP_READ
  *     WRITE = c_sftp.SSH_FXP_WRITE
  *     LSTAT = c_sftp.SSH_FXP_LSTAT             # <<<<<<<<<<<<<<
  *     FSTAT = c_sftp.SSH_FXP_FSTAT
  *     SETSTAT = c_sftp.SSH_FXP_SETSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_LSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 339, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_LSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 339, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_LSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":340
+  /* "ssh/libssh_enums.pyx":348
  *     WRITE = c_sftp.SSH_FXP_WRITE
  *     LSTAT = c_sftp.SSH_FXP_LSTAT
  *     FSTAT = c_sftp.SSH_FXP_FSTAT             # <<<<<<<<<<<<<<
  *     SETSTAT = c_sftp.SSH_FXP_SETSTAT
  *     FSETSTAT = c_sftp.SSH_FXP_FSETSTAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_FSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_FSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":341
+  /* "ssh/libssh_enums.pyx":349
  *     LSTAT = c_sftp.SSH_FXP_LSTAT
  *     FSTAT = c_sftp.SSH_FXP_FSTAT
  *     SETSTAT = c_sftp.SSH_FXP_SETSTAT             # <<<<<<<<<<<<<<
  *     FSETSTAT = c_sftp.SSH_FXP_FSETSTAT
  *     OPENDIR = c_sftp.SSH_FXP_OPENDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_SETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_SETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":342
+  /* "ssh/libssh_enums.pyx":350
  *     FSTAT = c_sftp.SSH_FXP_FSTAT
  *     SETSTAT = c_sftp.SSH_FXP_SETSTAT
  *     FSETSTAT = c_sftp.SSH_FXP_FSETSTAT             # <<<<<<<<<<<<<<
  *     OPENDIR = c_sftp.SSH_FXP_OPENDIR
  *     READDIR = c_sftp.SSH_FXP_READDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_FSETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 342, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_FSETSTAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 350, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 342, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FSETSTAT, __pyx_t_4) < 0) __PYX_ERR(0, 350, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":343
+  /* "ssh/libssh_enums.pyx":351
  *     SETSTAT = c_sftp.SSH_FXP_SETSTAT
  *     FSETSTAT = c_sftp.SSH_FXP_FSETSTAT
  *     OPENDIR = c_sftp.SSH_FXP_OPENDIR             # <<<<<<<<<<<<<<
  *     READDIR = c_sftp.SSH_FXP_READDIR
  *     REMOVE = c_sftp.SSH_FXP_REMOVE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_OPENDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_OPENDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPENDIR, __pyx_t_4) < 0) __PYX_ERR(0, 343, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OPENDIR, __pyx_t_4) < 0) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":344
+  /* "ssh/libssh_enums.pyx":352
  *     FSETSTAT = c_sftp.SSH_FXP_FSETSTAT
  *     OPENDIR = c_sftp.SSH_FXP_OPENDIR
  *     READDIR = c_sftp.SSH_FXP_READDIR             # <<<<<<<<<<<<<<
  *     REMOVE = c_sftp.SSH_FXP_REMOVE
  *     MKDIR = c_sftp.SSH_FXP_MKDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_READDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_READDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READDIR, __pyx_t_4) < 0) __PYX_ERR(0, 344, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READDIR, __pyx_t_4) < 0) __PYX_ERR(0, 352, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":345
+  /* "ssh/libssh_enums.pyx":353
  *     OPENDIR = c_sftp.SSH_FXP_OPENDIR
  *     READDIR = c_sftp.SSH_FXP_READDIR
  *     REMOVE = c_sftp.SSH_FXP_REMOVE             # <<<<<<<<<<<<<<
  *     MKDIR = c_sftp.SSH_FXP_MKDIR
  *     RMDIR = c_sftp.SSH_FXP_RMDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_REMOVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_REMOVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REMOVE, __pyx_t_4) < 0) __PYX_ERR(0, 345, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REMOVE, __pyx_t_4) < 0) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":346
+  /* "ssh/libssh_enums.pyx":354
  *     READDIR = c_sftp.SSH_FXP_READDIR
  *     REMOVE = c_sftp.SSH_FXP_REMOVE
  *     MKDIR = c_sftp.SSH_FXP_MKDIR             # <<<<<<<<<<<<<<
  *     RMDIR = c_sftp.SSH_FXP_RMDIR
  *     REALPATH = c_sftp.SSH_FXP_REALPATH
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_MKDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_MKDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 354, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MKDIR, __pyx_t_4) < 0) __PYX_ERR(0, 346, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MKDIR, __pyx_t_4) < 0) __PYX_ERR(0, 354, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":347
+  /* "ssh/libssh_enums.pyx":355
  *     REMOVE = c_sftp.SSH_FXP_REMOVE
  *     MKDIR = c_sftp.SSH_FXP_MKDIR
  *     RMDIR = c_sftp.SSH_FXP_RMDIR             # <<<<<<<<<<<<<<
  *     REALPATH = c_sftp.SSH_FXP_REALPATH
  *     STAT = c_sftp.SSH_FXP_STAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_RMDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_RMDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RMDIR, __pyx_t_4) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RMDIR, __pyx_t_4) < 0) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":348
+  /* "ssh/libssh_enums.pyx":356
  *     MKDIR = c_sftp.SSH_FXP_MKDIR
  *     RMDIR = c_sftp.SSH_FXP_RMDIR
  *     REALPATH = c_sftp.SSH_FXP_REALPATH             # <<<<<<<<<<<<<<
  *     STAT = c_sftp.SSH_FXP_STAT
  *     RENAME = c_sftp.SSH_FXP_RENAME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_REALPATH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_REALPATH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REALPATH, __pyx_t_4) < 0) __PYX_ERR(0, 348, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REALPATH, __pyx_t_4) < 0) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":349
+  /* "ssh/libssh_enums.pyx":357
  *     RMDIR = c_sftp.SSH_FXP_RMDIR
  *     REALPATH = c_sftp.SSH_FXP_REALPATH
  *     STAT = c_sftp.SSH_FXP_STAT             # <<<<<<<<<<<<<<
  *     RENAME = c_sftp.SSH_FXP_RENAME
  *     READLINK = c_sftp.SSH_FXP_READLINK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_STAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_STAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STAT, __pyx_t_4) < 0) __PYX_ERR(0, 349, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STAT, __pyx_t_4) < 0) __PYX_ERR(0, 357, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":350
+  /* "ssh/libssh_enums.pyx":358
  *     REALPATH = c_sftp.SSH_FXP_REALPATH
  *     STAT = c_sftp.SSH_FXP_STAT
  *     RENAME = c_sftp.SSH_FXP_RENAME             # <<<<<<<<<<<<<<
  *     READLINK = c_sftp.SSH_FXP_READLINK
  *     SYMLINK = c_sftp.SSH_FXP_SYMLINK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_RENAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_RENAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RENAME, __pyx_t_4) < 0) __PYX_ERR(0, 350, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_RENAME, __pyx_t_4) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":351
+  /* "ssh/libssh_enums.pyx":359
  *     STAT = c_sftp.SSH_FXP_STAT
  *     RENAME = c_sftp.SSH_FXP_RENAME
  *     READLINK = c_sftp.SSH_FXP_READLINK             # <<<<<<<<<<<<<<
  *     SYMLINK = c_sftp.SSH_FXP_SYMLINK
  *     STATUS = c_sftp.SSH_FXP_STATUS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_READLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_READLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READLINK, __pyx_t_4) < 0) __PYX_ERR(0, 351, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READLINK, __pyx_t_4) < 0) __PYX_ERR(0, 359, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":352
+  /* "ssh/libssh_enums.pyx":360
  *     RENAME = c_sftp.SSH_FXP_RENAME
  *     READLINK = c_sftp.SSH_FXP_READLINK
  *     SYMLINK = c_sftp.SSH_FXP_SYMLINK             # <<<<<<<<<<<<<<
  *     STATUS = c_sftp.SSH_FXP_STATUS
  *     HANDLE = c_sftp.SSH_FXP_HANDLE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_SYMLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_SYMLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SYMLINK, __pyx_t_4) < 0) __PYX_ERR(0, 352, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SYMLINK, __pyx_t_4) < 0) __PYX_ERR(0, 360, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":353
+  /* "ssh/libssh_enums.pyx":361
  *     READLINK = c_sftp.SSH_FXP_READLINK
  *     SYMLINK = c_sftp.SSH_FXP_SYMLINK
  *     STATUS = c_sftp.SSH_FXP_STATUS             # <<<<<<<<<<<<<<
  *     HANDLE = c_sftp.SSH_FXP_HANDLE
  *     DATA = c_sftp.SSH_FXP_DATA
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_STATUS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_STATUS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STATUS, __pyx_t_4) < 0) __PYX_ERR(0, 353, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STATUS, __pyx_t_4) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":354
+  /* "ssh/libssh_enums.pyx":362
  *     SYMLINK = c_sftp.SSH_FXP_SYMLINK
  *     STATUS = c_sftp.SSH_FXP_STATUS
  *     HANDLE = c_sftp.SSH_FXP_HANDLE             # <<<<<<<<<<<<<<
  *     DATA = c_sftp.SSH_FXP_DATA
  *     NAME = c_sftp.SSH_FXP_NAME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_HANDLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 354, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_HANDLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HANDLE, __pyx_t_4) < 0) __PYX_ERR(0, 354, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_HANDLE, __pyx_t_4) < 0) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":355
+  /* "ssh/libssh_enums.pyx":363
  *     STATUS = c_sftp.SSH_FXP_STATUS
  *     HANDLE = c_sftp.SSH_FXP_HANDLE
  *     DATA = c_sftp.SSH_FXP_DATA             # <<<<<<<<<<<<<<
  *     NAME = c_sftp.SSH_FXP_NAME
  *     ATTRS = c_sftp.SSH_FXP_ATTRS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_DATA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 355, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_DATA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DATA, __pyx_t_4) < 0) __PYX_ERR(0, 355, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DATA, __pyx_t_4) < 0) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":356
+  /* "ssh/libssh_enums.pyx":364
  *     HANDLE = c_sftp.SSH_FXP_HANDLE
  *     DATA = c_sftp.SSH_FXP_DATA
  *     NAME = c_sftp.SSH_FXP_NAME             # <<<<<<<<<<<<<<
  *     ATTRS = c_sftp.SSH_FXP_ATTRS
  *     EXTENDED = c_sftp.SSH_FXP_EXTENDED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_NAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_NAME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NAME, __pyx_t_4) < 0) __PYX_ERR(0, 356, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NAME, __pyx_t_4) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":357
+  /* "ssh/libssh_enums.pyx":365
  *     DATA = c_sftp.SSH_FXP_DATA
  *     NAME = c_sftp.SSH_FXP_NAME
  *     ATTRS = c_sftp.SSH_FXP_ATTRS             # <<<<<<<<<<<<<<
  *     EXTENDED = c_sftp.SSH_FXP_EXTENDED
  *     EXTENDED_REPLY = c_sftp.SSH_FXP_EXTENDED_REPLY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_ATTRS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 357, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_ATTRS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 365, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ATTRS, __pyx_t_4) < 0) __PYX_ERR(0, 357, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ATTRS, __pyx_t_4) < 0) __PYX_ERR(0, 365, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":358
+  /* "ssh/libssh_enums.pyx":366
  *     NAME = c_sftp.SSH_FXP_NAME
  *     ATTRS = c_sftp.SSH_FXP_ATTRS
  *     EXTENDED = c_sftp.SSH_FXP_EXTENDED             # <<<<<<<<<<<<<<
  *     EXTENDED_REPLY = c_sftp.SSH_FXP_EXTENDED_REPLY
  * class SFTP_FileXfer_Attr(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_EXTENDED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_EXTENDED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 366, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED, __pyx_t_4) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED, __pyx_t_4) < 0) __PYX_ERR(0, 366, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":359
+  /* "ssh/libssh_enums.pyx":367
  *     ATTRS = c_sftp.SSH_FXP_ATTRS
  *     EXTENDED = c_sftp.SSH_FXP_EXTENDED
  *     EXTENDED_REPLY = c_sftp.SSH_FXP_EXTENDED_REPLY             # <<<<<<<<<<<<<<
  * class SFTP_FileXfer_Attr(enum.IntEnum):
  *     SIZE = c_sftp.SSH_FILEXFER_ATTR_SIZE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_EXTENDED_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 359, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXP_EXTENDED_REPLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 367, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 359, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED_REPLY, __pyx_t_4) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":332
+  /* "ssh/libssh_enums.pyx":340
  *     READLINK = c_sftp.SFTP_READLINK
  *     SYMLINK = c_sftp.SFTP_SYMLINK
  * class SFTP_FXP(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     INIT = c_sftp.SSH_FXP_INIT
  *     VERSION = c_sftp.SSH_FXP_VERSION
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXP, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXP, __pyx_t_4) < 0) __PYX_ERR(0, 332, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXP, __pyx_t_4) < 0) __PYX_ERR(0, 340, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":360
+  /* "ssh/libssh_enums.pyx":368
  *     EXTENDED = c_sftp.SSH_FXP_EXTENDED
  *     EXTENDED_REPLY = c_sftp.SSH_FXP_EXTENDED_REPLY
  * class SFTP_FileXfer_Attr(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     SIZE = c_sftp.SSH_FILEXFER_ATTR_SIZE
  *     PERMISSIONS = c_sftp.SSH_FILEXFER_ATTR_PERMISSIONS
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FileXfer_Attr, __pyx_n_s_SFTP_FileXfer_Attr, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FileXfer_Attr, __pyx_n_s_SFTP_FileXfer_Attr, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":361
+  /* "ssh/libssh_enums.pyx":369
  *     EXTENDED_REPLY = c_sftp.SSH_FXP_EXTENDED_REPLY
  * class SFTP_FileXfer_Attr(enum.IntEnum):
  *     SIZE = c_sftp.SSH_FILEXFER_ATTR_SIZE             # <<<<<<<<<<<<<<
  *     PERMISSIONS = c_sftp.SSH_FILEXFER_ATTR_PERMISSIONS
  *     ACCESSTIME = c_sftp.SSH_FILEXFER_ATTR_ACCESSTIME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_SIZE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_SIZE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 369, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SIZE, __pyx_t_4) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SIZE, __pyx_t_4) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":362
+  /* "ssh/libssh_enums.pyx":370
  * class SFTP_FileXfer_Attr(enum.IntEnum):
  *     SIZE = c_sftp.SSH_FILEXFER_ATTR_SIZE
  *     PERMISSIONS = c_sftp.SSH_FILEXFER_ATTR_PERMISSIONS             # <<<<<<<<<<<<<<
  *     ACCESSTIME = c_sftp.SSH_FILEXFER_ATTR_ACCESSTIME
  *     ACMODTIME = c_sftp.SSH_FILEXFER_ATTR_ACMODTIME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_PERMISSIONS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_PERMISSIONS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 370, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PERMISSIONS, __pyx_t_4) < 0) __PYX_ERR(0, 362, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PERMISSIONS, __pyx_t_4) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":363
+  /* "ssh/libssh_enums.pyx":371
  *     SIZE = c_sftp.SSH_FILEXFER_ATTR_SIZE
  *     PERMISSIONS = c_sftp.SSH_FILEXFER_ATTR_PERMISSIONS
  *     ACCESSTIME = c_sftp.SSH_FILEXFER_ATTR_ACCESSTIME             # <<<<<<<<<<<<<<
  *     ACMODTIME = c_sftp.SSH_FILEXFER_ATTR_ACMODTIME
  *     CREATETIME = c_sftp.SSH_FILEXFER_ATTR_CREATETIME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_ACCESSTIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 363, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_ACCESSTIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 371, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ACCESSTIME, __pyx_t_4) < 0) __PYX_ERR(0, 363, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ACCESSTIME, __pyx_t_4) < 0) __PYX_ERR(0, 371, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":364
+  /* "ssh/libssh_enums.pyx":372
  *     PERMISSIONS = c_sftp.SSH_FILEXFER_ATTR_PERMISSIONS
  *     ACCESSTIME = c_sftp.SSH_FILEXFER_ATTR_ACCESSTIME
  *     ACMODTIME = c_sftp.SSH_FILEXFER_ATTR_ACMODTIME             # <<<<<<<<<<<<<<
  *     CREATETIME = c_sftp.SSH_FILEXFER_ATTR_CREATETIME
  *     MODIFYTIME = c_sftp.SSH_FILEXFER_ATTR_MODIFYTIME
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_ACMODTIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_ACMODTIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ACMODTIME, __pyx_t_4) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ACMODTIME, __pyx_t_4) < 0) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":365
+  /* "ssh/libssh_enums.pyx":373
  *     ACCESSTIME = c_sftp.SSH_FILEXFER_ATTR_ACCESSTIME
  *     ACMODTIME = c_sftp.SSH_FILEXFER_ATTR_ACMODTIME
  *     CREATETIME = c_sftp.SSH_FILEXFER_ATTR_CREATETIME             # <<<<<<<<<<<<<<
  *     MODIFYTIME = c_sftp.SSH_FILEXFER_ATTR_MODIFYTIME
  *     ACL = c_sftp.SSH_FILEXFER_ATTR_ACL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_CREATETIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 365, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_CREATETIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 373, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CREATETIME, __pyx_t_4) < 0) __PYX_ERR(0, 365, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CREATETIME, __pyx_t_4) < 0) __PYX_ERR(0, 373, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":366
+  /* "ssh/libssh_enums.pyx":374
  *     ACMODTIME = c_sftp.SSH_FILEXFER_ATTR_ACMODTIME
  *     CREATETIME = c_sftp.SSH_FILEXFER_ATTR_CREATETIME
  *     MODIFYTIME = c_sftp.SSH_FILEXFER_ATTR_MODIFYTIME             # <<<<<<<<<<<<<<
  *     ACL = c_sftp.SSH_FILEXFER_ATTR_ACL
  *     OWNERGROUP = c_sftp.SSH_FILEXFER_ATTR_OWNERGROUP
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_MODIFYTIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 366, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_MODIFYTIME); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 374, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MODIFYTIME, __pyx_t_4) < 0) __PYX_ERR(0, 366, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MODIFYTIME, __pyx_t_4) < 0) __PYX_ERR(0, 374, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":367
+  /* "ssh/libssh_enums.pyx":375
  *     CREATETIME = c_sftp.SSH_FILEXFER_ATTR_CREATETIME
  *     MODIFYTIME = c_sftp.SSH_FILEXFER_ATTR_MODIFYTIME
  *     ACL = c_sftp.SSH_FILEXFER_ATTR_ACL             # <<<<<<<<<<<<<<
  *     OWNERGROUP = c_sftp.SSH_FILEXFER_ATTR_OWNERGROUP
  *     SUBSECOND_TIMES = c_sftp.SSH_FILEXFER_ATTR_SUBSECOND_TIMES
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_ACL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_ACL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 375, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ACL, __pyx_t_4) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ACL, __pyx_t_4) < 0) __PYX_ERR(0, 375, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":368
+  /* "ssh/libssh_enums.pyx":376
  *     MODIFYTIME = c_sftp.SSH_FILEXFER_ATTR_MODIFYTIME
  *     ACL = c_sftp.SSH_FILEXFER_ATTR_ACL
  *     OWNERGROUP = c_sftp.SSH_FILEXFER_ATTR_OWNERGROUP             # <<<<<<<<<<<<<<
  *     SUBSECOND_TIMES = c_sftp.SSH_FILEXFER_ATTR_SUBSECOND_TIMES
  *     EXTENDED = c_sftp.SSH_FILEXFER_ATTR_EXTENDED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_OWNERGROUP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 368, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_OWNERGROUP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 376, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OWNERGROUP, __pyx_t_4) < 0) __PYX_ERR(0, 368, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OWNERGROUP, __pyx_t_4) < 0) __PYX_ERR(0, 376, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":369
+  /* "ssh/libssh_enums.pyx":377
  *     ACL = c_sftp.SSH_FILEXFER_ATTR_ACL
  *     OWNERGROUP = c_sftp.SSH_FILEXFER_ATTR_OWNERGROUP
  *     SUBSECOND_TIMES = c_sftp.SSH_FILEXFER_ATTR_SUBSECOND_TIMES             # <<<<<<<<<<<<<<
  *     EXTENDED = c_sftp.SSH_FILEXFER_ATTR_EXTENDED
  *     UIDGID = c_sftp.SSH_FILEXFER_ATTR_UIDGID
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_SUBSECOND_TIMES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_SUBSECOND_TIMES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 377, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUBSECOND_TIMES, __pyx_t_4) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SUBSECOND_TIMES, __pyx_t_4) < 0) __PYX_ERR(0, 377, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":370
+  /* "ssh/libssh_enums.pyx":378
  *     OWNERGROUP = c_sftp.SSH_FILEXFER_ATTR_OWNERGROUP
  *     SUBSECOND_TIMES = c_sftp.SSH_FILEXFER_ATTR_SUBSECOND_TIMES
  *     EXTENDED = c_sftp.SSH_FILEXFER_ATTR_EXTENDED             # <<<<<<<<<<<<<<
  *     UIDGID = c_sftp.SSH_FILEXFER_ATTR_UIDGID
  * # Types
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_EXTENDED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 370, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_EXTENDED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 378, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED, __pyx_t_4) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXTENDED, __pyx_t_4) < 0) __PYX_ERR(0, 378, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":371
+  /* "ssh/libssh_enums.pyx":379
  *     SUBSECOND_TIMES = c_sftp.SSH_FILEXFER_ATTR_SUBSECOND_TIMES
  *     EXTENDED = c_sftp.SSH_FILEXFER_ATTR_EXTENDED
  *     UIDGID = c_sftp.SSH_FILEXFER_ATTR_UIDGID             # <<<<<<<<<<<<<<
  * # Types
  * class SFTP_FileXfer_Type(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_UIDGID); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 371, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_ATTR_UIDGID); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 379, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UIDGID, __pyx_t_4) < 0) __PYX_ERR(0, 371, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UIDGID, __pyx_t_4) < 0) __PYX_ERR(0, 379, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":360
+  /* "ssh/libssh_enums.pyx":368
  *     EXTENDED = c_sftp.SSH_FXP_EXTENDED
  *     EXTENDED_REPLY = c_sftp.SSH_FXP_EXTENDED_REPLY
  * class SFTP_FileXfer_Attr(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     SIZE = c_sftp.SSH_FILEXFER_ATTR_SIZE
  *     PERMISSIONS = c_sftp.SSH_FILEXFER_ATTR_PERMISSIONS
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FileXfer_Attr, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FileXfer_Attr, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FileXfer_Attr, __pyx_t_4) < 0) __PYX_ERR(0, 360, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FileXfer_Attr, __pyx_t_4) < 0) __PYX_ERR(0, 368, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":373
+  /* "ssh/libssh_enums.pyx":381
  *     UIDGID = c_sftp.SSH_FILEXFER_ATTR_UIDGID
  * # Types
  * class SFTP_FileXfer_Type(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     REGULAR = c_sftp.SSH_FILEXFER_TYPE_REGULAR
  *     DIRECTORY = c_sftp.SSH_FILEXFER_TYPE_DIRECTORY
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FileXfer_Type, __pyx_n_s_SFTP_FileXfer_Type, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FileXfer_Type, __pyx_n_s_SFTP_FileXfer_Type, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":374
+  /* "ssh/libssh_enums.pyx":382
  * # Types
  * class SFTP_FileXfer_Type(enum.IntEnum):
  *     REGULAR = c_sftp.SSH_FILEXFER_TYPE_REGULAR             # <<<<<<<<<<<<<<
  *     DIRECTORY = c_sftp.SSH_FILEXFER_TYPE_DIRECTORY
  *     SYMLINK = c_sftp.SSH_FILEXFER_TYPE_SYMLINK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_REGULAR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_REGULAR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REGULAR, __pyx_t_4) < 0) __PYX_ERR(0, 374, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_REGULAR, __pyx_t_4) < 0) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":375
+  /* "ssh/libssh_enums.pyx":383
  * class SFTP_FileXfer_Type(enum.IntEnum):
  *     REGULAR = c_sftp.SSH_FILEXFER_TYPE_REGULAR
  *     DIRECTORY = c_sftp.SSH_FILEXFER_TYPE_DIRECTORY             # <<<<<<<<<<<<<<
  *     SYMLINK = c_sftp.SSH_FILEXFER_TYPE_SYMLINK
  *     SPECIAL = c_sftp.SSH_FILEXFER_TYPE_SPECIAL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_DIRECTORY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 375, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_DIRECTORY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DIRECTORY, __pyx_t_4) < 0) __PYX_ERR(0, 375, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_DIRECTORY, __pyx_t_4) < 0) __PYX_ERR(0, 383, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":376
+  /* "ssh/libssh_enums.pyx":384
  *     REGULAR = c_sftp.SSH_FILEXFER_TYPE_REGULAR
  *     DIRECTORY = c_sftp.SSH_FILEXFER_TYPE_DIRECTORY
  *     SYMLINK = c_sftp.SSH_FILEXFER_TYPE_SYMLINK             # <<<<<<<<<<<<<<
  *     SPECIAL = c_sftp.SSH_FILEXFER_TYPE_SPECIAL
  *     UNKNOWN = c_sftp.SSH_FILEXFER_TYPE_UNKNOWN
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_SYMLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_SYMLINK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SYMLINK, __pyx_t_4) < 0) __PYX_ERR(0, 376, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SYMLINK, __pyx_t_4) < 0) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":377
+  /* "ssh/libssh_enums.pyx":385
  *     DIRECTORY = c_sftp.SSH_FILEXFER_TYPE_DIRECTORY
  *     SYMLINK = c_sftp.SSH_FILEXFER_TYPE_SYMLINK
  *     SPECIAL = c_sftp.SSH_FILEXFER_TYPE_SPECIAL             # <<<<<<<<<<<<<<
  *     UNKNOWN = c_sftp.SSH_FILEXFER_TYPE_UNKNOWN
  * class SFTP_FX(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_SPECIAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 377, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_SPECIAL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 385, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SPECIAL, __pyx_t_4) < 0) __PYX_ERR(0, 377, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_SPECIAL, __pyx_t_4) < 0) __PYX_ERR(0, 385, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":378
+  /* "ssh/libssh_enums.pyx":386
  *     SYMLINK = c_sftp.SSH_FILEXFER_TYPE_SYMLINK
  *     SPECIAL = c_sftp.SSH_FILEXFER_TYPE_SPECIAL
  *     UNKNOWN = c_sftp.SSH_FILEXFER_TYPE_UNKNOWN             # <<<<<<<<<<<<<<
  * class SFTP_FX(enum.IntEnum):
  *     OK = c_sftp.SSH_FX_OK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FILEXFER_TYPE_UNKNOWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 378, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_UNKNOWN, __pyx_t_4) < 0) __PYX_ERR(0, 386, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":373
+  /* "ssh/libssh_enums.pyx":381
  *     UIDGID = c_sftp.SSH_FILEXFER_ATTR_UIDGID
  * # Types
  * class SFTP_FileXfer_Type(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     REGULAR = c_sftp.SSH_FILEXFER_TYPE_REGULAR
  *     DIRECTORY = c_sftp.SSH_FILEXFER_TYPE_DIRECTORY
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FileXfer_Type, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FileXfer_Type, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FileXfer_Type, __pyx_t_4) < 0) __PYX_ERR(0, 373, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FileXfer_Type, __pyx_t_4) < 0) __PYX_ERR(0, 381, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":379
+  /* "ssh/libssh_enums.pyx":387
  *     SPECIAL = c_sftp.SSH_FILEXFER_TYPE_SPECIAL
  *     UNKNOWN = c_sftp.SSH_FILEXFER_TYPE_UNKNOWN
  * class SFTP_FX(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     OK = c_sftp.SSH_FX_OK
  *     EOF = c_sftp.SSH_FX_EOF
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FX, __pyx_n_s_SFTP_FX, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FX, __pyx_n_s_SFTP_FX, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":380
+  /* "ssh/libssh_enums.pyx":388
  *     UNKNOWN = c_sftp.SSH_FILEXFER_TYPE_UNKNOWN
  * class SFTP_FX(enum.IntEnum):
  *     OK = c_sftp.SSH_FX_OK             # <<<<<<<<<<<<<<
  *     EOF = c_sftp.SSH_FX_EOF
  *     NO_SUCH_FILE = c_sftp.SSH_FX_NO_SUCH_FILE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 380, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_OK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 388, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OK, __pyx_t_4) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OK, __pyx_t_4) < 0) __PYX_ERR(0, 388, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":381
+  /* "ssh/libssh_enums.pyx":389
  * class SFTP_FX(enum.IntEnum):
  *     OK = c_sftp.SSH_FX_OK
  *     EOF = c_sftp.SSH_FX_EOF             # <<<<<<<<<<<<<<
  *     NO_SUCH_FILE = c_sftp.SSH_FX_NO_SUCH_FILE
  *     PERMISSION_DENIED = c_sftp.SSH_FX_PERMISSION_DENIED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 381, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 381, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EOF, __pyx_t_4) < 0) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":382
+  /* "ssh/libssh_enums.pyx":390
  *     OK = c_sftp.SSH_FX_OK
  *     EOF = c_sftp.SSH_FX_EOF
  *     NO_SUCH_FILE = c_sftp.SSH_FX_NO_SUCH_FILE             # <<<<<<<<<<<<<<
  *     PERMISSION_DENIED = c_sftp.SSH_FX_PERMISSION_DENIED
  *     FAILURE = c_sftp.SSH_FX_FAILURE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_SUCH_FILE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 382, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_SUCH_FILE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_SUCH_FILE, __pyx_t_4) < 0) __PYX_ERR(0, 382, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_SUCH_FILE, __pyx_t_4) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":383
+  /* "ssh/libssh_enums.pyx":391
  *     EOF = c_sftp.SSH_FX_EOF
  *     NO_SUCH_FILE = c_sftp.SSH_FX_NO_SUCH_FILE
  *     PERMISSION_DENIED = c_sftp.SSH_FX_PERMISSION_DENIED             # <<<<<<<<<<<<<<
  *     FAILURE = c_sftp.SSH_FX_FAILURE
  *     BAD_MESSAGE = c_sftp.SSH_FX_BAD_MESSAGE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_PERMISSION_DENIED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_PERMISSION_DENIED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 391, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PERMISSION_DENIED, __pyx_t_4) < 0) __PYX_ERR(0, 383, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_PERMISSION_DENIED, __pyx_t_4) < 0) __PYX_ERR(0, 391, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":384
+  /* "ssh/libssh_enums.pyx":392
  *     NO_SUCH_FILE = c_sftp.SSH_FX_NO_SUCH_FILE
  *     PERMISSION_DENIED = c_sftp.SSH_FX_PERMISSION_DENIED
  *     FAILURE = c_sftp.SSH_FX_FAILURE             # <<<<<<<<<<<<<<
  *     BAD_MESSAGE = c_sftp.SSH_FX_BAD_MESSAGE
  *     NO_CONNECTION = c_sftp.SSH_FX_NO_CONNECTION
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_FAILURE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 384, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FAILURE, __pyx_t_4) < 0) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":385
+  /* "ssh/libssh_enums.pyx":393
  *     PERMISSION_DENIED = c_sftp.SSH_FX_PERMISSION_DENIED
  *     FAILURE = c_sftp.SSH_FX_FAILURE
  *     BAD_MESSAGE = c_sftp.SSH_FX_BAD_MESSAGE             # <<<<<<<<<<<<<<
  *     NO_CONNECTION = c_sftp.SSH_FX_NO_CONNECTION
  *     CONNECTION_LOST = c_sftp.SSH_FX_CONNECTION_LOST
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_BAD_MESSAGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 385, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_BAD_MESSAGE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BAD_MESSAGE, __pyx_t_4) < 0) __PYX_ERR(0, 385, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_BAD_MESSAGE, __pyx_t_4) < 0) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":386
+  /* "ssh/libssh_enums.pyx":394
  *     FAILURE = c_sftp.SSH_FX_FAILURE
  *     BAD_MESSAGE = c_sftp.SSH_FX_BAD_MESSAGE
  *     NO_CONNECTION = c_sftp.SSH_FX_NO_CONNECTION             # <<<<<<<<<<<<<<
  *     CONNECTION_LOST = c_sftp.SSH_FX_CONNECTION_LOST
  *     OP_UNSUPPORTED = c_sftp.SSH_FX_OP_UNSUPPORTED
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_CONNECTION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_CONNECTION); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_CONNECTION, __pyx_t_4) < 0) __PYX_ERR(0, 386, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_CONNECTION, __pyx_t_4) < 0) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":387
+  /* "ssh/libssh_enums.pyx":395
  *     BAD_MESSAGE = c_sftp.SSH_FX_BAD_MESSAGE
  *     NO_CONNECTION = c_sftp.SSH_FX_NO_CONNECTION
  *     CONNECTION_LOST = c_sftp.SSH_FX_CONNECTION_LOST             # <<<<<<<<<<<<<<
  *     OP_UNSUPPORTED = c_sftp.SSH_FX_OP_UNSUPPORTED
  *     INVALID_HANDLE = c_sftp.SSH_FX_INVALID_HANDLE
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_CONNECTION_LOST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_CONNECTION_LOST); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTION_LOST, __pyx_t_4) < 0) __PYX_ERR(0, 387, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CONNECTION_LOST, __pyx_t_4) < 0) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":388
+  /* "ssh/libssh_enums.pyx":396
  *     NO_CONNECTION = c_sftp.SSH_FX_NO_CONNECTION
  *     CONNECTION_LOST = c_sftp.SSH_FX_CONNECTION_LOST
  *     OP_UNSUPPORTED = c_sftp.SSH_FX_OP_UNSUPPORTED             # <<<<<<<<<<<<<<
  *     INVALID_HANDLE = c_sftp.SSH_FX_INVALID_HANDLE
  *     NO_SUCH_PATH = c_sftp.SSH_FX_NO_SUCH_PATH
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_OP_UNSUPPORTED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_OP_UNSUPPORTED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 396, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OP_UNSUPPORTED, __pyx_t_4) < 0) __PYX_ERR(0, 388, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OP_UNSUPPORTED, __pyx_t_4) < 0) __PYX_ERR(0, 396, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":389
+  /* "ssh/libssh_enums.pyx":397
  *     CONNECTION_LOST = c_sftp.SSH_FX_CONNECTION_LOST
  *     OP_UNSUPPORTED = c_sftp.SSH_FX_OP_UNSUPPORTED
  *     INVALID_HANDLE = c_sftp.SSH_FX_INVALID_HANDLE             # <<<<<<<<<<<<<<
  *     NO_SUCH_PATH = c_sftp.SSH_FX_NO_SUCH_PATH
  *     FILE_ALREADY_EXISTS = c_sftp.SSH_FX_FILE_ALREADY_EXISTS
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_INVALID_HANDLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 389, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_INVALID_HANDLE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INVALID_HANDLE, __pyx_t_4) < 0) __PYX_ERR(0, 389, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_INVALID_HANDLE, __pyx_t_4) < 0) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":390
+  /* "ssh/libssh_enums.pyx":398
  *     OP_UNSUPPORTED = c_sftp.SSH_FX_OP_UNSUPPORTED
  *     INVALID_HANDLE = c_sftp.SSH_FX_INVALID_HANDLE
  *     NO_SUCH_PATH = c_sftp.SSH_FX_NO_SUCH_PATH             # <<<<<<<<<<<<<<
  *     FILE_ALREADY_EXISTS = c_sftp.SSH_FX_FILE_ALREADY_EXISTS
  *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_SUCH_PATH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 390, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_SUCH_PATH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_SUCH_PATH, __pyx_t_4) < 0) __PYX_ERR(0, 390, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_SUCH_PATH, __pyx_t_4) < 0) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":391
+  /* "ssh/libssh_enums.pyx":399
  *     INVALID_HANDLE = c_sftp.SSH_FX_INVALID_HANDLE
  *     NO_SUCH_PATH = c_sftp.SSH_FX_NO_SUCH_PATH
  *     FILE_ALREADY_EXISTS = c_sftp.SSH_FX_FILE_ALREADY_EXISTS             # <<<<<<<<<<<<<<
  *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
  *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_FILE_ALREADY_EXISTS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 391, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_FILE_ALREADY_EXISTS); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FILE_ALREADY_EXISTS, __pyx_t_4) < 0) __PYX_ERR(0, 391, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_FILE_ALREADY_EXISTS, __pyx_t_4) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":392
+  /* "ssh/libssh_enums.pyx":400
  *     NO_SUCH_PATH = c_sftp.SSH_FX_NO_SUCH_PATH
  *     FILE_ALREADY_EXISTS = c_sftp.SSH_FX_FILE_ALREADY_EXISTS
  *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT             # <<<<<<<<<<<<<<
  *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
  * class SFTP_FXF(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_WRITE_PROTECT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_WRITE_PROTECT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE_PROTECT, __pyx_t_4) < 0) __PYX_ERR(0, 392, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE_PROTECT, __pyx_t_4) < 0) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":393
+  /* "ssh/libssh_enums.pyx":401
  *     FILE_ALREADY_EXISTS = c_sftp.SSH_FX_FILE_ALREADY_EXISTS
  *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
  *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA             # <<<<<<<<<<<<<<
  * class SFTP_FXF(enum.IntEnum):
  *     READ = c_sftp.SSH_FXF_READ
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_MEDIA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FX_NO_MEDIA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 401, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_MEDIA, __pyx_t_4) < 0) __PYX_ERR(0, 393, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NO_MEDIA, __pyx_t_4) < 0) __PYX_ERR(0, 401, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":379
+  /* "ssh/libssh_enums.pyx":387
  *     SPECIAL = c_sftp.SSH_FILEXFER_TYPE_SPECIAL
  *     UNKNOWN = c_sftp.SSH_FILEXFER_TYPE_UNKNOWN
  * class SFTP_FX(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     OK = c_sftp.SSH_FX_OK
  *     EOF = c_sftp.SSH_FX_EOF
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FX, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FX, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FX, __pyx_t_4) < 0) __PYX_ERR(0, 379, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "ssh/libssh_enums.pyx":394
- *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
- *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
- * class SFTP_FXF(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     READ = c_sftp.SSH_FXF_READ
- *     WRITE = c_sftp.SSH_FXF_WRITE
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXF, __pyx_n_s_SFTP_FXF, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-
-  /* "ssh/libssh_enums.pyx":395
- *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
- * class SFTP_FXF(enum.IntEnum):
- *     READ = c_sftp.SSH_FXF_READ             # <<<<<<<<<<<<<<
- *     WRITE = c_sftp.SSH_FXF_WRITE
- *     APPEND = c_sftp.SSH_FXF_APPEND
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 395, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 395, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":396
- * class SFTP_FXF(enum.IntEnum):
- *     READ = c_sftp.SSH_FXF_READ
- *     WRITE = c_sftp.SSH_FXF_WRITE             # <<<<<<<<<<<<<<
- *     APPEND = c_sftp.SSH_FXF_APPEND
- *     CREAT = c_sftp.SSH_FXF_CREAT
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 396, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 396, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":397
- *     READ = c_sftp.SSH_FXF_READ
- *     WRITE = c_sftp.SSH_FXF_WRITE
- *     APPEND = c_sftp.SSH_FXF_APPEND             # <<<<<<<<<<<<<<
- *     CREAT = c_sftp.SSH_FXF_CREAT
- *     TRUNC = c_sftp.SSH_FXF_TRUNC
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_APPEND); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_APPEND, __pyx_t_4) < 0) __PYX_ERR(0, 397, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":398
- *     WRITE = c_sftp.SSH_FXF_WRITE
- *     APPEND = c_sftp.SSH_FXF_APPEND
- *     CREAT = c_sftp.SSH_FXF_CREAT             # <<<<<<<<<<<<<<
- *     TRUNC = c_sftp.SSH_FXF_TRUNC
- *     EXCL = c_sftp.SSH_FXF_EXCL
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_CREAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 398, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CREAT, __pyx_t_4) < 0) __PYX_ERR(0, 398, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":399
- *     APPEND = c_sftp.SSH_FXF_APPEND
- *     CREAT = c_sftp.SSH_FXF_CREAT
- *     TRUNC = c_sftp.SSH_FXF_TRUNC             # <<<<<<<<<<<<<<
- *     EXCL = c_sftp.SSH_FXF_EXCL
- *     TEXT = c_sftp.SSH_FXF_TEXT
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_TRUNC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 399, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TRUNC, __pyx_t_4) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":400
- *     CREAT = c_sftp.SSH_FXF_CREAT
- *     TRUNC = c_sftp.SSH_FXF_TRUNC
- *     EXCL = c_sftp.SSH_FXF_EXCL             # <<<<<<<<<<<<<<
- *     TEXT = c_sftp.SSH_FXF_TEXT
- * class SFTP_FXF_Rename(enum.IntEnum):
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_EXCL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXCL, __pyx_t_4) < 0) __PYX_ERR(0, 400, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":401
- *     TRUNC = c_sftp.SSH_FXF_TRUNC
- *     EXCL = c_sftp.SSH_FXF_EXCL
- *     TEXT = c_sftp.SSH_FXF_TEXT             # <<<<<<<<<<<<<<
- * class SFTP_FXF_Rename(enum.IntEnum):
- *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_TEXT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 401, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TEXT, __pyx_t_4) < 0) __PYX_ERR(0, 401, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "ssh/libssh_enums.pyx":394
- *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
- *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
- * class SFTP_FXF(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     READ = c_sftp.SSH_FXF_READ
- *     WRITE = c_sftp.SSH_FXF_WRITE
- */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXF, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 394, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXF, __pyx_t_4) < 0) __PYX_ERR(0, 394, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FX, __pyx_t_4) < 0) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ssh/libssh_enums.pyx":402
- *     EXCL = c_sftp.SSH_FXF_EXCL
- *     TEXT = c_sftp.SSH_FXF_TEXT
- * class SFTP_FXF_Rename(enum.IntEnum):             # <<<<<<<<<<<<<<
- *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
- *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
+ *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
+ *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
+ * class SFTP_FXF(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     READ = c_sftp.SSH_FXF_READ
+ *     WRITE = c_sftp.SSH_FXF_WRITE
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -7464,379 +7467,500 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXF_Rename, __pyx_n_s_SFTP_FXF_Rename, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXF, __pyx_n_s_SFTP_FXF, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "ssh/libssh_enums.pyx":403
- *     TEXT = c_sftp.SSH_FXF_TEXT
- * class SFTP_FXF_Rename(enum.IntEnum):
- *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE             # <<<<<<<<<<<<<<
- *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
- *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
+ *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
+ * class SFTP_FXF(enum.IntEnum):
+ *     READ = c_sftp.SSH_FXF_READ             # <<<<<<<<<<<<<<
+ *     WRITE = c_sftp.SSH_FXF_WRITE
+ *     APPEND = c_sftp.SSH_FXF_APPEND
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_RENAME_OVERWRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_READ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OVERWRITE, __pyx_t_4) < 0) __PYX_ERR(0, 403, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_READ, __pyx_t_4) < 0) __PYX_ERR(0, 403, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":404
- * class SFTP_FXF_Rename(enum.IntEnum):
- *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
- *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC             # <<<<<<<<<<<<<<
- *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
- * class SFTP_S(enum.IntEnum):
+ * class SFTP_FXF(enum.IntEnum):
+ *     READ = c_sftp.SSH_FXF_READ
+ *     WRITE = c_sftp.SSH_FXF_WRITE             # <<<<<<<<<<<<<<
+ *     APPEND = c_sftp.SSH_FXF_APPEND
+ *     CREAT = c_sftp.SSH_FXF_CREAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_RENAME_ATOMIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 404, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_WRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 404, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ATOMIC, __pyx_t_4) < 0) __PYX_ERR(0, 404, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_WRITE, __pyx_t_4) < 0) __PYX_ERR(0, 404, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":405
- *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
- *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
- *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE             # <<<<<<<<<<<<<<
- * class SFTP_S(enum.IntEnum):
- *     IFMT = c_sftp.SSH_S_IFMT
+ *     READ = c_sftp.SSH_FXF_READ
+ *     WRITE = c_sftp.SSH_FXF_WRITE
+ *     APPEND = c_sftp.SSH_FXF_APPEND             # <<<<<<<<<<<<<<
+ *     CREAT = c_sftp.SSH_FXF_CREAT
+ *     TRUNC = c_sftp.SSH_FXF_TRUNC
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_RENAME_NATIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 405, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_APPEND); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 405, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NATIVE, __pyx_t_4) < 0) __PYX_ERR(0, 405, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_APPEND, __pyx_t_4) < 0) __PYX_ERR(0, 405, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":406
+ *     WRITE = c_sftp.SSH_FXF_WRITE
+ *     APPEND = c_sftp.SSH_FXF_APPEND
+ *     CREAT = c_sftp.SSH_FXF_CREAT             # <<<<<<<<<<<<<<
+ *     TRUNC = c_sftp.SSH_FXF_TRUNC
+ *     EXCL = c_sftp.SSH_FXF_EXCL
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_CREAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_CREAT, __pyx_t_4) < 0) __PYX_ERR(0, 406, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":407
+ *     APPEND = c_sftp.SSH_FXF_APPEND
+ *     CREAT = c_sftp.SSH_FXF_CREAT
+ *     TRUNC = c_sftp.SSH_FXF_TRUNC             # <<<<<<<<<<<<<<
+ *     EXCL = c_sftp.SSH_FXF_EXCL
+ *     TEXT = c_sftp.SSH_FXF_TEXT
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_TRUNC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TRUNC, __pyx_t_4) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":408
+ *     CREAT = c_sftp.SSH_FXF_CREAT
+ *     TRUNC = c_sftp.SSH_FXF_TRUNC
+ *     EXCL = c_sftp.SSH_FXF_EXCL             # <<<<<<<<<<<<<<
+ *     TEXT = c_sftp.SSH_FXF_TEXT
+ * class SFTP_FXF_Rename(enum.IntEnum):
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_EXCL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_EXCL, __pyx_t_4) < 0) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":409
+ *     TRUNC = c_sftp.SSH_FXF_TRUNC
+ *     EXCL = c_sftp.SSH_FXF_EXCL
+ *     TEXT = c_sftp.SSH_FXF_TEXT             # <<<<<<<<<<<<<<
+ * class SFTP_FXF_Rename(enum.IntEnum):
+ *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_TEXT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_TEXT, __pyx_t_4) < 0) __PYX_ERR(0, 409, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "ssh/libssh_enums.pyx":402
+ *     WRITE_PROTECT = c_sftp.SSH_FX_WRITE_PROTECT
+ *     NO_MEDIA = c_sftp.SSH_FX_NO_MEDIA
+ * class SFTP_FXF(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     READ = c_sftp.SSH_FXF_READ
+ *     WRITE = c_sftp.SSH_FXF_WRITE
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXF, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXF, __pyx_t_4) < 0) __PYX_ERR(0, 402, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "ssh/libssh_enums.pyx":410
  *     EXCL = c_sftp.SSH_FXF_EXCL
  *     TEXT = c_sftp.SSH_FXF_TEXT
  * class SFTP_FXF_Rename(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
  *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXF_Rename, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXF_Rename, __pyx_n_s_SFTP_FXF_Rename, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "ssh/libssh_enums.pyx":411
+ *     TEXT = c_sftp.SSH_FXF_TEXT
+ * class SFTP_FXF_Rename(enum.IntEnum):
+ *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE             # <<<<<<<<<<<<<<
+ *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
+ *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_RENAME_OVERWRITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 411, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXF_Rename, __pyx_t_4) < 0) __PYX_ERR(0, 402, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_OVERWRITE, __pyx_t_4) < 0) __PYX_ERR(0, 411, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":412
+ * class SFTP_FXF_Rename(enum.IntEnum):
+ *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
+ *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC             # <<<<<<<<<<<<<<
+ *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
+ * class SFTP_S(enum.IntEnum):
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_RENAME_ATOMIC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ATOMIC, __pyx_t_4) < 0) __PYX_ERR(0, 412, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":413
+ *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
+ *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
+ *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE             # <<<<<<<<<<<<<<
+ * class SFTP_S(enum.IntEnum):
+ *     IFMT = c_sftp.SSH_S_IFMT
+ */
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXF_RENAME_NATIVE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_NATIVE, __pyx_t_4) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "ssh/libssh_enums.pyx":410
+ *     EXCL = c_sftp.SSH_FXF_EXCL
+ *     TEXT = c_sftp.SSH_FXF_TEXT
+ * class SFTP_FXF_Rename(enum.IntEnum):             # <<<<<<<<<<<<<<
+ *     OVERWRITE = c_sftp.SSH_FXF_RENAME_OVERWRITE
+ *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
+ */
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXF_Rename, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXF_Rename, __pyx_t_4) < 0) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":406
+  /* "ssh/libssh_enums.pyx":414
  *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
  *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
  * class SFTP_S(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     IFMT = c_sftp.SSH_S_IFMT
  *     IFSOCK = c_sftp.SSH_S_IFSOCK
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_S, __pyx_n_s_SFTP_S, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_S, __pyx_n_s_SFTP_S, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":407
+  /* "ssh/libssh_enums.pyx":415
  *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
  * class SFTP_S(enum.IntEnum):
  *     IFMT = c_sftp.SSH_S_IFMT             # <<<<<<<<<<<<<<
  *     IFSOCK = c_sftp.SSH_S_IFSOCK
  *     IFLNK = c_sftp.SSH_S_IFLNK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFMT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFMT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFMT, __pyx_t_4) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFMT, __pyx_t_4) < 0) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":408
+  /* "ssh/libssh_enums.pyx":416
  * class SFTP_S(enum.IntEnum):
  *     IFMT = c_sftp.SSH_S_IFMT
  *     IFSOCK = c_sftp.SSH_S_IFSOCK             # <<<<<<<<<<<<<<
  *     IFLNK = c_sftp.SSH_S_IFLNK
  *     IFREG = c_sftp.SSH_S_IFREG
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFSOCK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFSOCK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 416, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFSOCK, __pyx_t_4) < 0) __PYX_ERR(0, 408, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFSOCK, __pyx_t_4) < 0) __PYX_ERR(0, 416, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":409
+  /* "ssh/libssh_enums.pyx":417
  *     IFMT = c_sftp.SSH_S_IFMT
  *     IFSOCK = c_sftp.SSH_S_IFSOCK
  *     IFLNK = c_sftp.SSH_S_IFLNK             # <<<<<<<<<<<<<<
  *     IFREG = c_sftp.SSH_S_IFREG
  *     IFBLK = c_sftp.SSH_S_IFBLK
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFLNK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFLNK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFLNK, __pyx_t_4) < 0) __PYX_ERR(0, 409, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFLNK, __pyx_t_4) < 0) __PYX_ERR(0, 417, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":410
+  /* "ssh/libssh_enums.pyx":418
  *     IFSOCK = c_sftp.SSH_S_IFSOCK
  *     IFLNK = c_sftp.SSH_S_IFLNK
  *     IFREG = c_sftp.SSH_S_IFREG             # <<<<<<<<<<<<<<
  *     IFBLK = c_sftp.SSH_S_IFBLK
  *     IFDIR = c_sftp.SSH_S_IFDIR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFREG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFREG); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 418, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFREG, __pyx_t_4) < 0) __PYX_ERR(0, 410, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFREG, __pyx_t_4) < 0) __PYX_ERR(0, 418, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":411
+  /* "ssh/libssh_enums.pyx":419
  *     IFLNK = c_sftp.SSH_S_IFLNK
  *     IFREG = c_sftp.SSH_S_IFREG
  *     IFBLK = c_sftp.SSH_S_IFBLK             # <<<<<<<<<<<<<<
  *     IFDIR = c_sftp.SSH_S_IFDIR
  *     IFCHR = c_sftp.SSH_S_IFCHR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFBLK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFBLK); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFBLK, __pyx_t_4) < 0) __PYX_ERR(0, 411, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFBLK, __pyx_t_4) < 0) __PYX_ERR(0, 419, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":412
+  /* "ssh/libssh_enums.pyx":420
  *     IFREG = c_sftp.SSH_S_IFREG
  *     IFBLK = c_sftp.SSH_S_IFBLK
  *     IFDIR = c_sftp.SSH_S_IFDIR             # <<<<<<<<<<<<<<
  *     IFCHR = c_sftp.SSH_S_IFCHR
  *     IFIFO = c_sftp.SSH_S_IFIFO
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFDIR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFDIR, __pyx_t_4) < 0) __PYX_ERR(0, 412, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFDIR, __pyx_t_4) < 0) __PYX_ERR(0, 420, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":413
+  /* "ssh/libssh_enums.pyx":421
  *     IFBLK = c_sftp.SSH_S_IFBLK
  *     IFDIR = c_sftp.SSH_S_IFDIR
  *     IFCHR = c_sftp.SSH_S_IFCHR             # <<<<<<<<<<<<<<
  *     IFIFO = c_sftp.SSH_S_IFIFO
  * class SFTP_FXE(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFCHR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFCHR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 421, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFCHR, __pyx_t_4) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFCHR, __pyx_t_4) < 0) __PYX_ERR(0, 421, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":414
+  /* "ssh/libssh_enums.pyx":422
  *     IFDIR = c_sftp.SSH_S_IFDIR
  *     IFCHR = c_sftp.SSH_S_IFCHR
  *     IFIFO = c_sftp.SSH_S_IFIFO             # <<<<<<<<<<<<<<
  * class SFTP_FXE(enum.IntEnum):
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFIFO); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_S_IFIFO); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 422, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFIFO, __pyx_t_4) < 0) __PYX_ERR(0, 414, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_IFIFO, __pyx_t_4) < 0) __PYX_ERR(0, 422, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":406
+  /* "ssh/libssh_enums.pyx":414
  *     ATOMIC = c_sftp.SSH_FXF_RENAME_ATOMIC
  *     NATIVE = c_sftp.SSH_FXF_RENAME_NATIVE
  * class SFTP_S(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     IFMT = c_sftp.SSH_S_IFMT
  *     IFSOCK = c_sftp.SSH_S_IFSOCK
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_S, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_S, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_S, __pyx_t_4) < 0) __PYX_ERR(0, 406, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_S, __pyx_t_4) < 0) __PYX_ERR(0, 414, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":415
+  /* "ssh/libssh_enums.pyx":423
  *     IFCHR = c_sftp.SSH_S_IFCHR
  *     IFIFO = c_sftp.SSH_S_IFIFO
  * class SFTP_FXE(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXE, __pyx_n_s_SFTP_FXE, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_FXE, __pyx_n_s_SFTP_FXE, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":416
+  /* "ssh/libssh_enums.pyx":424
  *     IFIFO = c_sftp.SSH_S_IFIFO
  * class SFTP_FXE(enum.IntEnum):
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY             # <<<<<<<<<<<<<<
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
  * class SFTP_AT(enum.IntEnum):
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXE_STATVFS_ST_RDONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXE_STATVFS_ST_RDONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STATVFS_ST_RDONLY, __pyx_t_4) < 0) __PYX_ERR(0, 416, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STATVFS_ST_RDONLY, __pyx_t_4) < 0) __PYX_ERR(0, 424, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":417
+  /* "ssh/libssh_enums.pyx":425
  * class SFTP_FXE(enum.IntEnum):
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID             # <<<<<<<<<<<<<<
  * class SFTP_AT(enum.IntEnum):
  *     O_RDONLY = c_sftp.O_RDONLY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXE_STATVFS_ST_NOSUID); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 417, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(SSH_FXE_STATVFS_ST_NOSUID); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STATVFS_ST_NOSUID, __pyx_t_4) < 0) __PYX_ERR(0, 417, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_STATVFS_ST_NOSUID, __pyx_t_4) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":415
+  /* "ssh/libssh_enums.pyx":423
  *     IFCHR = c_sftp.SSH_S_IFCHR
  *     IFIFO = c_sftp.SSH_S_IFIFO
  * class SFTP_FXE(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXE, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_FXE, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXE, __pyx_t_4) < 0) __PYX_ERR(0, 415, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_FXE, __pyx_t_4) < 0) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ssh/libssh_enums.pyx":418
+  /* "ssh/libssh_enums.pyx":426
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
  * class SFTP_AT(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     O_RDONLY = c_sftp.O_RDONLY
  *     O_WRONLY = c_sftp.O_WRONLY
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_enum); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_IntEnum); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_AT, __pyx_n_s_SFTP_AT, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_SFTP_AT, __pyx_n_s_SFTP_AT, (PyObject *) NULL, __pyx_n_s_ssh_libssh_enums, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "ssh/libssh_enums.pyx":419
+  /* "ssh/libssh_enums.pyx":427
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
  * class SFTP_AT(enum.IntEnum):
  *     O_RDONLY = c_sftp.O_RDONLY             # <<<<<<<<<<<<<<
  *     O_WRONLY = c_sftp.O_WRONLY
  *     O_RDWR = c_sftp.O_RDWR
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_RDONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_RDONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_RDONLY, __pyx_t_4) < 0) __PYX_ERR(0, 419, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_RDONLY, __pyx_t_4) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":420
+  /* "ssh/libssh_enums.pyx":428
  * class SFTP_AT(enum.IntEnum):
  *     O_RDONLY = c_sftp.O_RDONLY
  *     O_WRONLY = c_sftp.O_WRONLY             # <<<<<<<<<<<<<<
  *     O_RDWR = c_sftp.O_RDWR
  *     O_CREAT = c_sftp.O_CREAT
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_WRONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_WRONLY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_WRONLY, __pyx_t_4) < 0) __PYX_ERR(0, 420, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_WRONLY, __pyx_t_4) < 0) __PYX_ERR(0, 428, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":421
+  /* "ssh/libssh_enums.pyx":429
  *     O_RDONLY = c_sftp.O_RDONLY
  *     O_WRONLY = c_sftp.O_WRONLY
  *     O_RDWR = c_sftp.O_RDWR             # <<<<<<<<<<<<<<
  *     O_CREAT = c_sftp.O_CREAT
  *     O_EXCL = c_sftp.O_EXCL
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_RDWR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_RDWR); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_RDWR, __pyx_t_4) < 0) __PYX_ERR(0, 421, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_RDWR, __pyx_t_4) < 0) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":422
+  /* "ssh/libssh_enums.pyx":430
  *     O_WRONLY = c_sftp.O_WRONLY
  *     O_RDWR = c_sftp.O_RDWR
  *     O_CREAT = c_sftp.O_CREAT             # <<<<<<<<<<<<<<
  *     O_EXCL = c_sftp.O_EXCL
  *     O_NOCTTY = c_sftp.O_NOCTTY
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_CREAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 422, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_CREAT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 430, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_CREAT, __pyx_t_4) < 0) __PYX_ERR(0, 422, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_CREAT, __pyx_t_4) < 0) __PYX_ERR(0, 430, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":423
+  /* "ssh/libssh_enums.pyx":431
  *     O_RDWR = c_sftp.O_RDWR
  *     O_CREAT = c_sftp.O_CREAT
  *     O_EXCL = c_sftp.O_EXCL             # <<<<<<<<<<<<<<
  *     O_NOCTTY = c_sftp.O_NOCTTY
  *     O_NOFOLLOW = c_sftp.O_NOFOLLOW
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_EXCL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_EXCL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 431, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_EXCL, __pyx_t_4) < 0) __PYX_ERR(0, 423, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_EXCL, __pyx_t_4) < 0) __PYX_ERR(0, 431, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":424
+  /* "ssh/libssh_enums.pyx":432
  *     O_CREAT = c_sftp.O_CREAT
  *     O_EXCL = c_sftp.O_EXCL
  *     O_NOCTTY = c_sftp.O_NOCTTY             # <<<<<<<<<<<<<<
  *     O_NOFOLLOW = c_sftp.O_NOFOLLOW
  *     O_TRUNC = c_sftp.O_TRUNC
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_NOCTTY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 424, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_NOCTTY); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 432, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_NOCTTY, __pyx_t_4) < 0) __PYX_ERR(0, 424, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_NOCTTY, __pyx_t_4) < 0) __PYX_ERR(0, 432, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":425
+  /* "ssh/libssh_enums.pyx":433
  *     O_EXCL = c_sftp.O_EXCL
  *     O_NOCTTY = c_sftp.O_NOCTTY
  *     O_NOFOLLOW = c_sftp.O_NOFOLLOW             # <<<<<<<<<<<<<<
  *     O_TRUNC = c_sftp.O_TRUNC
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_NOFOLLOW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_NOFOLLOW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 433, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_NOFOLLOW, __pyx_t_4) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_NOFOLLOW, __pyx_t_4) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":426
+  /* "ssh/libssh_enums.pyx":434
  *     O_NOCTTY = c_sftp.O_NOCTTY
  *     O_NOFOLLOW = c_sftp.O_NOFOLLOW
  *     O_TRUNC = c_sftp.O_TRUNC             # <<<<<<<<<<<<<<
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(O_TRUNC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 426, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(O_TRUNC); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_TRUNC, __pyx_t_4) < 0) __PYX_ERR(0, 426, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_O_TRUNC, __pyx_t_4) < 0) __PYX_ERR(0, 434, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "ssh/libssh_enums.pyx":418
+  /* "ssh/libssh_enums.pyx":426
  *     STATVFS_ST_RDONLY = c_sftp.SSH_FXE_STATVFS_ST_RDONLY
  *     STATVFS_ST_NOSUID = c_sftp.SSH_FXE_STATVFS_ST_NOSUID
  * class SFTP_AT(enum.IntEnum):             # <<<<<<<<<<<<<<
  *     O_RDONLY = c_sftp.O_RDONLY
  *     O_WRONLY = c_sftp.O_WRONLY
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_AT, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_SFTP_AT, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_AT, __pyx_t_4) < 0) __PYX_ERR(0, 418, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFTP_AT, __pyx_t_4) < 0) __PYX_ERR(0, 426, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -8466,6 +8590,44 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_enum__ssh_kex_types_e(enum ssh_k
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
         return _PyLong_FromByteArray(bytes, sizeof(enum ssh_kex_types_e),
+                                     little, !is_unsigned);
+    }
+}
+
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_enum__ssh_known_hosts_e(enum ssh_known_hosts_e value) {
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+    const enum ssh_known_hosts_e neg_one = (enum ssh_known_hosts_e) -1, const_zero = (enum ssh_known_hosts_e) 0;
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic pop
+#endif
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(enum ssh_known_hosts_e) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(enum ssh_known_hosts_e) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(enum ssh_known_hosts_e) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(enum ssh_known_hosts_e) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(enum ssh_known_hosts_e) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(enum ssh_known_hosts_e),
                                      little, !is_unsigned);
     }
 }

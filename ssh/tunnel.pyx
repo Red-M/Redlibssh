@@ -78,7 +78,7 @@ cdef class Tunnel:
         if _select_timeout==None:
             _select_timeout = 0.005
         with self._session._block_lock:
-            # self.keepalive_send()
+            self.blocking_flush(_select_timeout)
             block_direction = self._session.get_poll_flags()
         if block_direction==0:
             time.sleep(0.1)

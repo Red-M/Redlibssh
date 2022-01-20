@@ -75,11 +75,12 @@ cdef class SCP:
         cdef int rc
         if self.closed:
             return 0
-        with nogil:
-            rc = c_ssh.ssh_scp_close(self._scp)
-            if rc == 0:
-                self.closed = True
-        return handle_error_codes(rc, self.session._session)
+        with self.session._block_lock:
+            with nogil:
+                rc = c_ssh.ssh_scp_close(self._scp)
+                if rc == 0:
+                    self.closed = True
+        return rc
 
     def init(self):
         cdef int rc

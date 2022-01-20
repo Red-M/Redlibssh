@@ -111,6 +111,7 @@ cdef class Session:
         if _select_timeout==None:
             _select_timeout = 0.005
         with self._block_lock:
+            self.blocking_flush(_select_timeout)
             _check_connected(self._session)
             block_direction = self.get_poll_flags()
         if block_direction==0:
@@ -153,8 +154,9 @@ cdef class Session:
 
     def blocking_flush(self, int timeout):
         cdef int rc
-        with nogil:
-            rc = c_ssh.ssh_blocking_flush(self._session, timeout)
+        with self._block_lock:
+            with nogil:
+                rc = c_ssh.ssh_blocking_flush(self._session, timeout)
         return handle_error_codes(rc, self._session)
 
     def channel_new(self):
@@ -331,11 +333,14 @@ cdef class Session:
             rc = c_ssh.ssh_is_connected(self._session)
         return bool(rc)
 
-    def is_server_known(self):
-        cdef bint rc
+    def is_known_server(self):
+        cdef int rc
         with nogil:
-            rc = c_ssh.ssh_is_server_known(self._session)
-        return bool(rc)
+            rc = c_ssh.ssh_session_is_known_server(self._session)
+        return rc
+
+    def is_server_known(self):
+        return self.is_known_server() & c_ssh.SSH_KNOWN_HOSTS_OK
 
     def copy_options(self, Session destination):
         cdef int rc
@@ -621,13 +626,14 @@ cdef class Session:
             rc = c_ssh.ssh_userauth_gssapi(self._session)
         return handle_auth_error_codes(rc, self._session)
 
-    def write_knownhost(self):
+    def update_known_hosts(self):
         cdef int rc
         with nogil:
-            rc = c_ssh.ssh_write_knownhost(self._session)
+            rc = c_ssh.ssh_session_update_known_hosts(self._session)
         return handle_error_codes(rc, self._session)
 
     def dump_knownhost(self):
+        # replace with ssh_session_export_known_hosts_entry
         cdef const_char *_known_host
         cdef bytes b_known_host
         with nogil:
@@ -728,12 +734,17 @@ cdef class Session:
         cdef c_ssh.ssh_scp _scp
         cdef bytes b_location = to_bytes(location)
         cdef char *c_location = b_location
+        cdef int rc
         with nogil:
             _scp = c_ssh.ssh_scp_new(self._session, mode, c_location)
             if _scp is NULL:
                 with gil:
                     return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
-            if c_ssh.ssh_scp_init(_scp) != c_ssh.SSH_OK:
+        with self._block_lock:
+            with nogil:
+                rc = c_ssh.ssh_scp_init(_scp)
+        with nogil:
+            if not (rc == c_ssh.SSH_OK or rc == c_ssh.SSH_AGAIN):
                 c_ssh.ssh_scp_free(_scp)
                 with gil:
                     return handle_error_codes(c_ssh.ssh_get_error_code(self._session), self._session)
