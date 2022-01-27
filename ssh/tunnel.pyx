@@ -43,11 +43,6 @@ cdef class Tunnel:
         if self._session.check_c_poll_enabled()==True:
             self._build_c_waitsocket_data()
 
-    # def __dealloc__(self):
-        # if self._tun_channel is not NULL and self._session is not None:
-            # c_ssh.ssh_channel_free(self._tun_channel)
-        # self._tun_channel = NULL
-
     cdef void _build_c_waitsocket_data(Tunnel self) nogil:
         self._c_waitsockets[0].fd = self._session._sock
         self._c_waitsockets[0].events = 0

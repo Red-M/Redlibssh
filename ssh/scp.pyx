@@ -40,12 +40,10 @@ cdef class SCP:
     def __cinit__(self):
         self.closed = False
 
-    def __dealloc__(self):
-        if self._scp is not NULL:
-            if not self.closed:
-                self.close()
+    def __del__(self):
+        if self._scp is not NULL and self.session._session is not NULL:
             c_ssh.ssh_scp_free(self._scp)
-            self._scp = NULL
+        self._scp = NULL
 
     @staticmethod
     cdef SCP from_ptr(c_ssh.ssh_scp _scp, Session session):

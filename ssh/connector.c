@@ -1606,7 +1606,7 @@ static PyObject *__pyx_pf_3ssh_9connector_4Flag_4__repr__(struct __pyx_obj_3ssh_
 static PyObject *__pyx_pf_3ssh_9connector_4Flag_6__reduce_cython__(struct __pyx_obj_3ssh_9connector_Flag *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3ssh_9connector_4Flag_8__setstate_cython__(struct __pyx_obj_3ssh_9connector_Flag *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_3ssh_9connector_9Connector___cinit__(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self, struct __pyx_obj_3ssh_7session_Session *__pyx_v_session); /* proto */
-static void __pyx_pf_3ssh_9connector_9Connector_2__dealloc__(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3ssh_9connector_9Connector_2__del__(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_3ssh_9connector_9Connector_4set_in_channel(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self, struct __pyx_obj_3ssh_7channel_Channel *__pyx_v_channel, struct __pyx_obj_3ssh_9connector_Flag *__pyx_v_flag); /* proto */
 static PyObject *__pyx_pf_3ssh_9connector_9Connector_6set_out_channel(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self, struct __pyx_obj_3ssh_7channel_Channel *__pyx_v_channel, struct __pyx_obj_3ssh_9connector_Flag *__pyx_v_flag); /* proto */
 static PyObject *__pyx_pf_3ssh_9connector_9Connector_8set_in_fd(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self, PyObject *__pyx_v_socket); /* proto */
@@ -2288,7 +2288,7 @@ static int __pyx_pf_3ssh_9connector_9Connector___cinit__(struct __pyx_obj_3ssh_9
  *     def __cinit__(self, Session session):
  *         self.session = session             # <<<<<<<<<<<<<<
  * 
- *     def __dealloc__(self):
+ *     def __del__(self):
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_session));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_session));
@@ -2313,74 +2313,90 @@ static int __pyx_pf_3ssh_9connector_9Connector___cinit__(struct __pyx_obj_3ssh_9
 /* "ssh/connector.pyx":55
  *         self.session = session
  * 
- *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._connector is not NULL:
+ *     def __del__(self):             # <<<<<<<<<<<<<<
+ *         if self._connector is not NULL and self.session._session is not NULL:
  *             c_ssh.ssh_connector_free(self._connector)
  */
 
 /* Python wrapper */
-static void __pyx_pw_3ssh_9connector_9Connector_3__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_3ssh_9connector_9Connector_3__dealloc__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_3ssh_9connector_9Connector_3__del__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_3ssh_9connector_9Connector_2__del__[] = "Connector.__del__(self)";
+static PyObject *__pyx_pw_3ssh_9connector_9Connector_3__del__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_3ssh_9connector_9Connector_2__dealloc__(((struct __pyx_obj_3ssh_9connector_Connector *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("__del__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_3ssh_9connector_9Connector_2__del__(((struct __pyx_obj_3ssh_9connector_Connector *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
+  return __pyx_r;
 }
 
-static void __pyx_pf_3ssh_9connector_9Connector_2__dealloc__(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self) {
+static PyObject *__pyx_pf_3ssh_9connector_9Connector_2__del__(struct __pyx_obj_3ssh_9connector_Connector *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  __Pyx_RefNannySetupContext("__dealloc__", 0);
+  int __pyx_t_2;
+  __Pyx_RefNannySetupContext("__del__", 0);
 
   /* "ssh/connector.pyx":56
  * 
- *     def __dealloc__(self):
- *         if self._connector is not NULL:             # <<<<<<<<<<<<<<
+ *     def __del__(self):
+ *         if self._connector is not NULL and self.session._session is not NULL:             # <<<<<<<<<<<<<<
  *             c_ssh.ssh_connector_free(self._connector)
- *             self._connector = NULL
+ *         self._connector = NULL
  */
-  __pyx_t_1 = ((__pyx_v_self->_connector != NULL) != 0);
+  __pyx_t_2 = ((__pyx_v_self->_connector != NULL) != 0);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_2 = ((__pyx_v_self->session->_session != NULL) != 0);
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
     /* "ssh/connector.pyx":57
- *     def __dealloc__(self):
- *         if self._connector is not NULL:
+ *     def __del__(self):
+ *         if self._connector is not NULL and self.session._session is not NULL:
  *             c_ssh.ssh_connector_free(self._connector)             # <<<<<<<<<<<<<<
- *             self._connector = NULL
+ *         self._connector = NULL
  * 
  */
     ssh_connector_free(__pyx_v_self->_connector);
 
-    /* "ssh/connector.pyx":58
- *         if self._connector is not NULL:
+    /* "ssh/connector.pyx":56
+ * 
+ *     def __del__(self):
+ *         if self._connector is not NULL and self.session._session is not NULL:             # <<<<<<<<<<<<<<
  *             c_ssh.ssh_connector_free(self._connector)
- *             self._connector = NULL             # <<<<<<<<<<<<<<
+ *         self._connector = NULL
+ */
+  }
+
+  /* "ssh/connector.pyx":58
+ *         if self._connector is not NULL and self.session._session is not NULL:
+ *             c_ssh.ssh_connector_free(self._connector)
+ *         self._connector = NULL             # <<<<<<<<<<<<<<
  * 
  *     @staticmethod
  */
-    __pyx_v_self->_connector = NULL;
-
-    /* "ssh/connector.pyx":56
- * 
- *     def __dealloc__(self):
- *         if self._connector is not NULL:             # <<<<<<<<<<<<<<
- *             c_ssh.ssh_connector_free(self._connector)
- *             self._connector = NULL
- */
-  }
+  __pyx_v_self->_connector = NULL;
 
   /* "ssh/connector.pyx":55
  *         self.session = session
  * 
- *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._connector is not NULL:
+ *     def __del__(self):             # <<<<<<<<<<<<<<
+ *         if self._connector is not NULL and self.session._session is not NULL:
  *             c_ssh.ssh_connector_free(self._connector)
  */
 
   /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
+  return __pyx_r;
 }
 
 /* "ssh/connector.pyx":61
@@ -3699,14 +3715,6 @@ static void __pyx_tp_dealloc_3ssh_9connector_Connector(PyObject *o) {
   }
   #endif
   PyObject_GC_UnTrack(o);
-  {
-    PyObject *etype, *eval, *etb;
-    PyErr_Fetch(&etype, &eval, &etb);
-    __Pyx_SET_REFCNT(o, Py_REFCNT(o) + 1);
-    __pyx_pw_3ssh_9connector_9Connector_3__dealloc__(o);
-    __Pyx_SET_REFCNT(o, Py_REFCNT(o) - 1);
-    PyErr_Restore(etype, eval, etb);
-  }
   Py_CLEAR(p->session);
   (*Py_TYPE(o)->tp_free)(o);
 }
@@ -3734,6 +3742,7 @@ static PyObject *__pyx_getprop_3ssh_9connector_9Connector_session(PyObject *o, C
 }
 
 static PyMethodDef __pyx_methods_3ssh_9connector_Connector[] = {
+  {"__del__", (PyCFunction)__pyx_pw_3ssh_9connector_9Connector_3__del__, METH_NOARGS, __pyx_doc_3ssh_9connector_9Connector_2__del__},
   {"set_in_channel", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3ssh_9connector_9Connector_5set_in_channel, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3ssh_9connector_9Connector_4set_in_channel},
   {"set_out_channel", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3ssh_9connector_9Connector_7set_out_channel, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3ssh_9connector_9Connector_6set_out_channel},
   {"set_in_fd", (PyCFunction)__pyx_pw_3ssh_9connector_9Connector_9set_in_fd, METH_O, __pyx_doc_3ssh_9connector_9Connector_8set_in_fd},

@@ -24,7 +24,7 @@ from .sftp_statvfs cimport SFTPStatVFS
 from .utils cimport handle_error_codes, to_bytes, to_str
 from .exceptions import SFTPError, SFTPHandleError
 
-from .c_ssh cimport ssh_get_error, ssh_get_error_code, timeval
+from .c_ssh cimport ssh_get_error, ssh_get_error_code, timeval, ssh_channel_free
 from . cimport c_sftp
 
 
@@ -37,10 +37,13 @@ cdef class SFTP:
         _sftp.session = session
         return _sftp
 
-    def __dealloc__(self):
+    def __del__(self):
         if self._sftp is not NULL:
-            c_sftp.sftp_free(self._sftp)
-            self._sftp = NULL
+            if self.session is not None and self.session._session is not NULL:
+                c_sftp.sftp_free(self._sftp)
+            if self._sftp.channel is not NULL:
+                ssh_channel_free(self._sftp.channel)
+        self._sftp = NULL
 
     def init(self):
         cdef int rc

@@ -52,10 +52,10 @@ cdef class Connector:
     def __cinit__(self, Session session):
         self.session = session
 
-    def __dealloc__(self):
-        if self._connector is not NULL:
+    def __del__(self):
+        if self._connector is not NULL and self.session._session is not NULL:
             c_ssh.ssh_connector_free(self._connector)
-            self._connector = NULL
+        self._connector = NULL
 
     @staticmethod
     cdef Connector from_ptr(c_ssh.ssh_connector _connector, Session session):

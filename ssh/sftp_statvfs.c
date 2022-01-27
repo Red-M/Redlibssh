@@ -1333,7 +1333,7 @@ static PyObject *__pyx_tuple__2;
  * cdef class SFTPStatVFS:
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._stats is not NULL:
+ *         if self._stats is not NULL and self.sftp.session._session is not NULL:
  *             c_sftp.sftp_statvfs_free(self._stats)
  */
 
@@ -1351,50 +1351,59 @@ static void __pyx_pw_3ssh_12sftp_statvfs_11SFTPStatVFS_1__dealloc__(PyObject *__
 static void __pyx_pf_3ssh_12sftp_statvfs_11SFTPStatVFS___dealloc__(struct __pyx_obj_3ssh_12sftp_statvfs_SFTPStatVFS *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
+  int __pyx_t_2;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "ssh/sftp_statvfs.pyx":26
  * 
  *     def __dealloc__(self):
- *         if self._stats is not NULL:             # <<<<<<<<<<<<<<
+ *         if self._stats is not NULL and self.sftp.session._session is not NULL:             # <<<<<<<<<<<<<<
  *             c_sftp.sftp_statvfs_free(self._stats)
- *             self._stats = NULL
+ *         self._stats = NULL
  */
-  __pyx_t_1 = ((__pyx_v_self->_stats != NULL) != 0);
+  __pyx_t_2 = ((__pyx_v_self->_stats != NULL) != 0);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_2 = ((__pyx_v_self->sftp->session->_session != NULL) != 0);
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
     /* "ssh/sftp_statvfs.pyx":27
  *     def __dealloc__(self):
- *         if self._stats is not NULL:
+ *         if self._stats is not NULL and self.sftp.session._session is not NULL:
  *             c_sftp.sftp_statvfs_free(self._stats)             # <<<<<<<<<<<<<<
- *             self._stats = NULL
+ *         self._stats = NULL
  * 
  */
     sftp_statvfs_free(__pyx_v_self->_stats);
 
-    /* "ssh/sftp_statvfs.pyx":28
- *         if self._stats is not NULL:
- *             c_sftp.sftp_statvfs_free(self._stats)
- *             self._stats = NULL             # <<<<<<<<<<<<<<
- * 
- *     @staticmethod
- */
-    __pyx_v_self->_stats = NULL;
-
     /* "ssh/sftp_statvfs.pyx":26
  * 
  *     def __dealloc__(self):
- *         if self._stats is not NULL:             # <<<<<<<<<<<<<<
+ *         if self._stats is not NULL and self.sftp.session._session is not NULL:             # <<<<<<<<<<<<<<
  *             c_sftp.sftp_statvfs_free(self._stats)
- *             self._stats = NULL
+ *         self._stats = NULL
  */
   }
+
+  /* "ssh/sftp_statvfs.pyx":28
+ *         if self._stats is not NULL and self.sftp.session._session is not NULL:
+ *             c_sftp.sftp_statvfs_free(self._stats)
+ *         self._stats = NULL             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+ */
+  __pyx_v_self->_stats = NULL;
 
   /* "ssh/sftp_statvfs.pyx":25
  * cdef class SFTPStatVFS:
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         if self._stats is not NULL:
+ *         if self._stats is not NULL and self.sftp.session._session is not NULL:
  *             c_sftp.sftp_statvfs_free(self._stats)
  */
 

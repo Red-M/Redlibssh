@@ -30,12 +30,11 @@ cdef class Channel:
     def __cinit__(self, Session session):
         self.closed = False
         self._session = session
-        self._block_lock = self._session._block_lock
 
-    def __dealloc__(self):
-        if self._channel is not NULL and self._session is not None:
+    def __del__(self):
+        if self._session is not None and self._session._session is not NULL and self._channel is not NULL:
             c_ssh.ssh_channel_free(self._channel)
-            self._channel = NULL
+        self._channel = NULL
 
     @property
     def session(self):
