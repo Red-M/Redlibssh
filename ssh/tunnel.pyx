@@ -73,7 +73,7 @@ cdef class Tunnel:
         if _select_timeout==None:
             _select_timeout = 0.005
         with self._session._block_lock:
-            self.blocking_flush(_select_timeout)
+            self._session.blocking_flush(_select_timeout)
             block_direction = self._session.get_poll_flags()
         if block_direction==0:
             time.sleep(0.1)
@@ -82,7 +82,7 @@ cdef class Tunnel:
         if self._session.check_c_poll_enabled()==True:
             with self._session._block_lock:
                 self.poll_sockets(block_direction,_select_timeout*1000)
-                return([[self._c_waitsockets[0].revents,self._c_waitsockets[1].revents],[],[]])
+            return([[self._c_waitsockets[0].revents,self._c_waitsockets[1].revents],[],[]])
         else:
             rfds = self._default_waitsockets
             wfds = self._default_waitsockets
