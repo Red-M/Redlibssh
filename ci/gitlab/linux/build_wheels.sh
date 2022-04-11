@@ -23,5 +23,5 @@ done
 # Install packages and test
 for PYBIN in `ls -1d /opt/${PYTHON_DIR}/*/bin | grep -v cpython`; do
     "${PYBIN}/pip" install redlibssh --no-index -f /io/wheelhouse
-    (cd "${HOME}"; "${PYBIN}/${PYTHON_BIN}" -c 'import ssh; ssh.session.Session(); print(ssh.__version__)')
+    (cd "${HOME}"; "${PYBIN}/${PYTHON_BIN}" -c 'import ssh; ssh.session.Session(); print(ssh.__version__); print(ssh.utils.openssl_version_text)')
 done
