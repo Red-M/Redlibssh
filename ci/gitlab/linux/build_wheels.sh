@@ -2,6 +2,7 @@
 
 PYTHON_DIR=${1:-python}
 PYTHON_BIN=${2:-python}
+AUDITWHEEL_BIN=${3:-$(which auditwheel)}
 
 OLD_PWD="$(pwd)"
 LATEST_PY="$(ls -1d /opt/${PYTHON_DIR}/*/bin | grep -v cpython | tail -n1)/${PYTHON_BIN}"
@@ -14,9 +15,11 @@ for PYBIN in `ls -1d /opt/${PYTHON_DIR}/*/bin | grep -v cpython`; do
 done
 cd "${OLD_PWD}"
 
+"${LATEST_PY}" -m pip install -U auditwheel
+
 # Bundle external shared libraries into the wheels
 for whl in /tmp/wheelhouse/*.whl; do
-    auditwheel repair "${whl}" -w /io/wheelhouse/
+    "${LATEST_PY}" "${AUDITWHEEL_BIN}" repair "${whl}" -w /io/wheelhouse/
     \rm "${whl}"
 done
 
