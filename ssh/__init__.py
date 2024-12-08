@@ -10,3 +10,6 @@ from . import sftp_handles
 from . import tunnel
 from . import utils
 from . import libssh_enums as enums
+
+from . import _version
+__version__ = _version.get_versions()['version']
